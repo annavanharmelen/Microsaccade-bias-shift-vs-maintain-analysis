@@ -297,7 +297,7 @@ if plot_averages
     errorbar([1], [nanmean(error_validity(:,1))*100], [(std(error_validity(:,1)) ./ sqrt(size(pp2do, 2)))*100], 'LineWidth', 3, 'Color', dark_colours(1,:));
     % errorbar([2], [nanmean(error_validity(:,2))*100], [(std(error_validity(:,2)) ./ sqrt(p))*100], 'LineWidth', 3, 'Color', light_colours(1,:));
     errorbar([2], [nanmean(error_validity(:,2))*100], [(std(error_validity(:,2)) ./ sqrt(size(pp2do, 2)))*100], 'LineWidth', 3, 'Color', dark_colours(2,:));
-    plot([1,2], [error_validity(:,1:2)*100]', 'Color', [0, 0, 0, 0.25], 'LineWidth', 1);
+    plot([1,2], [error_validity(:,1:2)*100]', 'Color', [0, 0, 0, 0.25], 'LineWidth', 2);
     
     % add significant differences to line plot
     acc_p = [];
