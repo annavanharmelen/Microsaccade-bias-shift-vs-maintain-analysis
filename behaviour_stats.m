@@ -2,7 +2,19 @@
 [h,p,ci,stats] = ttest(reaction_time_validity(:,1), reaction_time_validity(:,2))
 [h,p,ci,stats] = ttest(error_validity(:,1), error_validity(:,2))
 
-%% SOA stats
+%% SOA t-test stats
+for soa = 1:size(trial_lengths, 2)
+    disp(['soa: ', num2str(trial_lengths(soa))])
+    [h,p,i,stats] = ttest(reaction_time_per_soa_valid(:,soa), reaction_time_per_soa_invalid(:,soa));
+    disp(['rt: ', 'p=', num2str(p)])
+    disp(stats)
+    [h,p,i,stats] = ttest(accuracy_per_soa_valid(:,soa), accuracy_per_soa_invalid(:,soa));
+    disp(['acc: ', 'p=', num2str(p)])
+    disp(stats)
+    disp(' ');
+end
+
+%% SOA cluster stats
 statcfg.xax = trial_lengths;
 statcfg.npermutations = 1000;
 statcfg.clusterStatEvalaluationAlpha = 0.05;
