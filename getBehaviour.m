@@ -6,7 +6,7 @@ clc
 display_percentage_premature = 0;
 display_percentage_unbroken = 1;
 plot_individuals = 0;
-plot_averages = 0;
+plot_averages = 1;
 
 pp2do = [2:25];
 p = 0;
@@ -78,7 +78,7 @@ for pp = pp2do
     overall_dt(p,1) = nanmean(behdata.response_time_in_ms(oktrials));
     overall_error(p,1) = sum(ismember(behdata.feedback, 'correct')&oktrials) / sum(oktrials);
 
-    labels = {'valid','invalid'};
+    labels = {'Valid','Invalid'};
     
     reaction_time_validity(p,1) = nanmean(behdata.response_time_in_ms(valid_trials));
     reaction_time_validity(p,2) = nanmean(behdata.response_time_in_ms(invalid_trials));
@@ -106,7 +106,7 @@ for pp = pp2do
         ylim([400 1700]);
         xlim([min(trial_lengths) max(trial_lengths)]);
         xticks(trial_lengths);
-        xlabel('SOA (ms)');
+        xlabel('Cue-target interval (ms)');
         ylabel('Response time (ms)');
     end
     % legend(labels);
@@ -132,7 +132,7 @@ for pp = pp2do
         ylim([0.2 1]);
         xlim([min(trial_lengths) max(trial_lengths)]);
         xticks(trial_lengths);
-        xlabel('SOA (ms)');
+        xlabel('Cue-target interval (ms)');
         ylabel('Accuracy');
     end
     % legend(labels);
@@ -163,7 +163,7 @@ if plot_averages
     xlabel('pp #');
 
     %% show grand average line graphs of data as function of SOA (MAIN)
-    ft_size = 15;
+    ft_size = 26;
     rt_y_lim = [500, 1500];
     rt_y_ticks = [500, 1000, 1500];
     acc_y_lim = [50, 100];
@@ -172,12 +172,12 @@ if plot_averages
     
     figure(figure_nr)
     figure_nr = figure_nr+1;
-    subplot(1,2,1);
+    subplot(1,5,[1:3]);
     hold on
     
-    l1 = plot(trial_lengths, nanmean(reaction_time_per_soa_valid), 'Color', bright_colours(1,:), 'LineWidth', 3.5, 'Marker', 'o', 'MarkerFaceColor', bright_colours(1,:));
+    l1 = plot(trial_lengths, nanmean(reaction_time_per_soa_valid), 'Color', bright_colours(1,:), 'LineWidth', 6, 'Marker', 'o', 'MarkerFaceColor', bright_colours(1,:));
     p1 = frevede_errorbarplot(trial_lengths, reaction_time_per_soa_valid, bright_colours(1,:), 'se');
-    l2 = plot(trial_lengths, nanmean(reaction_time_per_soa_invalid), 'Color', bright_colours(2,:), 'LineWidth', 3.5, 'Marker', 'o', 'MarkerFaceColor', bright_colours(2,:));
+    l2 = plot(trial_lengths, nanmean(reaction_time_per_soa_invalid), 'Color', bright_colours(2,:), 'LineWidth', 6, 'Marker', 'o', 'MarkerFaceColor', bright_colours(2,:));
     p2 = frevede_errorbarplot(trial_lengths, reaction_time_per_soa_invalid, bright_colours(2,:), 'se');
     
     
@@ -194,12 +194,13 @@ if plot_averages
     legend([l1, l2], labels, 'EdgeColor', 'w');
     ylim(rt_y_lim);
     ylabel('Time (ms)');
-    xlabel('SOA (ms)');
+    xlabel('Cue-target interval (ms)');
     yticks(rt_y_ticks);
     xticks([500 1400 2300 3200]);
     xlim([min(trial_lengths) max(trial_lengths)]);
     fontsize(ft_size, "points");
     % set(gcf,'position',[0,0, 700,1080])
+    set(gca, 'position', [0.1300, 0.2100, 0.4494, 0.7500])
     
     % add significant differences to line plot
     rt_p = [];
@@ -209,16 +210,16 @@ if plot_averages
     end
 
     % add grand average bar graphs of data as function of validity
-    subplot(1,2,2);
+    subplot(1,5,[4:5]);
     hold on
     
     b1 = bar([1], [nanmean(reaction_time_validity(:,1))], bar_size, FaceColor=colours(1,:), EdgeColor=colours(1,:));
     % b2 = bar([2], [nanmean(reaction_time_validity(:,2))], bar_size, FaceColor=colours(2,:), FaceAlpha=0.5, EdgeColor=colours(2,:), EdgeAlpha=0.5);
     b2 = bar([2], [nanmean(reaction_time_validity(:,2))], bar_size, FaceColor=colours(2,:), EdgeColor=colours(2,:));
-    errorbar([1], [nanmean(reaction_time_validity(:,1))], [std(reaction_time_validity(:,1)) ./ sqrt(p)], 'LineWidth', 3, 'Color', dark_colours(1,:));
+    errorbar([1], [nanmean(reaction_time_validity(:,1))], [std(reaction_time_validity(:,1)) ./ sqrt(size(pp2do, 2))], 'LineWidth', 3, 'Color', dark_colours(1,:));
     % errorbar([2], [nanmean(reaction_time_validity(:,2))], [std(reaction_time_validity(:,2)) ./ sqrt(p)], 'LineWidth', 3, 'Color', light_colours(2,:));
-    errorbar([2], [nanmean(reaction_time_validity(:,2))], [std(reaction_time_validity(:,2)) ./ sqrt(p)], 'LineWidth', 3, 'Color', dark_colours(2,:));
-    plot([1,2], [reaction_time_validity(:,1:2)]', 'Color', [0, 0, 0, 0.25], 'LineWidth', 1);
+    errorbar([2], [nanmean(reaction_time_validity(:,2))], [std(reaction_time_validity(:,2)) ./ sqrt(size(pp2do, 2))], 'LineWidth', 3, 'Color', dark_colours(2,:));
+    plot([1,2], [reaction_time_validity(:,1:2)]', 'Color', [0, 0, 0, 0.25], 'LineWidth', 2);
     
     % legend(labels, 'Location', 'southeast');
     ylim(rt_y_lim);
@@ -229,17 +230,19 @@ if plot_averages
     yticklabels([]);
     % title('Response time', 'fontsize', 28)
     fontsize(ft_size, "points");
-    % set(gcf,'position',[0,0, 540,1600])
+
+    set(gca, 'position', [0.6184, 0.2100, 0.2866, 0.7500])
+    set(gcf,'position',[100,100, 975,700])
     
 
     % MAIN accuracy 
     figure;
-    subplot(1,2,1);
+    subplot(1,5,[1:3]);
     hold on
     
-    l3 = plot(trial_lengths, nanmean(accuracy_per_soa_valid)*100, 'Color', bright_colours(1,:), 'LineWidth', 3.5, 'Marker', 'o', 'MarkerFaceColor', bright_colours(1,:));
+    l3 = plot(trial_lengths, nanmean(accuracy_per_soa_valid)*100, 'Color', bright_colours(1,:), 'LineWidth', 6, 'Marker', 'o', 'MarkerFaceColor', bright_colours(1,:));
     p3 = frevede_errorbarplot(trial_lengths, accuracy_per_soa_valid*100, bright_colours(1,:), 'se');
-    l4 = plot(trial_lengths, nanmean(accuracy_per_soa_invalid)*100, 'Color', bright_colours(2,:), 'LineWidth', 3.5, 'Marker', 'o', 'MarkerFaceColor', bright_colours(2,:));
+    l4 = plot(trial_lengths, nanmean(accuracy_per_soa_invalid)*100, 'Color', bright_colours(2,:), 'LineWidth', 6, 'Marker', 'o', 'MarkerFaceColor', bright_colours(2,:));
     p4 = frevede_errorbarplot(trial_lengths, accuracy_per_soa_invalid*100, bright_colours(2,:), 'se');
     
     if exist('stat_a') == 1
@@ -258,22 +261,24 @@ if plot_averages
     yticks(acc_y_ticks);
     xlim([min(trial_lengths) max(trial_lengths)]);
     xticks([500 1400 2300 3200]);
-    xlabel('SOA (ms)');
+    xlabel('Cue-target interval (ms)');
     fontsize(ft_size, "points");
+    set(gca, 'position', [0.1300, 0.2100, 0.4494, 0.7500])
+
     
     % set(gcf,'position',[0,0, 700,1080])
     
     % add grand average bar graphs of data as function of validity
-    subplot(1,2,2)
+    subplot(1,5,[4:5])
     hold on
     
     b3 = bar([1], [nanmean(error_validity(:,1))*100], bar_size, FaceColor=colours(1,:), EdgeColor=colours(1,:));
     b4 = bar([2], [nanmean(error_validity(:,2))*100], bar_size, FaceColor=colours(2,:), EdgeColor=colours(2,:));
     % b4 = bar([2], [nanmean(error_validity(:,2))*100], bar_size, FaceColor=colours(1,:), EdgeColor=colours(1,:), FaceAlpha=0.5, EdgeAlpha=0.5);
-    errorbar([1], [nanmean(error_validity(:,1))*100], [(std(error_validity(:,1)) ./ sqrt(p))*100], 'LineWidth', 3, 'Color', dark_colours(1,:));
+    errorbar([1], [nanmean(error_validity(:,1))*100], [(std(error_validity(:,1)) ./ sqrt(size(pp2do, 2)))*100], 'LineWidth', 3, 'Color', dark_colours(1,:));
     % errorbar([2], [nanmean(error_validity(:,2))*100], [(std(error_validity(:,2)) ./ sqrt(p))*100], 'LineWidth', 3, 'Color', light_colours(1,:));
-    errorbar([2], [nanmean(error_validity(:,2))*100], [(std(error_validity(:,2)) ./ sqrt(p))*100], 'LineWidth', 3, 'Color', dark_colours(2,:));
-    plot([1,2], [error_validity(:,1:2)*100]', 'Color', [0, 0, 0, 0.25], 'LineWidth', 1);
+    errorbar([2], [nanmean(error_validity(:,2))*100], [(std(error_validity(:,2)) ./ sqrt(size(pp2do, 2)))*100], 'LineWidth', 3, 'Color', dark_colours(2,:));
+    plot([1,2], [error_validity(:,1:2)*100]', 'Color', [0, 0, 0, 0.25], 'LineWidth', 2);
     
     % add significant differences to line plot
     acc_p = [];
@@ -292,8 +297,8 @@ if plot_averages
     fontsize(ft_size, "points");
     % title('Accuracy', 'fontsize', 28)
     
-    
-    % set(gcf,'position',[0,0, 540,1600])
+    set(gca, 'position', [0.6184, 0.2100, 0.2866, 0.7500])
+    set(gcf,'position',[100,100, 975,700])
         
     %% show diff of behavioural effect as function of SOA
     figure;
