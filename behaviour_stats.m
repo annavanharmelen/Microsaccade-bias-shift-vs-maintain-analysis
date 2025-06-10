@@ -2,6 +2,10 @@
 [h,p,ci,stats] = ttest(reaction_time_validity(:,1), reaction_time_validity(:,2))
 [h,p,ci,stats] = ttest(error_validity(:,1), error_validity(:,2))
 
+% Cohens d's for paired samples
+rt_d = meanEffectSize(reaction_time_validity(:,1), reaction_time_validity(:,2), "Paired", true, "Effect", "cohen") 
+acc_d = meanEffectSize(error_validity(:,1), error_validity(:,2), "Paired", true, "Effect", "cohen")
+
 %% SOA t-test stats
 for soa = 1:size(trial_lengths, 2)
     disp(['soa: ', num2str(trial_lengths(soa))])
