@@ -375,8 +375,10 @@ if plotGAs
     text(1120, 3.65, 'Border', 'FontSize', 40, 'Color',[0.6, 0.6, 0.6]);
     % text(1520, 1, 'Microsaccade range', 'FontSize', 34, 'Color',[0.6, 0.6, 0.6]);
     set(gca, 'FontSize', 50)
-    set(gcf,'position',[0,0, 1800,1060])
+    set(gcf,'position',[0,0, 1865,1060])
     hold off
+        print("C:\Users\annav\Documents\Surfdrive\Manuscripts\Shift-vs.-sustain\Figures\sac_sizecourse_E2", "-dsvg")
+
 
     %% just effect as function of SOA
     cfg = [];
