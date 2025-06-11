@@ -350,7 +350,7 @@ if plotGAs
     cfg = [];
     cfg.parameter = 'avg_data';
     cfg.figure = 'gcf';
-    cfg.zlim = 'maxabs';
+    cfg.zlim = [-0.01, 0.01];
     cfg.xlim = xlimtoplot;  
     cfg.colormap = brewermap(1000, 'PRGn');
     
