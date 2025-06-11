@@ -16,7 +16,7 @@ pp2do           = [1:2,5:9,11,13:24, 26:29];
 
 nsmooth         = 500;
 plotSinglePps   = 0;
-plotGAs         = 1;
+plotGAs         = 0;
 xlimtoplot      = [-100 1400];
 
 %% predefine size of some matrices
@@ -350,7 +350,7 @@ if plotGAs
     cfg = [];
     cfg.parameter = 'avg_data';
     cfg.figure = 'gcf';
-    cfg.zlim = [-0.01, 0.01];
+    cfg.zlim = [-0.012, 0.012];
     cfg.xlim = xlimtoplot;  
     cfg.colormap = brewermap(1000, 'PRGn');
     
@@ -377,7 +377,7 @@ if plotGAs
     set(gca, 'FontSize', 50)
     set(gcf,'position',[0,0, 1800,1060])
     hold off
-    
+
     %% just effect as function of SOA
     cfg = [];
     cfg.parameter = 'avg_data';
