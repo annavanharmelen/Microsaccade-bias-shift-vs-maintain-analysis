@@ -16,7 +16,7 @@ pp2do           = [1:2,5:9,11,13:24, 26:29];
 
 nsmooth         = 500;
 plotSinglePps   = 0;
-plotGAs         = 0;
+plotGAs         = 1;
 xlimtoplot      = [-100 1400];
 
 %% predefine size of some matrices
@@ -283,18 +283,20 @@ if plotGAs
     hold on
     p8 = frevede_errorbarplot(saccade.time, squeeze(saccade_data(:,1,:)), bright_colours(1,:), 'se');
     p9 = frevede_errorbarplot(saccade.time, squeeze(saccade_data(:,3,:)), bright_colours(2,:), 'se');
-    p8.LineWidth = 2.5;
-    p9.LineWidth = 2.5;
+    p8.LineWidth = 6;
+    p9.LineWidth = 6;
     fontsize(23, 'points')
     xlim(xlimtoplot);
     ylim([0 0.25]);
     yticks([0.1, 0.2]);
-    % plot(xlim, [0,0], '--', 'LineWidth',2, 'Color', [0.6, 0.6, 0.6]);
+    % plot(xlim, [0,0], '--', 'LineWidth',2, 'Color', [0.6, 0.6, 0.6]
     plot([0,0], ylim, '--', 'LineWidth',2, 'Color', [0.6, 0.6, 0.6]);
-    legend([p8, p9], {'target', 'nontarget'}, 'EdgeColor', 'w', 'Fontsize', 28);
-    ylabel('Saccade bias (Hz)', 'Fontsize', 28);
-    xlabel('Time (ms)', 'Fontsize', 28);
-    set(gcf,'position',[0,0, 1800,900])
+    legend([p8, p9], {'toward cued', 'toward other'}, 'EdgeColor', 'w');
+    ylabel('Saccade bias (Hz)');
+    xlabel('Time (ms)');
+    xticks([0, 400, 800, 1200])
+    set(gca, 'FontSize', 50)
+    set(gcf,'position',[0,0, 1800,1060])
     hold off
     
     % plot correct vs. incorrect
@@ -362,17 +364,19 @@ if plotGAs
     hold on
     set(gcf,'position',[0,0, 1800, 750])
     plot([0,0], [0, 7], '--', 'LineWidth',2, 'Color', [0.6, 0.6, 0.6]);
-    plot([-500 1080], [5, 5], '--', 'LineWidth',2, 'Color', [0,68,27]/255);
-    plot([-500 1080], [3.73, 3.73], '--', 'LineWidth',2, 'Color', [0.6, 0.6, 0.6]);
+    plot([-500 1080], [5, 5], '--', 'LineWidth',4, 'Color', [0,68,27]/255);
+    plot([-500 1080], [3.625, 3.625], '--', 'LineWidth',4, 'Color', [0.6, 0.6, 0.6]);
     plot([-500 1400], [1, 1], '--', 'LineWidth',2, 'Color', [0.6, 0.6, 0.6]);
     xlim(xlimtoplot);
+    xticks([0, 400, 800, 1200]);
     ylim([0.25 5.5]);
     title('', 'FontSize', 39);
-    fontsize(39,"points");
-    text(1120, 5.025, 'Centre', 'FontSize', 34, 'Color', [0,68,27]/255);
-    text(1120, 3.755, 'Border', 'FontSize', 34, 'Color',[0.6, 0.6, 0.6]);
+    text(1120, 5.025, 'Centre', 'FontSize', 40, 'Color', [0,68,27]/255);
+    text(1120, 3.65, 'Border', 'FontSize', 40, 'Color',[0.6, 0.6, 0.6]);
     % text(1520, 1, 'Microsaccade range', 'FontSize', 34, 'Color',[0.6, 0.6, 0.6]);
-    
+    set(gca, 'FontSize', 50)
+    set(gcf,'position',[0,0, 1800,1060])
+    hold off
     
     %% just effect as function of SOA
     cfg = [];

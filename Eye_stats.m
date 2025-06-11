@@ -27,8 +27,8 @@ mask_xxx(mask_xxx==0) = nan; % nan data that is not part of mark
 figure;
 hold on
 p1 = frevede_errorbarplot(saccade.time, squeeze(saccade_data(:,5,:)), [0.6, 0.6, 0.6], 'se');
-p1.LineWidth = 2.5;
-sig = plot(saccade.time(timeframe), mask_xxx*-0.01, 'Color', 'k', 'LineWidth', 5); % verticaloffset for positioning of the "significance line"
+p1.LineWidth = 6;
+sig = plot(saccade.time(timeframe), mask_xxx*-0.01, 'Color', 'k', 'LineWidth', 10); % verticaloffset for positioning of the "significance line"
 
 fontsize(23, 'points')
 xlim(xlimtoplot);
@@ -39,8 +39,10 @@ plot([0,0], ylim, '--', 'LineWidth',2, 'Color', [0.6, 0.6, 0.6]);
 % legend([p7], 'effect', 'EdgeColor', 'w', 'Fontsize', 28);
 ylabel('Saccade bias (ΔHz)', 'Fontsize', 28);
 xlabel('Time (ms)', 'Fontsize', 28);
-set(gcf,'position',[0,0, 1800,900])
+set(gcf,'position',[0,0, 1800,1060])
 xlabel('Time (ms)');
+xticks([0, 400, 800, 1200])
+set(gca, 'FontSize', 50)
 hold off
 
 % set(gcf,'position',[0,0, 1800,900])
@@ -75,4 +77,3 @@ xlabel('Time (ms)');
 set(gcf,'position',[0,0, 2000,900])
 fontsize(ft_size*1.5,"points")
 legend([p1,p2], {'Target', 'Non-target'}, 'EdgeColor', 'w', 'Location', 'northeast');
-
