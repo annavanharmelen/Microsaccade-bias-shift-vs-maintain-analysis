@@ -568,7 +568,8 @@ if plotGAs
     xticks([1,2]);
     xticklabels({'Shift', 'Sustain'});
     fontsize(40, "points");
-    ylabel('Saccade bias (ΔHz)', 'FontSize', 50);
+    set(gca().XAxis, 'FontSize', 45);
+    ylabel('Saccade bias (ΔHz)', 'FontSize', 45);
     
     set(gcf,'position',[0,0, 800,1080])
     print("C:\Users\annav\Documents\Surfdrive\Manuscripts\Shift-vs.-sustain\Figures\sac_timeframe_comp_E2", "-dsvg")
