@@ -565,9 +565,9 @@ if plotGAs
     % legend(labels, 'Location', 'southeast');
     ylim([-0.016 0.04]);
     yticks([0, 0.02]);
-    xlim([0.3 2.7]);
-    xticks([1,2]);
-    xticklabels({'Shift', 'Sustain'});
+    xlim([xpos(1) - 0.7, xpos(2) + 0.7]);
+    xticks([xpos(1), xpos(2)]);
+    xticklabels({'Shift', 'Maintain'});
     fontsize(40, "points");
     set(gca().XAxis, 'FontSize', 45);
     ylabel('Saccade bias (ΔHz)', 'FontSize', 45);
