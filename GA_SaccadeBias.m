@@ -564,13 +564,14 @@ if plotGAs
     % legend(labels, 'Location', 'southeast');
     ylim([-0.03 0.05]);
     ylabel('Saccade bias (ΔHz)');
-    yticks([-0.02 0 0.02 0.04]);
+    yticks([0, 0.05]);
     xlim([0.3 2.7]);
     xticks([1,2]);
     xticklabels({'Shift', 'Sustain'});
     fontsize(27, "points");
     
-    set(gcf,'position',[0,0, 650,1080])
+    set(gcf,'position',[0,0, 725,1080])
+    print("C:\Users\annav\Documents\Surfdrive\Manuscripts\Shift-vs.-sustain\Figures\sac_timeframe_comp_E2", "-dsvg")
 
     %% polar histogram of separate timeframes
     time_edges = [200, 600];
