@@ -562,15 +562,15 @@ if plotGAs
 
     % title('Saccade towards rate')
     % legend(labels, 'Location', 'southeast');
-    ylim([-0.02 0.05]);
-    ylabel('Saccade bias (ΔHz)');
-    yticks([0, 0.05]);
+    ylim([-0.016 0.04]);
+    yticks([0, 0.03]);
     xlim([0.3 2.7]);
     xticks([1,2]);
     xticklabels({'Shift', 'Sustain'});
-    fontsize(27, "points");
+    fontsize(40, "points");
+    ylabel('Saccade bias (ΔHz)', 'FontSize', 50);
     
-    set(gcf,'position',[0,0, 725,1080])
+    set(gcf,'position',[0,0, 800,1080])
     print("C:\Users\annav\Documents\Surfdrive\Manuscripts\Shift-vs.-sustain\Figures\sac_timeframe_comp_E2", "-dsvg")
 
     %% polar histogram of separate timeframes
