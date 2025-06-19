@@ -1,6 +1,18 @@
 %% Script for doing stats on saccade and gaze bias data.
 % So run those scripts first.
 % by Anna, 04-07-2023
+
+%% Avg saccade bias over time - stats
+%% Bar stats
+[h,p,ci,stats] = ttest(avg_saccade_effect(:,1))
+[h,p,ci,stats] = ttest(avg_saccade_effect(:,2))
+[h,p,ci,stats] = ttest(avg_saccade_effect(:,1), avg_saccade_effect(:,2))
+
+% Cohens d's for paired samples
+shift_d = meanEffectSize(avg_saccade_effect(:,1), "Effect", "cohen") 
+maintain_d = meanEffectSize(avg_saccade_effect(:,2), "Effect", "cohen")
+shift_vs_maintain_d = meanEffectSize(avg_saccade_effect(:,1), avg_saccade_effect(:,2), "Paired", true, "Effect", "cohen") 
+
 %% Saccade bias data - stats
 statcfg.xax = saccade.time;
 statcfg.npermutations = 10000;
