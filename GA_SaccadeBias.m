@@ -563,7 +563,7 @@ if plotGAs
     % title('Saccade towards rate')
     % legend(labels, 'Location', 'southeast');
     ylim([-0.016 0.04]);
-    yticks([0, 0.03]);
+    yticks([0, 0.02]);
     xlim([0.3 2.7]);
     xticks([1,2]);
     xticklabels({'Shift', 'Sustain'});
