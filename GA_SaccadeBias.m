@@ -17,7 +17,7 @@ pp2do           = [2:25];
 
 nsmooth         = 500;
 plotSinglePps   = 0;
-plotGAs         = 1;
+plotGAs         = 0;
 xlimtoplot      = [-100 1400];
 
 %% predefine size of some matrices
@@ -578,7 +578,9 @@ if plotGAs
     xticklabels({'Shift', 'Sustain'});
     fontsize(27, "points");
     
-    set(gcf,'position',[0,0, 650,1080])
+    set(gcf,'position',[0,0, 725,1080])
+    print("C:\Users\annav\Documents\Surfdrive\Manuscripts\Shift-vs.-sustain\Figures\sac_timeframe_comp_E1", "-dsvg")
+
 
     %% polar histogram of separate timeframes
     time_edges = [200, 600];
