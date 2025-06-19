@@ -358,7 +358,7 @@ if plotGAs
     figure;
     cfg.channel = 5;
     ft_singleplotTFR(cfg, saccadesizes);
-    ylabel('Saccade size (dva)', 'FontSize', 35, 'Position', [-880 2.8750 1]);
+    % ylabel({'Saccade size', '(degrees)'},  'Position', [-190, 2.8750, 1]);
     xlabel('Time (ms)', 'FontSize', 35);
     zticks([]);
     hold on
@@ -371,13 +371,13 @@ if plotGAs
     xticks([0, 400, 800, 1200]);
     ylim([0.25 5.5]);
     title('', 'FontSize', 39);
-    text(1120, 5.025, 'Centre', 'FontSize', 40, 'Color', [0,68,27]/255);
-    text(1120, 3.65, 'Border', 'FontSize', 40, 'Color',[0.6, 0.6, 0.6]);
+    text(1120, 5.025, 'Centre', 'FontSize', 45, 'Color', [0,68,27]/255);
+    text(1120, 3.65, 'Border', 'FontSize', 45, 'Color',[0.6, 0.6, 0.6]);
     % text(1520, 1, 'Microsaccade range', 'FontSize', 34, 'Color',[0.6, 0.6, 0.6]);
     set(gca, 'FontSize', 50)
     set(gcf,'position',[0,0, 1865,1060])
     hold off
-        print("C:\Users\annav\Documents\Surfdrive\Manuscripts\Shift-vs.-sustain\Figures\sac_sizecourse_E2", "-dsvg")
+    print("C:\Users\annav\Documents\Surfdrive\Manuscripts\Shift-vs.-sustain\Figures\sac_sizecourse_E2", "-dsvg")
 
 
     %% just effect as function of SOA
