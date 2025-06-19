@@ -562,7 +562,7 @@ if plotGAs
 
     % title('Saccade towards rate')
     % legend(labels, 'Location', 'southeast');
-    ylim([-0.03 0.05]);
+    ylim([-0.02 0.05]);
     ylabel('Saccade bias (ΔHz)');
     yticks([0, 0.05]);
     xlim([0.3 2.7]);
