@@ -560,22 +560,23 @@ if plotGAs
     legend('total');
 
     %% plot bar chart of different timeframes
+    xpos = [1, 2.2];
     figure;
     hold on
-    b1 = bar([1], [mean(avg_saccade_effect(:,1))], bar_size, FaceColor=colours(3,:), EdgeColor=colours(3,:));
-    b2 = bar([2], [mean(avg_saccade_effect(:,2))], bar_size, FaceColor=colours(4,:), EdgeColor=colours(4,:));
-    errorbar([1], [mean(avg_saccade_effect(:,1))], [std(avg_saccade_effect(:,1)) ./ sqrt(size(pp2do, 2))], 'LineWidth', 3, 'Color', dark_colours(3,:));
-    errorbar([2], [mean(avg_saccade_effect(:,2))], [std(avg_saccade_effect(:,2)) ./ sqrt(size(pp2do, 2))], 'LineWidth', 3, 'Color', dark_colours(4,:));
-    plot([1,2], [avg_saccade_effect(:,1:2)]', 'Color', [0, 0, 0, 0.25], 'LineWidth', 1);
+    b1 = bar([xpos(1)], [mean(avg_saccade_effect(:,1))], bar_size, FaceColor=colours(3,:), EdgeColor=colours(3,:));
+    b2 = bar([xpos(2)], [mean(avg_saccade_effect(:,2))], bar_size, FaceColor=colours(4,:), EdgeColor=colours(4,:));
+    errorbar([xpos(1)], [mean(avg_saccade_effect(:,1))], [std(avg_saccade_effect(:,1)) ./ sqrt(size(pp2do, 2))], 'LineWidth', 3, 'Color', dark_colours(3,:));
+    errorbar([xpos(2)], [mean(avg_saccade_effect(:,2))], [std(avg_saccade_effect(:,2)) ./ sqrt(size(pp2do, 2))], 'LineWidth', 3, 'Color', dark_colours(4,:));
+    plot([xpos(1), xpos(2)], [avg_saccade_effect(:,1:2)]', 'Color', [0, 0, 0, 0.25], 'LineWidth', 1);
 
     % title('Saccade towards rate')
     % legend(labels, 'Location', 'southeast');
-    ylim([-0.06 0.15]);
+    ylim([-0.064, 0.16]);
     ylabel('Saccade bias (ΔHz)');
-    yticks([0 0.1 0.2]);
-    xlim([0.3 2.7]);
-    xticks([1,2]);
-    xticklabels({'Shift', 'Sustain'});
+    yticks([0 0.08]);
+    xlim([xpos(1) - 0.7, xpos(2) + 0.7]);
+    xticks([xpos(1), xpos(2)]);
+    xticklabels({'Shift', 'Maintain'});
     fontsize(40, "points");
     set(gca().XAxis, 'FontSize', 45);
     ylabel('Saccade bias (ΔHz)', 'FontSize', 45);
