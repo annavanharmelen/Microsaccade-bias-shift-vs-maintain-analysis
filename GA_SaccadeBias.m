@@ -561,11 +561,11 @@ if plotGAs
 
     %% plot bar chart of different timeframes
     xpos = [1, 2.2];
-    % y_lim = [-0.064, 0.16];
-    y_lim = [-0.12 0.24];
+    y_lim = [-0.020 0.08];
+    y_lim_var = [-0.1, 0.20];
 
     figure;
-    subplot(1,3,[1:2])
+    subplot(2,1,1)
     hold on
     b1 = bar([xpos(1)], [mean(avg_saccade_effect(:,1))], bar_size, FaceColor=colours(3,:), EdgeColor=colours(3,:));
     b2 = bar([xpos(2)], [mean(avg_saccade_effect(:,2))], bar_size, FaceColor=colours(4,:), EdgeColor=colours(4,:));
@@ -576,37 +576,52 @@ if plotGAs
     % title('Saccade towards rate')
     % legend(labels, 'Location', 'southeast');
     ylim(y_lim);
-    ylabel('Saccade bias (ΔHz)');
-    yticks([0 0.08]);
-    xlim([xpos(1) - 0.7, xpos(2) + 0.7]);
+    yticks([0, 0.04]);
+    xlim([xpos(1) - 0.8, xpos(2) + 0.8]);
     xticks([xpos(1), xpos(2)]);
     xticklabels({'Shift', 'Maintain'});
+    % xticklabels([]);
     fontsize(32, "points");
     set(gca().XAxis, 'FontSize', 32);
+    set(gca().YAxis, 'Exponent', 0);
     ylabel('Saccade bias (ΔHz)', 'FontSize', 32);
-    set(gca, 'position', [0.1600, 0.1100, 0.4942, 0.8150])
+    % set(gca, 'position', [0.1600, 0.1100, 0.4942, 0.8150])
     
     % add individual effects
-    timecomp = [avg_saccade_effect(:,1) - avg_saccade_effect(:,2)];
-    [f, xi] = ksdensity(timecomp);
+    timecomp_1 = [avg_saccade_effect(:,1)];
+    [f_1, xi_1] = ksdensity(timecomp_1);
 
-    subplot(1,3,3)
+    timecomp_2 = [avg_saccade_effect(:,2)];
+    [f_2, xi_2] = ksdensity(timecomp_2);
+
+    w = 0.035;
+
+    subplot(2,1,2)
     hold on
     yline(0)
-    % scatter(ones(size(pp2do, 2)), avg_saccade_effect(:,1)-avg_saccade_effect(:,2), 'filled', 'MarkerFaceColor',  [0.6, 0.6, 0.6]);
-    % violinplot(avg_saccade_effect(:,1)-avg_saccade_effect(:,2))
-    patch('XData', [f(:)*0.02,zeros(numel(xi(:)),1)],'yData', [xi(:),xi(:)],'FaceColor', [0.6, 0.6, 0.6], 'EdgeColor', 'none');
-    
-    xlim([-0.2, 0.5])
-    ylim(y_lim);
-    yticks([0 0.08]);
-    yticklabels([]);
+    patch('XData', [f_1(:)*w + xpos(1), zeros(numel(xi_1(:)),1)],'yData', [xi_1(:),xi_1(:)],'FaceColor', colours(3,:), 'EdgeColor', 'none');
+    patch('XData', [f_2(:)*w + xpos(2), zeros(numel(xi_2(:)),1)],'yData', [xi_2(:),xi_2(:)],'FaceColor', colours(4,:), 'EdgeColor', 'none');
+    plot([xpos(1), xpos(1) + f_1(31)*w] , [mean(avg_saccade_effect(:,1)), mean(avg_saccade_effect(:,1))], 'Color', dark_colours(3,:), 'LineWidth', 2);
+    plot([xpos(2), xpos(2) + f_2(31)*w] , [mean(avg_saccade_effect(:,2)), mean(avg_saccade_effect(:,2))], 'Color', dark_colours(4,:), 'LineWidth', 2);
+    % plot([xpos(1)+0.1, xpos(2)-0.1], [avg_saccade_effect(:,1:2)]', 'Color', [0, 0, 0, 0.25], 'LineWidth', 1);
+    scatter(ones(size(pp2do, 2))*(xpos(1)-0.1), avg_saccade_effect(:,1), 'filled', 'MarkerFaceColor',  colours(3,:));
+    scatter(ones(size(pp2do, 2))*(xpos(2)-0.1), avg_saccade_effect(:,2), 'filled', 'MarkerFaceColor',  colours(4,:));
+
+    xlim([xpos(1) - 0.8, xpos(2) + 0.8]);
+    % subplot(1,3,3)
+    ylim(y_lim_var);
+    xticks([xpos(1), xpos(2)]);
+    % xticklabels({'Shift', 'Maintain'});
+    yticks([0, 0.10]);
     xticklabels([]);
+    ylabel('Saccade bias (ΔHz)', 'FontSize', 32);
     fontsize(32, "points");
+    set(gca(), 'XAxisLocation', 'top');
     set(gca().XAxis, 'FontSize', 32);
+    set(gca, 'position', [0.2167, 0.1100, 0.6883, 0.40]);
 
 
-    set(gcf,'position',[0,0, 1030,1080])
+    set(gcf,'position',[0,0, 700,1080])
     print("C:\Users\annav\Documents\Surfdrive\Manuscripts\Shift-vs.-sustain\Figures\sac_timeframe_comp_E1", "-dsvg")
 
     %% polar histogram of separate timeframes
