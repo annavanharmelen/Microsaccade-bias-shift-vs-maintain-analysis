@@ -561,8 +561,8 @@ if plotGAs
 
     %% plot bar chart of different timeframes
     xpos = [1, 2.2];
-    % y_lim = [-0.016 0.04];
-    y_lim = [-0.03 0.06];
+    % y_lim = [-0.064, 0.16];
+    y_lim = [-0.12 0.24];
 
     figure;
     subplot(1,3,[1:2])
@@ -575,7 +575,7 @@ if plotGAs
 
     % title('Saccade towards rate')
     % legend(labels, 'Location', 'southeast');
-    ylim([-0.064, 0.16]);
+    ylim(y_lim);
     ylabel('Saccade bias (ΔHz)');
     yticks([0 0.08]);
     xlim([xpos(1) - 0.7, xpos(2) + 0.7]);
@@ -587,14 +587,19 @@ if plotGAs
     set(gca, 'position', [0.1600, 0.1100, 0.4942, 0.8150])
     
     % add individual effects
+    timecomp = [avg_saccade_effect(:,1) - avg_saccade_effect(:,2)];
+    [f, xi] = ksdensity(timecomp);
+
     subplot(1,3,3)
     hold on
     yline(0)
-    scatter(ones(size(pp2do, 2)), avg_saccade_effect(:,1)-avg_saccade_effect(:,2), 'filled', 'MarkerFaceColor',  [0.6, 0.6, 0.6]);
+    % scatter(ones(size(pp2do, 2)), avg_saccade_effect(:,1)-avg_saccade_effect(:,2), 'filled', 'MarkerFaceColor',  [0.6, 0.6, 0.6]);
     % violinplot(avg_saccade_effect(:,1)-avg_saccade_effect(:,2))
+    patch('XData', [f(:)*0.02,zeros(numel(xi(:)),1)],'yData', [xi(:),xi(:)],'FaceColor', [0.6, 0.6, 0.6], 'EdgeColor', 'none');
     
+    xlim([-0.2, 0.5])
     ylim(y_lim);
-    yticks([0, 0.02]);
+    yticks([0 0.08]);
     yticklabels([]);
     xticklabels([]);
     fontsize(32, "points");
