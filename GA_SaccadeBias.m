@@ -553,17 +553,21 @@ if plotGAs
 
     %% plot bar chart of different timeframes
     xpos = [1, 2.2];
+    % y_lim = [-0.016 0.04];
+    y_lim = [-0.03 0.06];
+
     figure;
+    subplot(1,3,[1:2])
     hold on
     b1 = bar([xpos(1)], [mean(avg_saccade_effect(:,1))], bar_size, FaceColor=colours(3,:), EdgeColor=colours(3,:));
     b2 = bar([xpos(2)], [mean(avg_saccade_effect(:,2))], bar_size, FaceColor=colours(4,:), EdgeColor=colours(4,:));
     errorbar([xpos(1)], [mean(avg_saccade_effect(:,1))], [std(avg_saccade_effect(:,1)) ./ sqrt(size(pp2do, 2))], 'LineWidth', 3, 'Color', dark_colours(3,:));
     errorbar([xpos(2)], [mean(avg_saccade_effect(:,2))], [std(avg_saccade_effect(:,2)) ./ sqrt(size(pp2do, 2))], 'LineWidth', 3, 'Color', dark_colours(4,:));
-    plot([xpos(1), xpos(2)], [avg_saccade_effect(:,1:2)]', 'Color', [0, 0, 0, 0.25], 'LineWidth', 1);
+    %plot([xpos(1), xpos(2)], [avg_saccade_effect(:,1:2)]', 'Color', [0, 0, 0, 0.25], 'LineWidth', 1);
 
     % title('Saccade towards rate')
     % legend(labels, 'Location', 'southeast');
-    ylim([-0.016 0.04]);
+    ylim(y_lim);
     yticks([0, 0.02]);
     xlim([xpos(1) - 0.7, xpos(2) + 0.7]);
     xticks([xpos(1), xpos(2)]);
@@ -571,8 +575,24 @@ if plotGAs
     fontsize(32, "points");
     set(gca().XAxis, 'FontSize', 32);
     ylabel('Saccade bias (ΔHz)', 'FontSize', 32);
+    set(gca, 'position', [0.1600, 0.1100, 0.4942, 0.8150])
     
-    set(gcf,'position',[0,0, 800,1080])
+    % add individual effects
+    subplot(1,3,3)
+    hold on
+    yline(0)
+    scatter(ones(size(pp2do, 2)), avg_saccade_effect(:,1)-avg_saccade_effect(:,2), 'filled', 'MarkerFaceColor',  [0.6, 0.6, 0.6]);
+    % violinplot(avg_saccade_effect(:,1)-avg_saccade_effect(:,2))
+    
+    ylim(y_lim);
+    yticks([0, 0.02]);
+    yticklabels([]);
+    xticklabels([]);
+    fontsize(32, "points");
+    set(gca().XAxis, 'FontSize', 32);
+
+
+    set(gcf,'position',[0,0, 1030,1080])
     print("C:\Users\annav\Documents\Surfdrive\Manuscripts\Shift-vs.-sustain\Figures\sac_timeframe_comp_E2", "-dsvg")
 
     %% polar histogram of separate timeframes
