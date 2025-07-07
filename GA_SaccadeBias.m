@@ -553,8 +553,8 @@ if plotGAs
 
     %% plot bar chart of different timeframes
     xpos = [1, 2.2];
-    % y_lim = [-0.016 0.04];
-    y_lim = [-0.03 0.06];
+    y_lim = [-0.016 0.03];
+    y_lim_var = 4 * y_lim;
 
     figure;
     subplot(1,3,[1:2])
@@ -575,18 +575,23 @@ if plotGAs
     fontsize(32, "points");
     set(gca().XAxis, 'FontSize', 32);
     ylabel('Saccade bias (ΔHz)', 'FontSize', 32);
-    set(gca, 'position', [0.1600, 0.1100, 0.4942, 0.8150])
+    % set(gca, 'position', [0.1600, 0.1100, 0.4942, 0.8150])
     
     % add individual effects
+    timecomp = [avg_saccade_effect(:,1) - avg_saccade_effect(:,2)];
+    [f, xi] = ksdensity(timecomp);
+
     subplot(1,3,3)
     hold on
     yline(0)
-    scatter(ones(size(pp2do, 2)), avg_saccade_effect(:,1)-avg_saccade_effect(:,2), 'filled', 'MarkerFaceColor',  [0.6, 0.6, 0.6]);
-    % violinplot(avg_saccade_effect(:,1)-avg_saccade_effect(:,2))
-    
-    ylim(y_lim);
-    yticks([0, 0.02]);
-    yticklabels([]);
+    patch('XData', [f(:)*0.02,zeros(numel(xi(:)),1)],'yData', [xi(:),xi(:)],'FaceColor', [0.6, 0.6, 0.6], 'EdgeColor', 'none');
+    scatter(ones(size(pp2do, 2))*-0.1, avg_saccade_effect(:,1)-avg_saccade_effect(:,2), 'filled', 'MarkerFaceColor',  [0.6,0.6,0.6]);
+
+    xlim([-0.2, 0.5])
+    subplot(1,3,3)
+    ylim(y_lim_var);
+    yticks([0, 0.08]);
+    xticks([]);
     xticklabels([]);
     fontsize(32, "points");
     set(gca().XAxis, 'FontSize', 32);
