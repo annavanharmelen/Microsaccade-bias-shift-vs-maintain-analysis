@@ -46,16 +46,6 @@ tl.time = tl.time * 1000;
 % dirty hack to get proxy for blink rate
 tl.blink = squeeze(isnan(tl.trial(:,1,:))*100); % 0 where not nan, 1 where nan (putative blink, or eye close etc.)... *100 to get to percentage of trials where blink at that time
 
-%% turn post-change data to NaN
-behdata = readtable(param.log);
-trial_length = behdata.static_duration;
-
-for trial = 1:length(trial_length)
-    selection = tl.time > trial_length(trial);
-    tl.trial(trial, :, selection) = NaN;
-    tl.blink(trial, selection) = NaN;
-end
-
 %% baseline correct?
 if baselineCorrect
     tsel = tl.time >= -250 & tl.time <= 0; 
