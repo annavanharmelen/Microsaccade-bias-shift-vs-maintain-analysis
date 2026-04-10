@@ -15,9 +15,9 @@ only_under_1dva = 0;
 
 pp2do           = [2:25];
 
-nsmooth         = 500;
+nsmooth         = 200;
 plotSinglePps   = 0;
-plotGAs         = 0;
+plotGAs         = 1;
 xlimtoplot      = [-100 1400];
 
 %% predefine size of some matrices
