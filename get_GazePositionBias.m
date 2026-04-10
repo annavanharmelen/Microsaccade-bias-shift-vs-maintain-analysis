@@ -208,7 +208,7 @@ else
 end
 
 
-save([param.path, '\saved_data\gazePositionEffects', toadd1, toadd2, toadd3, '__', param.subjName], 'gaze');
+save([param.path, '\saved_data\gazePositionEffects', toadd1, toadd2, toadd3, toadd4, toadd5, '__', param.subjName], 'gaze');
 
 drawnow; 
 
