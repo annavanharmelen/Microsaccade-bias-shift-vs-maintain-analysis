@@ -14,9 +14,9 @@ only_over_1400 = 1;
 
 pp2do           = [1:2,5:9,11,13:24, 26:29];
 
-nsmooth         = 500;
+nsmooth         = 200;
 plotSinglePps   = 0;
-plotGAs         = 0;
+plotGAs         = 1;
 xlimtoplot      = [-100 1400];
 
 %% predefine size of some matrices
