@@ -5,11 +5,14 @@
 clear; clc; close all;
 
 %% parameters
-pp2do = [1:25];
+pp2do = [1:2,5:9,11,13:24,26:29];
 
 nsmooth             = 200;
+
+nan_trial_overlap   = 0;
+nan_post_target     = 1;
 baselineCorrect     = 0;
-removeTrials        = 1; % use data with removed trials based on gaze deviation from baseline
+removeTrials        = 0; % use data with removed trials based on gaze deviation from baseline
 remove_prematures   = 1;
 
 plotSinglePps       = 0;
@@ -35,11 +38,37 @@ for pp = pp2do;
     % load
     disp(['getting data from participant ', param.subjName]);
 
-    if baselineCorrect == 1     toadd1 = '_baselineCorrect'; else toadd1 = ''; end % depending on this option, append to name of saved file.
-    if removeTrials == 1        toadd2 = '_removeTrials';    else toadd2 = ''; end % depending on this option, append to name of saved file.
-    if remove_prematures == 1   toadd3 = '_removePremature'; else toadd3 = ''; end % depending on this option, append to name of saved file.
+    if baselineCorrect == 1
+    toadd1 = '_baselineCorrect';
+    else
+        toadd1 = '';
+    end 
+    
+    if nan_trial_overlap == 1
+        toadd2 = '_NaNtrialoverlap';
+    else
+        toadd2 = '';
+    end    
+    
+    if removeTrials == 1
+        toadd3 = '_removeUnfixated';
+    else
+        toadd3 = '';
+    end    
+    
+    if nan_post_target == 1
+        toadd4 = '_NaNposttarget';
+    else
+        toadd4 = '';
+    end
+    
+    if remove_prematures == 1
+        toadd5 = '_removePremature';
+    else
+        toadd5 = '';
+    end
 
-    load([param.path, '\saved_data\gazePositionEffects', toadd1, toadd2, toadd3, '__', param.subjName], 'gaze');
+    load([param.path, '\saved_data\gazePositionEffects', toadd1, toadd2, toadd3, toadd4, toadd5, '__', param.subjName], 'gaze');
 
     % smooth?
     if nsmooth > 0
