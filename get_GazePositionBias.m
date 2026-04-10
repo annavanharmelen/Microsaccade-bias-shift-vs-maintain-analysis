@@ -6,16 +6,31 @@ clear; clc; close all;
 %% parameters
 for pp = [1:25];
 
+nan_trial_overlap = 0;
+nan_post_target = 1;
+
 baselineCorrect     = 0; 
-removeTrials        = 1; % remove trials where gaze deviation larger than value specified below. Only sensible after baseline correction!
+removeTrials        = 0; % remove trials where gaze deviation larger than value specified below. Only sensible after baseline correction!
 max_eye_pos         = 2; % remove trials with x_position bigger than 2 degrees visual angle
 remove_prematures   = 1;
 
 plotResults         = 0;
 
 %% load epoched data of this participant
+if nan_trial_overlap == 1
+    toadd1 = '_NaNtrialoverlap';
+else
+    toadd1 = '';
+end
+
+if nan_post_target == 1
+    toadd2 = '_NaNposttarget';
+else
+    toadd2 = '';
+end
+
 param = getSubjParam(pp);
-load([param.path, '\epoched_data\eyedata_AnnaMicro1','_'  param.subjName], 'eyedata');
+load([param.path, '\epoched_data\eyedata_AnnaMicro1', toadd1, toadd2, '__', param.subjName], 'eyedata');
 
 %% only keep channels of interest
 cfg = [];
@@ -30,16 +45,6 @@ tl.time = tl.time * 1000;
 
 % dirty hack to get proxy for blink rate
 tl.blink = squeeze(isnan(tl.trial(:,1,:))*100); % 0 where not nan, 1 where nan (putative blink, or eye close etc.)... *100 to get to percentage of trials where blink at that time
-
-%% turn post-change data to NaN
-behdata = readtable(param.log);
-trial_length = behdata.static_duration;
-
-for trial = 1:length(trial_length)
-    selection = tl.time > trial_length(trial);
-    tl.trial(trial, :, selection) = NaN;
-    tl.blink(trial, selection) = NaN;
-end
 
 %% baseline correct?
 if baselineCorrect
@@ -162,9 +167,36 @@ if plotResults
 end
 
 %% save
-if baselineCorrect == 1     toadd1 = '_baselineCorrect';    else toadd1 = ''; end; % depending on this option, append to name of saved file.    
-if removeTrials == 1        toadd2 = '_removeTrials';       else toadd2 = ''; end; % depending on this option, append to name of saved file.    
-if remove_prematures == 1    toadd3 = '_removePremature';    else toadd3 = ''; end; % depending on this option, append to name of saved file.    
+if baselineCorrect == 1
+    toadd1 = '_baselineCorrect';
+else
+    toadd1 = '';
+end 
+
+if nan_trial_overlap == 1
+    toadd2 = '_NaNtrialoverlap';
+else
+    toadd2 = '';
+end    
+
+if removeTrials == 1
+    toadd3 = '_removeUnfixated';
+else
+    toadd3 = '';
+end    
+
+if nan_post_target == 1
+    toadd4 = '_NaNposttarget';
+else
+    toadd4 = '';
+end
+
+if remove_prematures == 1
+    toadd5 = '_removePremature';
+else
+    toadd5 = '';
+end
+
 
 save([param.path, '\saved_data\gazePositionEffects', toadd1, toadd2, toadd3, '__', param.subjName], 'gaze');
 
