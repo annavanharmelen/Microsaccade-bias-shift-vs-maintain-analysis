@@ -482,7 +482,7 @@ if plotGAs
     histogram(abs(shiftsR((abs(shiftsR) < max_saccade_size) & selectionR)), bin_edges);
     xlim([0 10]);
 
-    %% polar histogram of all saccades (all participants weighted as 1)
+    %% polar histogram of all saccades (each participant weighted as 1)
     fig = figure;
     for sp = 1:s
         p = polarhistogram(angle(shiftsL(sp, selectionL(sp,:,:))),20);
