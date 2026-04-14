@@ -295,8 +295,8 @@ if plotGAs
     p9.LineWidth = 6;
     fontsize(23, 'points')
     xlim(xlimtoplot);
-    ylim([0 0.25]);
-    yticks([0.1, 0.2]);
+    ylim([0 0.35]);
+    yticks([0.1, 0.2, 0.3]);
     % plot(xlim, [0,0], '--', 'LineWidth',2, 'Color', [0.6, 0.6, 0.6]
     plot([0,0], ylim, '--', 'LineWidth',2, 'Color', [0.6, 0.6, 0.6]);
     legend([p8, p9], {'toward cued', 'toward other'}, 'EdgeColor', 'w');
