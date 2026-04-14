@@ -17,7 +17,7 @@ pp2do           = [2:25];
 
 nsmooth         = 200;
 plotSinglePps   = 0;
-plotGAs         = 1;
+plotGAs         = 0;
 xlimtoplot      = [-100 1400];
 
 %% predefine size of some matrices
@@ -625,57 +625,122 @@ if plotGAs
     print("C:\Users\annav\Documents\Surfdrive\Manuscripts\Shift-vs.-sustain\Figures\sac_timeframe_comp_E1", "-dsvg")
 
     %% polar histogram of separate timeframes
-    time_edges = [200, 600];
-    x = 4;
+    r_lim = [0, 12];
+    r_ticks = [6, 12];
+
+    shift_edges = [200, 600];
+    maintain_edges = [600, 1400];
+    overall_edges = [-100, 1400];
+
     % get indices of wanted time range
-    timeidx = find(abs(saccade.time - time_edges(1)) < 0.01):find(abs(saccade.time - time_edges(2)) < 0.01);
+    shift_idx = find(abs(saccade.time - shift_edges(1)) < 0.01):find(abs(saccade.time - shift_edges(2)) < 0.01);
+    maintain_idx = find(abs(saccade.time - maintain_edges(1)) < 0.01):find(abs(saccade.time - maintain_edges(2)) < 0.01);
+    all_idx = find(abs(saccade.time - overall_edges(1)) < 0.01):find(abs(saccade.time - overall_edges(2)) < 0.01);
 
     fig = figure;
     for sp = 1:s
-        sp_time_shiftsL = shiftsL(sp,:,timeidx);
-        sp_time_selL = selectionL(sp,:,timeidx);
+        sp_time_shiftsL = shiftsL(sp,:,shift_idx);
+        sp_time_selL = selectionL(sp,:,shift_idx);
         p = polarhistogram(angle(sp_time_shiftsL(sp_time_selL)),20);
-        L_counts(sp,:) = p.Values;
+        L_shift_counts(sp,:) = p.Values;
 
-        sp_time_shiftsR = shiftsR(sp,:,timeidx);
-        sp_time_selR = selectionR(sp,:,timeidx);
+        sp_time_shiftsR = shiftsR(sp,:,shift_idx);
+        sp_time_selR = selectionR(sp,:,shift_idx);
         p = polarhistogram(angle(sp_time_shiftsR(sp_time_selR)),20);
-        R_counts(sp,:) = p.Values;
+        R_shift_counts(sp,:) = p.Values;
+
+        sp_time_shiftsL = shiftsL(sp,:,maintain_idx);
+        sp_time_selL = selectionL(sp,:,maintain_idx);
+        p = polarhistogram(angle(sp_time_shiftsL(sp_time_selL)),20);
+        L_maintain_counts(sp,:) = p.Values;
+
+        sp_time_shiftsR = shiftsR(sp,:,maintain_idx);
+        sp_time_selR = selectionR(sp,:,maintain_idx);
+        p = polarhistogram(angle(sp_time_shiftsR(sp_time_selR)),20);
+        R_maintain_counts(sp,:) = p.Values;
+
+        sp_time_shiftsL = shiftsL(sp,:,all_idx);
+        sp_time_selL = selectionL(sp,:,all_idx);
+        p = polarhistogram(angle(sp_time_shiftsL(sp_time_selL)),20);
+        L_all_counts(sp,:) = p.Values;
+
+        sp_time_shiftsR = shiftsR(sp,:,all_idx);
+        sp_time_selR = selectionR(sp,:,all_idx);
+        p = polarhistogram(angle(sp_time_shiftsR(sp_time_selR)),20);
+        R_all_counts(sp,:) = p.Values;
     end
     polar_bin_edges = p.BinEdges;
     close(fig)
     
-    L_density = L_counts./sum(L_counts, 2);
-    R_density = R_counts./sum(R_counts, 2);
+    L_shift_density = L_shift_counts./sum(L_shift_counts, 2);
+    R_shift_density = R_shift_counts./sum(R_shift_counts, 2);
+    L_maintain_density = L_maintain_counts./sum(L_maintain_counts, 2);
+    R_maintain_density = R_maintain_counts./sum(R_maintain_counts, 2);
+    L_all_density = L_all_counts./sum(L_all_counts, 2);
+    R_all_density = R_all_counts./sum(R_all_counts, 2);
     
-    L_values = mean(L_density)*100;
-    R_values = mean(R_density)*100;
-
+    L_shift_values = mean(L_shift_density)*100;
+    R_shift_values = mean(R_shift_density)*100;
+    L_maintain_values = mean(L_maintain_density)*100;
+    R_maintain_values = mean(R_maintain_density)*100;
+    L_all_values = mean(L_all_density)*100;
+    R_all_values = mean(R_all_density)*100;
 
     figure;
-    subplot(1,2,1);
-    polarhistogram('BinEdges', polar_bin_edges(11:21), 'BinCounts', L_values(11:20), 'FaceColor', [0.6, 0.6, 0.6], 'FaceAlpha', 0.45, 'EdgeColor', [1,1,1]);
+    subplot(3,2,1);
+    polarhistogram('BinEdges', polar_bin_edges(11:21), 'BinCounts', L_all_values(11:20), 'FaceColor', [0.6, 0.6, 0.6], 'FaceAlpha', 0.45, 'EdgeColor', [1,1,1]);
     hold on
-    polarhistogram('BinEdges', polar_bin_edges(1:11), 'BinCounts', L_values(1:10), 'FaceColor', bright_colours(x,:), 'FaceAlpha', 0.7, 'EdgeColor', [1,1,1]);
-    rlim([0, 10]);
+    polarhistogram('BinEdges', polar_bin_edges(1:11), 'BinCounts', L_all_values(1:10), 'FaceColor', bright_colours(1,:), 'FaceAlpha', 0.7, 'EdgeColor', [1,1,1]);
+    rlim(r_lim);
     thetaticks([]);
-    rticks([5 10]);
-    % title('left cue');
-    
-    subplot(1,2,2);
-    polarhistogram('BinEdges', polar_bin_edges(11:21), 'BinCounts', R_values(11:20), 'FaceColor', [0.6, 0.6, 0.6], 'FaceAlpha', 0.45, 'EdgeColor', [1,1,1]);
-    hold on
-    polarhistogram('BinEdges', polar_bin_edges(1:11), 'BinCounts', R_values(1:10), 'FaceColor', bright_colours(x,:), 'FaceAlpha', 0.7, 'EdgeColor', [1,1,1]);
-    rlim([0, 10]);
-    rticks([5 10]);
-    thetaticks([]);
-    fontsize(50, 'points')
-    % title('Right cue', 'FontSize', 35);
-    % sgtitle(sprintf('%d - %d ms',time_edges(1), time_edges(2)));
- 
-    set(gcf,'position',[0,0, 1600, 1000])
+    rticks(r_ticks);
+    title('L - all');
 
-    subplot(1,2,1)
-    % title('Left cue', 'FontSize', 35);
-  
+    subplot(3,2,2);
+    polarhistogram('BinEdges', polar_bin_edges(11:21), 'BinCounts', R_all_values(11:20), 'FaceColor', [0.6, 0.6, 0.6], 'FaceAlpha', 0.45, 'EdgeColor', [1,1,1]);
+    hold on
+    polarhistogram('BinEdges', polar_bin_edges(1:11), 'BinCounts', R_all_values(1:10), 'FaceColor', bright_colours(1,:), 'FaceAlpha', 0.7, 'EdgeColor', [1,1,1]);
+    rlim(r_lim);
+    thetaticks([]);
+    rticks(r_ticks);
+    title('R - all');
+
+    subplot(3,2,3);
+    polarhistogram('BinEdges', polar_bin_edges(11:21), 'BinCounts', L_shift_values(11:20), 'FaceColor', [0.6, 0.6, 0.6], 'FaceAlpha', 0.45, 'EdgeColor', [1,1,1]);
+    hold on
+    polarhistogram('BinEdges', polar_bin_edges(1:11), 'BinCounts', L_shift_values(1:10), 'FaceColor', bright_colours(3,:), 'FaceAlpha', 0.7, 'EdgeColor', [1,1,1]);
+    rlim(r_lim);
+    thetaticks([]);
+    rticks(r_ticks);
+    title('L - shift');
+
+    subplot(3,2,4);
+    polarhistogram('BinEdges', polar_bin_edges(11:21), 'BinCounts', R_shift_values(11:20), 'FaceColor', [0.6, 0.6, 0.6], 'FaceAlpha', 0.45, 'EdgeColor', [1,1,1]);
+    hold on
+    polarhistogram('BinEdges', polar_bin_edges(1:11), 'BinCounts', R_shift_values(1:10), 'FaceColor', bright_colours(3,:), 'FaceAlpha', 0.7, 'EdgeColor', [1,1,1]);
+    rlim(r_lim);
+    thetaticks([]);
+    rticks(r_ticks);
+    title('R - shift');
+
+    subplot(3,2,5);
+    polarhistogram('BinEdges', polar_bin_edges(11:21), 'BinCounts', L_maintain_values(11:20), 'FaceColor', [0.6, 0.6, 0.6], 'FaceAlpha', 0.45, 'EdgeColor', [1,1,1]);
+    hold on
+    polarhistogram('BinEdges', polar_bin_edges(1:11), 'BinCounts', L_maintain_values(1:10), 'FaceColor', bright_colours(4,:), 'FaceAlpha', 0.7, 'EdgeColor', [1,1,1]);
+    rlim(r_lim);
+    thetaticks([]);
+    rticks(r_ticks);
+    title('L - maintain');
+
+    subplot(3,2,6);
+    polarhistogram('BinEdges', polar_bin_edges(11:21), 'BinCounts', R_maintain_values(11:20), 'FaceColor', [0.6, 0.6, 0.6], 'FaceAlpha', 0.45, 'EdgeColor', [1,1,1]);
+    hold on
+    polarhistogram('BinEdges', polar_bin_edges(1:11), 'BinCounts', R_maintain_values(1:10), 'FaceColor', bright_colours(4,:), 'FaceAlpha', 0.7, 'EdgeColor', [1,1,1]);
+    rlim(r_lim);
+    thetaticks([]);
+    rticks(r_ticks);
+    title('R - maintain');
+ 
+    set(gcf,'position',[0,0, 700, 1000])
+
 end
