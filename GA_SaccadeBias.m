@@ -13,11 +13,11 @@ remove_prematures = 0;
 only_over_2300 = 1;
 
 
-pp2do = [2:25, 1:2,5:9,11,13:24, 26:29];
+pp2do = [2:25, 1:2,5:9,11,13:24,26:29];
 
 nsmooth         = 500;
 plotSinglePps   = 0;
-plotGAs         = 1;
+plotGAs         = 0;
 xlimtoplot      = [-500 3200];
 
 %% predefine size of some matrices
@@ -107,7 +107,7 @@ for pp = pp2do
     for i = 1:size(saccadesize.data, 1)
         saccade_data(s,i,:) = saccade.data(i,:);
         saccadesizes.data(s,i,:,:) = saccadesize.data(i,:,:);
-        saccade_lengths.data(s,i,:,:) = saccade_lengthsplit.data(i,:,:);
+        % saccade_lengths.data(s,i,:,:) = saccade_lengthsplit.data(i,:,:);
     end
 
     % take average of polar hist data
@@ -134,15 +134,33 @@ saccadesizes.freq = saccadesize.freq;
 for i = 1:size(saccadesize.data, 1)
     saccadesizes.avg_data(i,:,:) = squeeze(mean(saccadesizes.data(:,i,:,:)));
 end
+% 
+% saccade_lengths.dimord = saccade_lengthsplit.dimord;
+% saccade_lengths.label = saccade_lengthsplit.label;
+% saccade_lengths.time = saccade_lengthsplit.time;
+% saccade_lengths.freq = saccade_lengthsplit.freq;
+% 
+% for i = 1:size(saccade_lengthsplit.data, 1)
+%     saccade_lengths.avg_data(i,:,:) = squeeze(mean(saccade_lengths.data(:,i,:,:)));
+% end
 
-saccade_lengths.dimord = saccade_lengthsplit.dimord;
-saccade_lengths.label = saccade_lengthsplit.label;
-saccade_lengths.time = saccade_lengthsplit.time;
-saccade_lengths.freq = saccade_lengthsplit.freq;
-
-for i = 1:size(saccade_lengthsplit.data, 1)
-    saccade_lengths.avg_data(i,:,:) = squeeze(mean(saccade_lengths.data(:,i,:,:)));
-end
+%% comparison between main effect of E1 and E2
+figure;
+hold on
+p1 = frevede_errorbarplot(saccade.time, squeeze(saccade_data(1:24,5,:)), bright_colours(3,:), 'se');
+p2 = frevede_errorbarplot(saccade.time, squeeze(saccade_data(25:48,5,:)), bright_colours(3,:), 'se');
+p1.LineWidth = 2.5;
+p2.LineWidth = 2.5;
+fontsize(23, 'points')
+xlim([-100, 1400]);
+plot(xlim, [0,0], '--', 'LineWidth',2, 'Color', [0.6, 0.6, 0.6]);
+plot([0,0], ylim, '--', 'LineWidth',2, 'Color', [0.6, 0.6, 0.6]);
+% legend([p7], 'effect', 'EdgeColor', 'w', 'Fontsize', 28);
+ylabel('Rate (Hz)', 'Fontsize', 28);
+xlabel('Time (ms)', 'Fontsize', 28);
+set(gcf,'position',[0,0, 1800,900])
+xlabel('Time (ms)');
+hold off
 
 %% all subs
 if plotSinglePps
