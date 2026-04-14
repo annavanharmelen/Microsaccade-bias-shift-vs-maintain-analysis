@@ -55,11 +55,6 @@ if baselineCorrect
     end
 end
 
-%% pixel to degree
-[dva_x, dva_y] = frevede_pixel2dva(squeeze(tl.trial(:,1,:)), squeeze(tl.trial(:,2,:)));
-tl.trial(:,1,:) = dva_x;
-tl.trial(:,2,:) = dva_y;
-
 %% remove trials with gaze deviation >= 2 dva
 chX = ismember(tl.label, 'eyeX');
 chY = ismember(tl.label, 'eyeY');
