@@ -299,6 +299,39 @@ if plotGAs
     set(gcf,'position',[0,0, 1800,1060])
     hold off
     
+    % plot only saccades away from the stimulus or the distractor
+    figure;
+    subplot(2,1,1)
+    hold on
+    p8 = frevede_errorbarplot(saccade.time, squeeze(saccade_data(:,2,:)), bright_colours(1,:), 'se');
+    p9 = frevede_errorbarplot(saccade.time, squeeze(saccade_data(:,4,:)), bright_colours(2,:), 'se');
+    p8.LineWidth = 6;
+    p9.LineWidth = 6;
+    fontsize(23, 'points')
+    xlim(xlimtoplot);
+    ylim([0 0.35]);
+    yticks([0.1, 0.2, 0.3]);
+    plot([0,0], ylim, '--', 'LineWidth',2, 'Color', [0.6, 0.6, 0.6]);
+    legend([p8, p9], {'away from cued', 'away from other'}, 'EdgeColor', 'w');
+    ylabel('Saccade bias (Hz)');
+    xlabel('Time (ms)');
+    xticks([0, 400, 800, 1200])
+    subplot(2,1,2)
+    p10 = frevede_errorbarplot(saccade.time, squeeze(saccade_data(:,2,:)) - squeeze(saccade_data(:,4,:)), bright_colours(3,:), 'se');
+    p10.LineWidth = 6;
+    fontsize(23, 'points')
+    xlim(xlimtoplot);
+    ylim([-0.1 0.15]);
+    yticks([0.1, 0.2, 0.3]);
+    plot(xlim, [0,0], '--', 'LineWidth',2, 'Color', [0.6, 0.6, 0.6]);
+    plot([0,0], ylim, '--', 'LineWidth',2, 'Color', [0.6, 0.6, 0.6]);
+    legend([p10], {'away from cued vs. away from other'}, 'EdgeColor', 'w');
+    ylabel('Saccade bias (Hz)');
+    xlabel('Time (ms)');
+    xticks([0, 400, 800, 1200])
+    set(gcf,'position',[0,0, 700,1060])
+    hold off
+    
     % plot correct vs. incorrect
     figure;
     hold on
