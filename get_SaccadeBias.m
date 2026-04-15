@@ -3,6 +3,8 @@
 %% start clea
 clear; clc; close all;
 
+velocities = []; amplitudes = [];
+
 %% parameter
 plotResults = 0;
 nan_trial_overlap = 0;
@@ -174,6 +176,10 @@ for pp = [1:25];
     shiftsNW = double(shiftsX<0 & shiftsY>0 & (saccadesizes>minDisplacement & saccadesizes<maxDisplacement));
     shiftsSE = double(shiftsX>0 & shiftsY<0 & (saccadesizes>minDisplacement & saccadesizes<maxDisplacement));
     shiftsSW = double(shiftsX<0 & shiftsY<0 & (saccadesizes>minDisplacement & saccadesizes<maxDisplacement));
+
+    %% create data for main-sequence plot
+    velocities = [velocities; nonzeros(peakvelocity(:))];
+    amplitudes = [amplitudes; nonzeros(saccadesizes(:))];
 
     %% get relevant contrasts out
     saccade = [];
