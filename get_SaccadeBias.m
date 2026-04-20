@@ -176,6 +176,15 @@ for pp = [1:25];
     shiftsNW = double(shiftsX<0 & shiftsY>0 & (saccadesizes>minDisplacement & saccadesizes<maxDisplacement));
     shiftsSE = double(shiftsX>0 & shiftsY<0 & (saccadesizes>minDisplacement & saccadesizes<maxDisplacement));
     shiftsSW = double(shiftsX<0 & shiftsY<0 & (saccadesizes>minDisplacement & saccadesizes<maxDisplacement));
+    
+    saccadeAngles = atan2d(shiftsY, shiftsX);
+
+    shiftsSE_45 = double(abs(saccadeAngles - (-45)) <= 22.5 & (saccadesizes>minDisplacement & saccadesizes<maxDisplacement));
+    shiftsSW_45 = double(abs(saccadeAngles - (-135)) <= 22.5 & (saccadesizes>minDisplacement & saccadesizes<maxDisplacement));
+
+    shiftsSE_18 = double(abs(saccadeAngles - (-45)) <= 9 & (saccadesizes>minDisplacement & saccadesizes<maxDisplacement));
+    shiftsSW_18 = double(abs(saccadeAngles - (-135)) <= 9 & (saccadesizes>minDisplacement & saccadesizes<maxDisplacement));
+
 
     %% create data for main-sequence plot
     velocities = [velocities; nonzeros(peakvelocity(:))];
@@ -212,6 +221,15 @@ for pp = [1:25];
     saccade.data(18,:) = (mean(shiftsSW(cueL&slow,:), "omitnan") + mean(shiftsSE(cueR&slow,:), "omitnan")) ./ 2;
     saccade.data(19,:) = (mean(shiftsSW(cueR&slow,:), "omitnan") + mean(shiftsSE(cueL&slow,:), "omitnan")) ./ 2;
     saccade.data(20,:) = (saccade.data(18,:) - saccade.data(19,:)) / 2;
+
+    % add smaller slices
+    saccade.data(21,:) = (mean(shiftsSW_45(cueL&sel,:), "omitnan") + mean(shiftsSE_45(cueR&sel,:), "omitnan")) ./ 2;
+    saccade.data(22,:) = (mean(shiftsSW_45(cueR&sel,:), "omitnan") + mean(shiftsSE_45(cueL&sel,:), "omitnan")) ./ 2;
+    saccade.data(23,:) = (saccade.data(21,:) - saccade.data(22,:)) / 2;
+    
+    saccade.data(24,:) = (mean(shiftsSW_18(cueL&sel,:), "omitnan") + mean(shiftsSE_18(cueR&sel,:), "omitnan")) ./ 2;
+    saccade.data(25,:) = (mean(shiftsSW_18(cueR&sel,:), "omitnan") + mean(shiftsSE_18(cueL&sel,:), "omitnan")) ./ 2;
+    saccade.data(26,:) = (saccade.data(24,:) - saccade.data(25,:)) / 2;
     
     %% smooth and turn to Hz
     integrationwindow = 100; % window over which to integrate saccade counts
