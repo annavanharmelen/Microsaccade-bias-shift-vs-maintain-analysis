@@ -269,6 +269,43 @@ if plotGAs
     xlabel('Time (ms)', 'Fontsize', 28);
     set(gcf,'position',[0,0, 1800,900])
     xlabel('Time (ms)');
+    title('Effect, 90deg towards angle');
+    hold off
+
+    % plot the effect -  45 degrees
+    figure;
+    hold on
+    p7 = frevede_errorbarplot(saccade.time, squeeze(saccade_data(:,23,:)), bright_colours(3,:), 'se');
+    p7.LineWidth = 2.5;
+    fontsize(23, 'points')
+    xlim(xlimtoplot);
+    % ylim([-0.02 0.06]);
+    % yticks([0 0.05]);
+    plot(xlim, [0,0], '--', 'LineWidth',2, 'Color', [0.6, 0.6, 0.6]);
+    plot([0,0], ylim, '--', 'LineWidth',2, 'Color', [0.6, 0.6, 0.6]);
+    % legend([p7], 'effect', 'EdgeColor', 'w', 'Fontsize', 28);
+    ylabel('Rate (Hz)', 'Fontsize', 28);
+    xlabel('Time (ms)', 'Fontsize', 28);
+    set(gcf,'position',[0,0, 1800,900])
+    xlabel('Time (ms)');
+    title('Effect, 45deg towards angle');
+    hold off
+
+    % plot the effect -  18 degrees
+    figure;
+    hold on
+    p7 = frevede_errorbarplot(saccade.time, squeeze(saccade_data(:,26,:)), bright_colours(3,:), 'se');
+    p7.LineWidth = 2.5;
+    fontsize(23, 'points')
+    xlim(xlimtoplot);
+    plot(xlim, [0,0], '--', 'LineWidth',2, 'Color', [0.6, 0.6, 0.6]);
+    plot([0,0], ylim, '--', 'LineWidth',2, 'Color', [0.6, 0.6, 0.6]);
+    % legend([p7], 'effect', 'EdgeColor', 'w', 'Fontsize', 28);
+    ylabel('Rate (Hz)', 'Fontsize', 28);
+    xlabel('Time (ms)', 'Fontsize', 28);
+    set(gcf,'position',[0,0, 1800,900])
+    xlabel('Time (ms)');
+    title('Effect, 18deg towards angle');
     hold off
 
     % plot the effect - individuals
