@@ -387,13 +387,4 @@ if plot_averages
         % title('Response time', 'fontsize', 28)
         fontsize(30, "points");
 
-        %% compare reaction time on toward, away and no saccade trials
-        figure;
-        hold on
-        bar(nanmean(reaction_time_saccade([1:18, 21:24],:)));
-        errorbar([1, 2, 3], nanmean(reaction_time_saccade([1:18, 21:24],:)), (std(reaction_time_saccade([1:18, 21:24],:)) ./ sqrt(22)));
-        xticks([1, 2, 3])
-        xticklabels({'toward saccade', 'away saccade', 'no saccade'})
-        title('About saccades in shift window and valid trials only');
-
 end
