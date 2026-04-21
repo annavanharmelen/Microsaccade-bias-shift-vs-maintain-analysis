@@ -99,3 +99,4 @@ end
 
 %% calculate effect of ISI
 percentage_saccade = mean(saccades([2:25], 2) ./ saccades([2:25], 1));
+zscores = zscore(saccades([2:25], 2) ./ saccades([2:25], 1));
