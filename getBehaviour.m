@@ -82,6 +82,10 @@ for pp = pp2do
     
     reaction_time_validity(p,1) = nanmean(behdata.response_time_in_ms(valid_trials));
     reaction_time_validity(p,2) = nanmean(behdata.response_time_in_ms(invalid_trials));
+
+    reaction_time_saccade(p,1) = nanmean(behdata.response_time_in_ms(valid_trials&all_toward{pp}));
+    reaction_time_saccade(p,2) = nanmean(behdata.response_time_in_ms(valid_trials&all_away{pp}));
+    reaction_time_saccade(p,3) = nanmean(behdata.response_time_in_ms(valid_trials&all_nosacc{pp}));
     
     error_validity(p,1)      = nanmean(correct_trials(valid_trials));
     error_validity(p,2)      = nanmean(correct_trials(invalid_trials));
@@ -361,4 +365,13 @@ if plot_averages
         xlabel('SOA (ms)');
         % title('Response time', 'fontsize', 28)
         fontsize(30, "points");
+
+        %% compare reaction time on toward, away and no saccade trials
+        figure;
+        hold on
+        bar(mean(reaction_time_saccade));
+        errorbar([1, 2, 3], mean(reaction_time_saccade), (std(reaction_time_saccade) ./ sqrt(size(pp2do, 2))));
+        xticks([1, 2, 3])
+        xticklabels({'toward saccade', 'away saccade', 'no saccade'})
+        title('About saccades in shift window and valid trials only');
 end

@@ -4,6 +4,9 @@
 clear; clc; close all;
 
 velocities = []; amplitudes = [];
+all_toward = cell(25, 1);
+all_away   = cell(25, 1);
+all_nosacc = cell(25, 1);
 
 %% parameter
 plotResults = 0;
@@ -194,7 +197,20 @@ for pp = [1:25];
 
     shiftsSE_18 = double(abs(saccadeAngles - (-45)) <= 9 & (saccadesizes>minDisplacement & saccadesizes<maxDisplacement));
     shiftsSW_18 = double(abs(saccadeAngles - (-135)) <= 9 & (saccadesizes>minDisplacement & saccadesizes<maxDisplacement));
+    
+    %% save saccade data for behavioural comparison
+    all_nosacc{pp} = ~any(abs(shiftsX(:,651:1051)) > 0, 2); % no microsaccades
 
+    toward_shift_trials = false(size(shiftsX, 1), 1);
+    away_shift_trials = false(size(shiftsX, 1), 1);
+
+    toward_shift_trials(cueL) = any(abs(shiftsSW(cueL,651:1051)) > 0, 2); % toward microsaccades
+    toward_shift_trials(cueR) = any(abs(shiftsSE(cueR,651:1051)) > 0, 2); % toward microsaccades
+    away_shift_trials(cueR) = any(abs(shiftsSW(cueR,651:1051)) > 0, 2); % away microsaccades
+    away_shift_trials(cueL) = any(abs(shiftsSE(cueL,651:1051)) > 0, 2); % away microsaccades
+
+    all_toward{pp} = toward_shift_trials;
+    all_away{pp} = away_shift_trials;
 
     %% create data for main-sequence plot
     velocities = [velocities; nonzeros(peakvelocity(:))];
