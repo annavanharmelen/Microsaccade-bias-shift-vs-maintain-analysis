@@ -73,7 +73,9 @@ for pp = pp2do
     left_trials = ismember(behdata.target_bar, {'left'});
     right_trials = ismember(behdata.target_bar, {'right'});
     
-    
+    total_trial_numbers(p,1) = sum(valid_trials&oktrials);
+    total_trial_numbers(p,2) = sum(invalid_trials&oktrials);
+
     %% extract data of interest
     overall_dt(p,1) = nanmean(behdata.response_time_in_ms(oktrials));
     overall_error(p,1) = sum(ismember(behdata.feedback, 'correct')&oktrials) / sum(oktrials);
