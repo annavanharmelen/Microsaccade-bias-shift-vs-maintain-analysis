@@ -116,6 +116,7 @@ for pp = [1:2,5:9,11,13:24, 26:29];
     [shiftsX,shiftsY, peakvelocity, times] = PBlab_gazepos2shift_2D(cfg, data_input(:,chX,:), data_input(:,chY,:), time_input);
     saccades(pp,2) = sum(abs(shiftsX) > 0, 'all');
 
-    %% calculate effect of ISI
-    percentage_saccade = mean(saccades([1:2,5:9,11,13:24, 26:29], 2) ./ saccades([1:2,5:9,11,13:24, 26:29], 1));
 end
+
+%% calculate effect of ISI
+percentage_saccade = mean(saccades([1:2,5:9,11,13:24, 26:29], 2) ./ saccades([1:2,5:9,11,13:24, 26:29], 1));
