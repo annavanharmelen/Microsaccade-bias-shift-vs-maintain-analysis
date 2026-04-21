@@ -164,16 +164,6 @@ for pp = [1:25];
 
     end
 
-    %% get saccade rate per participant
-    saccades(pp,1) = sum(abs(shiftsX) > 0, 'all');
-    saccades(pp,2) = sum(abs(shiftsX(:,651:1051)) > 0, 'all');
-    saccades(pp,3) = sum(abs(shiftsX(:,1051:1851)) > 0, 'all');
-    saccades_valid(pp,1) = sum(abs(shiftsX(valid,:)) > 0, 'all');
-    saccades_valid(pp,2) = sum(abs(shiftsX(valid,651:1051)) > 0, 'all');
-    saccades_valid(pp,3) = sum(abs(shiftsX(valid,1051:1851)) > 0, 'all');
-    trials(pp,1) = size(shiftsX,1);
-    trials(pp,2) = sum(valid);
-
     %% select usable gaze shifts
     minDisplacement = 0;
     
@@ -229,6 +219,31 @@ for pp = [1:25];
     toward_shift_trials(cueR) = any(abs(shiftsSE(cueR,651:1051)) > 0, 2); % toward microsaccades
     away_shift_trials(cueR) = any(abs(shiftsSW(cueR,651:1051)) > 0, 2); % away microsaccades
     away_shift_trials(cueL) = any(abs(shiftsSE(cueL,651:1051)) > 0, 2); % away microsaccades
+
+    if sum(toward_shift_trials & away_shift_trials) > 0
+        multisaccade_trials = find(toward_shift_trials & away_shift_trials);
+        for trial = multisaccade_trials
+            % Determine which matrix is "Toward" and which is "Away" for this trial
+            if cueL(trial)
+                toward_matrix = shiftsSW;
+                away_matrix   = shiftsSE;
+            else % cueR
+                toward_matrix = shiftsSE;
+                away_matrix   = shiftsSW;
+            end
+            
+            % Find the index of the first toward AND away microsaccade
+            first_toward_idx = find(abs(toward_matrix(trial, 651:1051)) > 0, 1);
+            first_away_idx   = find(abs(away_matrix(trial, 651:1051)) > 0, 1);
+            
+            % Compare previously found indexes and update the arrays accordingly
+            if first_toward_idx < first_away_idx
+                away_shift_trials(trial) = false;
+            else
+                toward_shift_trials(trial) = false;
+            end
+        end
+    end
 
     all_toward{pp} = toward_shift_trials;
     all_away{pp} = away_shift_trials;
