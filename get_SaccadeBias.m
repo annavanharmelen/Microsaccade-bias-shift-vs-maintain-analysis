@@ -153,16 +153,6 @@ for pp = [1:29];
         end
 
     end
-    
-    %% get saccade rate per participant
-    saccades(pp,1) = sum(abs(shiftsX) > 0, 'all');
-    saccades(pp,2) = sum(abs(shiftsX(:,651:1051)) > 0, 'all');
-    saccades(pp,3) = sum(abs(shiftsX(:,1051:1851)) > 0, 'all');
-    saccades_valid(pp,1) = sum(abs(shiftsX(valid,:)) > 0, 'all');
-    saccades_valid(pp,2) = sum(abs(shiftsX(valid,651:1051)) > 0, 'all');
-    saccades_valid(pp,3) = sum(abs(shiftsX(valid,1051:1851)) > 0, 'all');
-    trials(pp,1) = size(shiftsX,1);
-    trials(pp,2) = sum(valid);
 
     %% select usable gaze shifts
     minDisplacement = 0;
@@ -182,6 +172,27 @@ for pp = [1:29];
 
     shiftsSE_18 = double(abs(saccadeAngles - (-45)) <= 9 & (saccadesizes>minDisplacement & saccadesizes<maxDisplacement));
     shiftsSW_18 = double(abs(saccadeAngles - (-135)) <= 9 & (saccadesizes>minDisplacement & saccadesizes<maxDisplacement));
+
+    %% get saccade rate per participant
+    % always in order: all, shift, sustain
+    saccades(pp,1) = sum(abs(shiftsX) > 0, 'all');
+    saccades(pp,2) = sum(abs(shiftsX(:,651:1051)) > 0, 'all');
+    saccades(pp,3) = sum(abs(shiftsX(:,1051:1851)) > 0, 'all');
+
+    saccades_valid(pp,1) = sum(abs(shiftsX(valid,:)) > 0, 'all');
+    saccades_valid(pp,2) = sum(abs(shiftsX(valid,651:1051)) > 0, 'all');
+    saccades_valid(pp,3) = sum(abs(shiftsX(valid,1051:1851)) > 0, 'all');
+
+    saccades_toward(pp,1) = sum(abs(shiftsSW(cueL,:)) > 0, 'all') + sum(abs(shiftsSE(cueR,:)) > 0, 'all');
+    saccades_toward(pp,2) = sum(abs(shiftsSW(cueL,651:1051)) > 0, 'all') + sum(abs(shiftsSE(cueR,651:1051)) > 0, 'all');
+    saccades_toward(pp,3) = sum(abs(shiftsSW(cueL,1051:1851)) > 0, 'all') + sum(abs(shiftsSE(cueR,1051:1851)) > 0, 'all');
+
+    saccades_away(pp,1) = sum(abs(shiftsSW(cueR,:)) > 0, 'all') + sum(abs(shiftsSE(cueL,:)) > 0, 'all');
+    saccades_away(pp,2) = sum(abs(shiftsSW(cueR,651:1051)) > 0, 'all') + sum(abs(shiftsSE(cueL,651:1051)) > 0, 'all');
+    saccades_away(pp,3) = sum(abs(shiftsSW(cueR,1051:1851)) > 0, 'all') + sum(abs(shiftsSE(cueL,1051:1851)) > 0, 'all');
+
+    trials(pp,1) = size(shiftsX,1);
+    trials(pp,2) = sum(valid);
 
     %% save saccade data for behavioural comparison
     all_nosacc{pp} = ~any(abs(shiftsX(:,651:1051)) > 0, 2); % no microsaccades
