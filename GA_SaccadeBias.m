@@ -324,8 +324,8 @@ if plotGAs
     p9.LineWidth = 6;
     fontsize(23, 'points')
     xlim(xlimtoplot);
-    ylim([0 0.25]);
-    yticks([0.1, 0.2]);
+    ylim([0 0.35]);
+    yticks([0.1, 0.2, 0.3]);
     % plot(xlim, [0,0], '--', 'LineWidth',6, 'Color', [0.6, 0.6, 0.6]
     plot([0,0], ylim, '--', 'LineWidth',6, 'Color', [0.6, 0.6, 0.6]);
     legend([p8, p9], {'toward cued', 'toward other'}, 'EdgeColor', 'w');
@@ -337,8 +337,8 @@ if plotGAs
     set(gca, 'Box', 'on');
     set(gca(), 'Linewidth', 1.5);
     hold off
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_sac_toward_vs_away_E2", "-dsvg")
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_sac_toward_vs_away_E2", "-dpng")
+    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_toward_vs_away_E2", "-dsvg")
+    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_toward_vs_away_E2", "-dpng")
     
     % plot only saccades away from the stimulus or the distractor
     figure;
@@ -424,7 +424,7 @@ if plotGAs
     cfg = [];
     cfg.parameter = 'avg_data';
     cfg.figure = 'gcf';
-    cfg.zlim = [-0.012, 0.012];
+    cfg.zlim = [-0.022, 0.022];
     cfg.xlim = xlimtoplot;  
     cfg.colormap = brewermap(1000, 'PRGn');
     
@@ -452,7 +452,7 @@ if plotGAs
     % text(1520, 1, 'Microsaccade range', 'FontSize', 34, 'Color',[0.6, 0.6, 0.6]);
     c= colorbar();
     c.Position = [0.92 0.32 0.012 0.41];
-    c.Ticks = [-0.01, 0, 0.01];
+    c.Ticks = [-0.02, 0, 0.02];
     set(gca, 'FontSize', 50)
     set(gcf,'position',[0,0, 1865,1060])
     set(gca, 'Box', 'on');

@@ -44,8 +44,8 @@ sig = plot(saccade.time(timeframe), mask_xxx*-0.01, 'Color', 'k', 'LineWidth', 1
 
 fontsize(23, 'points')
 xlim(xlimtoplot);
-ylim([-0.02 0.06]);
-yticks([0 0.05]);
+ylim([-0.02 0.1]);
+yticks([0 0.05 0.1]);
 plot(xlim, [0,0], '--', 'LineWidth',6, 'Color', [0.6, 0.6, 0.6]);
 plot([0,0], ylim, '--', 'LineWidth',6, 'Color', [0.6, 0.6, 0.6]);
 % legend([p7], 'effect', 'EdgeColor', 'w', 'Fontsize', 28);
