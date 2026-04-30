@@ -345,8 +345,8 @@ if plotGAs
     set(gca, 'Box', 'on');
     set(gca(), 'Linewidth', 1.5);
     hold off
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_sac_toward_vs_away_E1", "-dsvg")
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_sac_toward_vs_away_E1", "-dpng")
+    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_toward_vs_away_E1", "-dsvg")
+    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_toward_vs_away_E1", "-dpng")
     
     % plot only saccades away from the stimulus or the distractor
     figure;
