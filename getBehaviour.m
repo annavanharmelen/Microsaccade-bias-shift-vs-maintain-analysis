@@ -97,9 +97,9 @@ for pp = pp2do
     reaction_time_validity(p,1) = nanmean(behdata.response_time_in_ms(valid_trials&oktrials));
     reaction_time_validity(p,2) = nanmean(behdata.response_time_in_ms(invalid_trials&oktrials));
     
-    reaction_time_saccade(p,1) = nanmean(behdata.response_time_in_ms(valid_trials&all_toward{pp}));
-    reaction_time_saccade(p,2) = nanmean(behdata.response_time_in_ms(valid_trials&all_away{pp}));
-    reaction_time_saccade(p,3) = nanmean(behdata.response_time_in_ms(valid_trials&all_nosacc{pp}));
+    % reaction_time_saccade(p,1) = nanmean(behdata.response_time_in_ms(valid_trials&all_toward{pp}));
+    % reaction_time_saccade(p,2) = nanmean(behdata.response_time_in_ms(valid_trials&all_away{pp}));
+    % reaction_time_saccade(p,3) = nanmean(behdata.response_time_in_ms(valid_trials&all_nosacc{pp}));
 
     error_validity(p,1)      = nanmean(correct_trials(valid_trials&oktrials));
     error_validity(p,2)      = nanmean(correct_trials(invalid_trials&oktrials));
@@ -219,6 +219,8 @@ if plot_averages
     fontsize(ft_size, "points");
     % set(gcf,'position',[0,0, 700,1080])
     set(gca, 'position', [0.1300, 0.2100, 0.4494, 0.7500])
+    set(gca, 'Box', 'on');
+    set(gca(), 'Linewidth', 1.5);
     
     % add significant differences to line plot
     rt_p = [];
@@ -251,6 +253,11 @@ if plot_averages
 
     set(gca, 'position', [0.6184, 0.2100, 0.2866, 0.7500])
     set(gcf,'position',[100,100, 975,700])
+    set(gca, 'Box', 'on');
+    set(gca(), 'Linewidth', 1.5);
+
+    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\beh_rt_E2", "-dsvg")
+    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\beh_rt_E2", "-dpng")
     
 
     % MAIN accuracy 
@@ -282,6 +289,8 @@ if plot_averages
     xlabel('Cue-target interval (ms)');
     fontsize(ft_size, "points");
     set(gca, 'position', [0.1300, 0.2100, 0.4494, 0.7500])
+    set(gca, 'Box', 'on');
+    set(gca(), 'Linewidth', 1.5);
 
     
     % set(gcf,'position',[0,0, 700,1080])
@@ -324,6 +333,11 @@ if plot_averages
     
     set(gca, 'position', [0.6184, 0.2100, 0.2866, 0.7500])
     set(gcf,'position',[100,100, 975,700])
+    set(gca, 'Box', 'on');
+    set(gca(), 'Linewidth', 1.5);
+
+    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\beh_acc_E2", "-dsvg")
+    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\beh_acc_E2", "-dpng")
         
     %% show diff of behavioural effect as function of SOA
     figure;
