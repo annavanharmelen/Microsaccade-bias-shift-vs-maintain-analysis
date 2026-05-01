@@ -650,14 +650,14 @@ if plotGAs
     figure;
     subplot(2,1,1)
     hold on
+    plot([0 3], [0,0], 'LineWidth', 1.5, 'Color', [0,0,0]);
     b1 = bar([xpos(1)], [mean(avg_saccade_effect(:,1))], bar_size, FaceColor=colours(3,:), EdgeColor=colours(3,:));
     b2 = bar([xpos(2)], [mean(avg_saccade_effect(:,2))], bar_size, FaceColor=colours(4,:), EdgeColor=colours(4,:));
     errorbar([xpos(1)], [mean(avg_saccade_effect(:,1))], [std(avg_saccade_effect(:,1)) ./ sqrt(size(pp2do, 2))], 'LineWidth', 3, 'Color', dark_colours(3,:));
     errorbar([xpos(2)], [mean(avg_saccade_effect(:,2))], [std(avg_saccade_effect(:,2)) ./ sqrt(size(pp2do, 2))], 'LineWidth', 3, 'Color', dark_colours(4,:));
     %plot([xpos(1), xpos(2)], [avg_saccade_effect(:,1:2)]', 'Color', [0, 0, 0, 0.25], 'LineWidth', 1);
+    
 
-    % title('Saccade towards rate')
-    % legend(labels, 'Location', 'southeast');
     ylim(y_lim);
     yticks([0, 0.04]);
     xlim([xpos(1) - 0.8, xpos(2) + 0.8]);
@@ -668,7 +668,10 @@ if plotGAs
     set(gca().XAxis, 'FontSize', 32);
     set(gca().YAxis, 'Exponent', 0);
     ylabel('Saccade bias (ΔHz)', 'FontSize', 32);
-    % set(gca, 'position', [0.1600, 0.1100, 0.4942, 0.8150])
+    set(gca, 'position', [0.2167, 0.5938, 0.6883, 0.36])
+    set(gca, 'Box', 'on');
+    set(gca(), 'Linewidth', 1.5);
+    set(gca(), 'FontName', 'Aptos');
     
     % add individual effects
     timecomp_1 = [avg_saccade_effect(:,1)];
@@ -681,7 +684,7 @@ if plotGAs
 
     subplot(2,1,2)
     hold on
-    yline(0)
+    plot([0 3], [0,0], '--', 'LineWidth',6, 'Color', [0.6, 0.6, 0.6]);
     patch('XData', [f_1(:)*w + xpos(1), zeros(numel(xi_1(:)),1)],'yData', [xi_1(:),xi_1(:)],'FaceColor', colours(3,:), 'EdgeColor', 'none');
     patch('XData', [f_2(:)*w + xpos(2), zeros(numel(xi_2(:)),1)],'yData', [xi_2(:),xi_2(:)],'FaceColor', colours(4,:), 'EdgeColor', 'none');
     plot([xpos(1), xpos(1) + f_1(31)*w] , [mean(avg_saccade_effect(:,1)), mean(avg_saccade_effect(:,1))], 'Color', dark_colours(3,:), 'LineWidth', 2);
@@ -701,11 +704,15 @@ if plotGAs
     fontsize(32, "points");
     set(gca(), 'XAxisLocation', 'top');
     set(gca().XAxis, 'FontSize', 32);
-    set(gca, 'position', [0.2167, 0.1100, 0.6883, 0.40]);
+    set(gca, 'position', [0.2167, 0.0500, 0.6883, 0.40]);
+    set(gca, 'Box', 'on');
+    set(gca(), 'Linewidth', 1.5);
+    set(gca(), 'FontName', 'Aptos');
 
 
     set(gcf,'position',[0,0, 700,1080])
-    print("C:\Users\annav\Documents\Surfdrive\Manuscripts\Shift-vs.-sustain\Figures\sac_timeframe_comp_E1", "-dsvg")
+    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_timeframe_comp_E1", "-dsvg")
+    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_timeframe_comp_E1", "-dpng")
 
     %% polar histogram of separate timeframes
     r_lim = [0, 12];
