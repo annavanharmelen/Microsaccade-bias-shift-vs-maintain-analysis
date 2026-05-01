@@ -57,6 +57,7 @@ xticks([0, 400, 800, 1200])
 set(gca, 'FontSize', 50)
 set(gca, 'Box', 'on');
 set(gca(), 'Linewidth', 1.5);
+set(gca(), 'FontName', 'Aptos');
 hold off
 
 print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_towardness_E1", "-dsvg")

@@ -209,6 +209,7 @@ if plot_averages
     set(gca, 'position', [0.1300, 0.2100, 0.4494, 0.7500])
     set(gca, 'Box', 'on');
     set(gca(), 'Linewidth', 1.5);
+    set(gca(), 'FontName', 'Aptos');
     
     % add significant differences to line plot
     rt_p = [];
@@ -243,6 +244,7 @@ if plot_averages
     set(gcf,'position',[100,100, 975,700])
     set(gca, 'Box', 'on');
     set(gca(), 'Linewidth', 1.5);
+    set(gca(), 'FontName', 'Aptos');
 
     print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\beh_rt_E1", "-dsvg")
     print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\beh_rt_E1", "-dpng")
@@ -279,6 +281,7 @@ if plot_averages
     set(gca, 'position', [0.1300, 0.2100, 0.4494, 0.7500])
     set(gca, 'Box', 'on');
     set(gca(), 'Linewidth', 1.5);
+    set(gca(), 'FontName', 'Aptos');
 
     
     % set(gcf,'position',[0,0, 700,1080])
@@ -316,6 +319,7 @@ if plot_averages
     set(gcf,'position',[100,100, 975,700])
     set(gca, 'Box', 'on');
     set(gca(), 'Linewidth', 1.5);
+    set(gca(), 'FontName', 'Aptos');
 
     print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\beh_acc_E1", "-dsvg")
     print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\beh_acc_E1", "-dpng")
