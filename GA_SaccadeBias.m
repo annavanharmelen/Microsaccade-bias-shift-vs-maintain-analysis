@@ -328,14 +328,14 @@ if plotGAs
     yticks([0.1, 0.2, 0.3]);
     % plot(xlim, [0,0], '--', 'LineWidth',6, 'Color', [0.6, 0.6, 0.6]
     plot([0,0], ylim, '--', 'LineWidth',6, 'Color', [0.6, 0.6, 0.6]);
-    legend([p8, p9], {'toward cued', 'toward other'}, 'EdgeColor', 'w');
+    % legend([p8, p9], {'toward cued', 'toward other'}, 'EdgeColor', 'w');
     ylabel('Saccade bias (Hz)');
-    xlabel('Time (ms)');
+    xlabel('Time after cue onset (ms)');
     xticks([0, 400, 800, 1200])
     set(gca, 'FontSize', 50)
     set(gcf,'position',[0,0, 1800,1060])
     set(gca, 'Box', 'on');
-    set(gca(), 'Linewidth', 1.5);
+    set(gca(), 'Linewidth', 2.6);
     set(gca(), 'FontName', 'Aptos');
     hold off
     print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_toward_vs_away_E2", "-dsvg")
@@ -434,7 +434,7 @@ if plotGAs
     cfg.channel = 5;
     ft_singleplotTFR(cfg, saccadesizes);
     % ylabel({'Saccade size', '(degrees)'},  'Position', [-190, 2.8750, 1]);
-    xlabel('Time (ms)', 'FontSize', 35);
+    xlabel('Time after cue onset (ms)', 'FontSize', 35);
     zticks([]);
     hold on
     set(gcf,'position',[0,0, 1800, 750])
@@ -457,7 +457,7 @@ if plotGAs
     set(gca, 'FontSize', 50)
     set(gcf,'position',[0,0, 1800,1060])
     set(gca, 'Box', 'on');
-    set(gca(), 'Linewidth', 1.5);
+    set(gca(), 'Linewidth', 2.6);
     set(gca(), 'FontName', 'Aptos');
     hold off
     print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_sizecourse_E2", "-dsvg")

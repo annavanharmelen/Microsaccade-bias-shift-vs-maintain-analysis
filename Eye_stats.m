@@ -50,13 +50,12 @@ plot(xlim, [0,0], '--', 'LineWidth',6, 'Color', [0.6, 0.6, 0.6]);
 plot([0,0], ylim, '--', 'LineWidth',6, 'Color', [0.6, 0.6, 0.6]);
 % legend([p7], 'effect', 'EdgeColor', 'w', 'Fontsize', 28);
 ylabel('Saccade bias (ΔHz)', 'Fontsize', 28);
-xlabel('Time (ms)', 'Fontsize', 28);
 set(gcf,'position',[0,0, 1800,1060])
-xlabel('Time (ms)');
+xlabel('Time after cue onset (ms)');
 xticks([0, 400, 800, 1200])
 set(gca, 'FontSize', 50)
 set(gca, 'Box', 'on');
-set(gca(), 'Linewidth', 1.5);
+set(gca(), 'Linewidth', 2.6);
 set(gca(), 'FontName', 'Aptos');
 hold off
 
