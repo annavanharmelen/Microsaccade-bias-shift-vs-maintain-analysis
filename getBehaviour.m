@@ -6,7 +6,7 @@ clc
 display_percentage_premature = 0;
 display_percentage_unbroken = 1;
 plot_individuals = 0;
-plot_averages = 1;
+plot_averages = 0;
 
 pp2do = [1:2,5:9,11,13:24, 26:29];
 p = 0;
@@ -221,6 +221,7 @@ if plot_averages
     set(gca, 'position', [0.1300, 0.2100, 0.4494, 0.7500])
     set(gca, 'Box', 'on');
     set(gca(), 'Linewidth', 1.5);
+    set(gca(), 'FontName', 'Aptos');
     
     % add significant differences to line plot
     rt_p = [];
@@ -255,6 +256,7 @@ if plot_averages
     set(gcf,'position',[100,100, 975,700])
     set(gca, 'Box', 'on');
     set(gca(), 'Linewidth', 1.5);
+    set(gca(), 'FontName', 'Aptos');
 
     print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\beh_rt_E2", "-dsvg")
     print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\beh_rt_E2", "-dpng")
@@ -291,6 +293,7 @@ if plot_averages
     set(gca, 'position', [0.1300, 0.2100, 0.4494, 0.7500])
     set(gca, 'Box', 'on');
     set(gca(), 'Linewidth', 1.5);
+    set(gca(), 'FontName', 'Aptos');
 
     
     % set(gcf,'position',[0,0, 700,1080])
@@ -335,6 +338,7 @@ if plot_averages
     set(gcf,'position',[100,100, 975,700])
     set(gca, 'Box', 'on');
     set(gca(), 'Linewidth', 1.5);
+    set(gca(), 'FontName', 'Aptos');
 
     print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\beh_acc_E2", "-dsvg")
     print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\beh_acc_E2", "-dpng")

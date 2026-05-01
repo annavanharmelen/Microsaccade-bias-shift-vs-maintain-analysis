@@ -336,6 +336,7 @@ if plotGAs
     set(gcf,'position',[0,0, 1800,1060])
     set(gca, 'Box', 'on');
     set(gca(), 'Linewidth', 1.5);
+    set(gca(), 'FontName', 'Aptos');
     hold off
     print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_toward_vs_away_E2", "-dsvg")
     print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_toward_vs_away_E2", "-dpng")
@@ -438,25 +439,26 @@ if plotGAs
     hold on
     set(gcf,'position',[0,0, 1800, 750])
     plot([0,0], [0, 7], '--', 'LineWidth',6, 'Color', [0.6, 0.6, 0.6]);
-    plot([-500 800], [5, 5], '--', 'LineWidth',6, 'Color', [0,68,27]/255);
+    plot([-500 780], [5, 5], '--', 'LineWidth',6, 'Color', [0,68,27]/255);
     plot([1240 1400], [5, 5], '--', 'LineWidth',6, 'Color', [0,68,27]/255);
-    plot([-500 800], [3.625, 3.625], '--', 'LineWidth',6, 'Color', [0.6, 0.6, 0.6]);
+    plot([-500 780], [3.625, 3.625], '--', 'LineWidth',6, 'Color', [0.6, 0.6, 0.6]);
     plot([1240 1400], [3.625, 3.625], '--', 'LineWidth',6, 'Color', [0.6, 0.6, 0.6]);
     plot([-500 3100], [1, 1], '--', 'LineWidth',6, 'Color', [0.6, 0.6, 0.6]);
     xlim(xlimtoplot);
     xticks([0, 400, 800, 1200]);
     ylim([0.25 5.5]);
     title('', 'FontSize', 39);
-    text(830, 5.025, 'centre of item', 'FontSize', 45, 'Color', [0,68,27]/255);
-    text(830, 3.65, 'border of item', 'FontSize', 45, 'Color',[0.6, 0.6, 0.6]);
+    text(810, 5.025, 'centre of item', 'FontSize', 45, 'Color', [0,68,27]/255);
+    text(810, 3.65, 'border of item', 'FontSize', 45, 'Color',[0.6, 0.6, 0.6]);
     % text(1520, 1, 'Microsaccade range', 'FontSize', 34, 'Color',[0.6, 0.6, 0.6]);
     c= colorbar();
     c.Position = [0.92 0.32 0.012 0.41];
     c.Ticks = [-0.02, 0, 0.02];
     set(gca, 'FontSize', 50)
-    set(gcf,'position',[0,0, 1865,1060])
+    set(gcf,'position',[0,0, 1800,1060])
     set(gca, 'Box', 'on');
     set(gca(), 'Linewidth', 1.5);
+    set(gca(), 'FontName', 'Aptos');
     hold off
     print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_sizecourse_E2", "-dsvg")
     print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_sizecourse_E2", "-dpng")
