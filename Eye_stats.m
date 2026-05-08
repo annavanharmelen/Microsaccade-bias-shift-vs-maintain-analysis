@@ -65,6 +65,50 @@ print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_towardness_E2", "-
 % set(gcf,'position',[0,0, 1800,900])
 % fontsize(ft_size*1.5,"points")
 
+%% Saccade bias towards data
+statcfg.xax = saccade.time;
+statcfg.npermutations = 10000;
+statcfg.clusterStatEvalaluationAlpha = 0.05;
+statcfg.nsub = s;
+statcfg.statMethod = 'montecarlo';
+%statcfg.statMethod = 'analytic';
+
+timeframe = [451:1851]; %this is 0 to 1400 ms post-cue
+
+data_cond1 = saccade_data(:,2,timeframe);
+data_cond2 = saccade_data(:,4,timeframe);
+
+stat = frevede_ftclusterstat1D(statcfg, data_cond1, data_cond2)
+
+mask_xxx = double(stat.mask);
+mask_xxx(mask_xxx==0) = nan; % nan data that is not part of mark
+
+figure;
+hold on
+p1 = frevede_errorbarplot(saccade.time, squeeze(saccade_data(:,2,:)) - squeeze(saccade_data(:,4,:)), [0.6, 0.6, 0.6], 'se');
+p1.LineWidth = 6;
+sig = plot(saccade.time(timeframe), mask_xxx*-0.01, 'Color', 'k', 'LineWidth', 10); % verticaloffset for positioning of the "significance line"
+
+xlim(xlimtoplot);
+ylim([-0.1 0.12]);
+yticks([-0.1 0 0.1]);
+plot(xlim, [0,0], '--', 'LineWidth',6, 'Color', [0.6, 0.6, 0.6]);
+plot([0,0], ylim, '--', 'LineWidth',6, 'Color', [0.6, 0.6, 0.6]);
+% legend([p7], 'effect', 'EdgeColor', 'w', 'Fontsize', 28);
+ylabel('Saccade bias (ΔHz)', 'Fontsize', 28);
+set(gcf,'position',[0,0, 1800,1060])
+xlabel('Time after cue onset (ms)');
+xticks([0, 400, 800, 1200])
+set(gca, 'FontSize', 60)
+set(gca, 'Box', 'on');
+set(gca(), 'Linewidth', 2.6);
+set(gca(), 'FontName', 'Aptos');
+hold off
+
+print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_toward_towardness_E2", "-dsvg")
+print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_toward_towardness_E2", "-dpng")
+
+
 %% Saccade bias data - plot both
 mask1_xxx = double(stat1.mask);
 mask1_xxx(mask1_xxx==0) = nan; % nan data that is not part of mark

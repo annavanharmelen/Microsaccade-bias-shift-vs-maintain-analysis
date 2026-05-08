@@ -340,10 +340,9 @@ if plotGAs
     hold off
     print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_toward_vs_away_E2", "-dsvg")
     print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_toward_vs_away_E2", "-dpng")
-    
+
     % plot only saccades away from the stimulus or the distractor
     figure;
-    subplot(2,1,1)
     hold on
     p8 = frevede_errorbarplot(saccade.time, squeeze(saccade_data(:,2,:)), bright_colours(1,:), 'se');
     p9 = frevede_errorbarplot(saccade.time, squeeze(saccade_data(:,4,:)), bright_colours(2,:), 'se');
@@ -353,26 +352,20 @@ if plotGAs
     xlim(xlimtoplot);
     ylim([0 0.35]);
     yticks([0.1, 0.2, 0.3]);
-    plot([0,0], ylim, '--', 'LineWidth',2, 'Color', [0.6, 0.6, 0.6]);
-    legend([p8, p9], {'away from cued', 'away from other'}, 'EdgeColor', 'w');
+    % plot(xlim, [0,0], '--', 'LineWidth',6, 'Color', [0.6, 0.6, 0.6]
+    plot([0,0], ylim, '--', 'LineWidth',6, 'Color', [0.6, 0.6, 0.6]);
+    % legend([p8, p9], {'toward cued', 'toward other'}, 'EdgeColor', 'w');
     ylabel('Saccade bias (Hz)');
-    xlabel('Time (ms)');
+    xlabel('Time after cue onset (ms)');
     xticks([0, 400, 800, 1200])
-    subplot(2,1,2)
-    p10 = frevede_errorbarplot(saccade.time, squeeze(saccade_data(:,2,:)) - squeeze(saccade_data(:,4,:)), bright_colours(3,:), 'se');
-    p10.LineWidth = 6;
-    fontsize(23, 'points')
-    xlim(xlimtoplot);
-    ylim([-0.1 0.15]);
-    yticks([0.1, 0.2, 0.3]);
-    plot(xlim, [0,0], '--', 'LineWidth',2, 'Color', [0.6, 0.6, 0.6]);
-    plot([0,0], ylim, '--', 'LineWidth',2, 'Color', [0.6, 0.6, 0.6]);
-    legend([p10], {'away from cued vs. away from other'}, 'EdgeColor', 'w');
-    ylabel('Saccade bias (Hz)');
-    xlabel('Time (ms)');
-    xticks([0, 400, 800, 1200])
-    set(gcf,'position',[0,0, 700,1060])
+    set(gca, 'FontSize', 60)
+    set(gcf,'position',[0,0, 1800,1060])
+    set(gca, 'Box', 'on');
+    set(gca(), 'Linewidth', 2.6);
+    set(gca(), 'FontName', 'Aptos');
     hold off
+    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_upward_toward_vs_away_E2", "-dsvg")
+    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_upward_toward_vs_away_E2", "-dpng")
     
     % plot correct vs. incorrect
     figure;
