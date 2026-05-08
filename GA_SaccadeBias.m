@@ -705,7 +705,7 @@ if plotGAs
     print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_timeframe_comp_E2", "-dsvg")
     print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_timeframe_comp_E2", "-dpng")
 
-    %% polar histogram of separate timeframes
+    %% calculations for polar histogram of separate timeframes
     r_lim = [0, 12];
     r_ticks = [6, 12];
 
@@ -766,64 +766,103 @@ if plotGAs
     R_maintain_values = mean(R_maintain_density)*100;
     L_all_values = mean(L_all_density)*100;
     R_all_values = mean(R_all_density)*100;
-
+    
+    %% create polar histograms of separate timeframes
+    
     figure;
     subplot(3,2,1);
-    polarhistogram('BinEdges', polar_bin_edges(11:21), 'BinCounts', L_all_values(11:20), 'FaceColor', [0.6, 0.6, 0.6], 'FaceAlpha', 0.45, 'EdgeColor', [1,1,1]);
+    polarhistogram('BinEdges', polar_bin_edges(11:21), 'BinCounts', L_all_values(11:20), 'FaceColor', [0.6, 0.6, 0.6], 'FaceAlpha', 0.8, 'EdgeColor', [1,1,1]);
     hold on
-    polarhistogram('BinEdges', polar_bin_edges(1:11), 'BinCounts', L_all_values(1:10), 'FaceColor', bright_colours(1,:), 'FaceAlpha', 0.7, 'EdgeColor', [1,1,1]);
+    polarhistogram('BinEdges', polar_bin_edges(1:11), 'BinCounts', L_all_values(1:10), 'FaceColor', bright_colours(1,:), 'FaceAlpha', 0.8, 'EdgeColor', [1,1,1]);
     rlim(r_lim);
     thetaticks([]);
     rticks(r_ticks);
-    title('L - all');
-
+    ax = gca;
+    ax.FontSize = 27;
+    ax.FontName = 'Aptos';
+    ax.LineWidth = 1;
+    ax.ThetaColor = [0.6, 0.6, 0.6];
+    ax.GridColor = [0.6, 0.6, 0.6];
+    ax.GridAlpha = 0.9;
+    
     subplot(3,2,2);
-    polarhistogram('BinEdges', polar_bin_edges(11:21), 'BinCounts', R_all_values(11:20), 'FaceColor', [0.6, 0.6, 0.6], 'FaceAlpha', 0.45, 'EdgeColor', [1,1,1]);
+    polarhistogram('BinEdges', polar_bin_edges(11:21), 'BinCounts', R_all_values(11:20), 'FaceColor', [0.6, 0.6, 0.6], 'FaceAlpha', 0.8, 'EdgeColor', [1,1,1]);
     hold on
-    polarhistogram('BinEdges', polar_bin_edges(1:11), 'BinCounts', R_all_values(1:10), 'FaceColor', bright_colours(1,:), 'FaceAlpha', 0.7, 'EdgeColor', [1,1,1]);
+    polarhistogram('BinEdges', polar_bin_edges(1:11), 'BinCounts', R_all_values(1:10), 'FaceColor', bright_colours(1,:), 'FaceAlpha', 0.8, 'EdgeColor', [1,1,1]);
     rlim(r_lim);
     thetaticks([]);
     rticks(r_ticks);
-    title('R - all');
+    ax = gca;
+    ax.FontSize = 27;
+    ax.FontName = 'Aptos';
+    ax.LineWidth = 1;
+    ax.ThetaColor = [0.6, 0.6, 0.6];
+    ax.GridColor = [0.6, 0.6, 0.6];
+    ax.GridAlpha = 0.9;
 
     subplot(3,2,3);
-    polarhistogram('BinEdges', polar_bin_edges(11:21), 'BinCounts', L_shift_values(11:20), 'FaceColor', [0.6, 0.6, 0.6], 'FaceAlpha', 0.45, 'EdgeColor', [1,1,1]);
+    polarhistogram('BinEdges', polar_bin_edges(11:21), 'BinCounts', L_shift_values(11:20), 'FaceColor', [0.6, 0.6, 0.6], 'FaceAlpha', 0.8, 'EdgeColor', [1,1,1]);
     hold on
-    polarhistogram('BinEdges', polar_bin_edges(1:11), 'BinCounts', L_shift_values(1:10), 'FaceColor', bright_colours(3,:), 'FaceAlpha', 0.7, 'EdgeColor', [1,1,1]);
+    polarhistogram('BinEdges', polar_bin_edges(1:11), 'BinCounts', L_shift_values(1:10), 'FaceColor', bright_colours(3,:), 'FaceAlpha', 0.8, 'EdgeColor', [1,1,1]);
     rlim(r_lim);
     thetaticks([]);
     rticks(r_ticks);
-    title('L - shift');
+    ax = gca;
+    ax.FontSize = 27;
+    ax.FontName = 'Aptos';
+    ax.LineWidth = 1;
+    ax.ThetaColor = [0.6, 0.6, 0.6];
+    ax.GridColor = [0.6, 0.6, 0.6];
+    ax.GridAlpha = 0.9;
 
     subplot(3,2,4);
-    polarhistogram('BinEdges', polar_bin_edges(11:21), 'BinCounts', R_shift_values(11:20), 'FaceColor', [0.6, 0.6, 0.6], 'FaceAlpha', 0.45, 'EdgeColor', [1,1,1]);
+    polarhistogram('BinEdges', polar_bin_edges(11:21), 'BinCounts', R_shift_values(11:20), 'FaceColor', [0.6, 0.6, 0.6], 'FaceAlpha', 0.8, 'EdgeColor', [1,1,1]);
     hold on
-    polarhistogram('BinEdges', polar_bin_edges(1:11), 'BinCounts', R_shift_values(1:10), 'FaceColor', bright_colours(3,:), 'FaceAlpha', 0.7, 'EdgeColor', [1,1,1]);
+    polarhistogram('BinEdges', polar_bin_edges(1:11), 'BinCounts', R_shift_values(1:10), 'FaceColor', bright_colours(3,:), 'FaceAlpha', 0.8, 'EdgeColor', [1,1,1]);
     rlim(r_lim);
     thetaticks([]);
     rticks(r_ticks);
-    title('R - shift');
+    ax = gca;
+    ax.FontSize = 27;
+    ax.FontName = 'Aptos';
+    ax.LineWidth = 1;
+    ax.ThetaColor = [0.6, 0.6, 0.6];
+    ax.GridColor = [0.6, 0.6, 0.6];
+    ax.GridAlpha = 0.9;
 
     subplot(3,2,5);
-    polarhistogram('BinEdges', polar_bin_edges(11:21), 'BinCounts', L_maintain_values(11:20), 'FaceColor', [0.6, 0.6, 0.6], 'FaceAlpha', 0.45, 'EdgeColor', [1,1,1]);
+    polarhistogram('BinEdges', polar_bin_edges(11:21), 'BinCounts', L_maintain_values(11:20), 'FaceColor', [0.6, 0.6, 0.6], 'FaceAlpha', 0.8, 'EdgeColor', [1,1,1]);
     hold on
-    polarhistogram('BinEdges', polar_bin_edges(1:11), 'BinCounts', L_maintain_values(1:10), 'FaceColor', bright_colours(4,:), 'FaceAlpha', 0.7, 'EdgeColor', [1,1,1]);
+    polarhistogram('BinEdges', polar_bin_edges(1:11), 'BinCounts', L_maintain_values(1:10), 'FaceColor', bright_colours(4,:), 'FaceAlpha', 0.8, 'EdgeColor', [1,1,1]);
     rlim(r_lim);
     thetaticks([]);
     rticks(r_ticks);
-    title('L - maintain');
+    ax = gca;
+    ax.FontSize = 27;
+    ax.FontName = 'Aptos';
+    ax.LineWidth = 1;
+    ax.ThetaColor = [0.6, 0.6, 0.6];
+    ax.GridColor = [0.6, 0.6, 0.6];
+    ax.GridAlpha = 0.9;
 
     subplot(3,2,6);
-    polarhistogram('BinEdges', polar_bin_edges(11:21), 'BinCounts', R_maintain_values(11:20), 'FaceColor', [0.6, 0.6, 0.6], 'FaceAlpha', 0.45, 'EdgeColor', [1,1,1]);
+    polarhistogram('BinEdges', polar_bin_edges(11:21), 'BinCounts', R_maintain_values(11:20), 'FaceColor', [0.6, 0.6, 0.6], 'FaceAlpha', 0.8, 'EdgeColor', [1,1,1]);
     hold on
-    polarhistogram('BinEdges', polar_bin_edges(1:11), 'BinCounts', R_maintain_values(1:10), 'FaceColor', bright_colours(4,:), 'FaceAlpha', 0.7, 'EdgeColor', [1,1,1]);
+    polarhistogram('BinEdges', polar_bin_edges(1:11), 'BinCounts', R_maintain_values(1:10), 'FaceColor', bright_colours(4,:), 'FaceAlpha', 0.8, 'EdgeColor', [1,1,1]);
     rlim(r_lim);
     thetaticks([]);
     rticks(r_ticks);
-    title('R - maintain');
+    ax = gca;
+    ax.FontSize = 27;
+    ax.FontName = 'Aptos';
+    ax.LineWidth = 1;
+    ax.ThetaColor = [0.6, 0.6, 0.6];
+    ax.GridColor = [0.6, 0.6, 0.6];
+    ax.GridAlpha = 0.9;
  
     set(gcf,'position',[0,0, 700, 1000])
 
-    % title('Left cue', 'FontSize', 35);
+    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_polarplots_E2", "-dsvg")
+    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_polarplots_E2", "-dpng")
   
 end
