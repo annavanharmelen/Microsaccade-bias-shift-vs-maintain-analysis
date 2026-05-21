@@ -27,7 +27,7 @@ plot([2,2], [0.246, 0.25], 'LineWidth', 1, 'Color', [0 0 0 1]);
 xlabel('Saccade amplitude ( )');
 ylabel('Saccade peak velocity ( /ms)');
 set(gca, 'Box', 'on');
-set(gca, 'FontSize', [20.7]);
+set(gca, 'FontSize', [24.6]);
 set(gca, 'FontName', 'Aptos');
 set(gca, 'LineWidth', 1);
 axis('square');
