@@ -65,7 +65,7 @@ print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_towardness_E2", "-
 % set(gcf,'position',[0,0, 1800,900])
 % fontsize(ft_size*1.5,"points")
 
-%% Saccade bias towards data
+%% Saccade bias upward towards data
 statcfg.xax = saccade.time;
 statcfg.npermutations = 10000;
 statcfg.clusterStatEvalaluationAlpha = 0.05;
@@ -105,8 +105,8 @@ set(gca(), 'Linewidth', 2.6);
 set(gca(), 'FontName', 'Aptos');
 hold off
 
-print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_toward_towardness_E2", "-dsvg")
-print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_toward_towardness_E2", "-dpng")
+print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_upward_towardness_E2", "-dsvg")
+print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_upward_towardness_E2", "-dpng")
 
 
 %% Saccade bias data - plot both
