@@ -18,8 +18,8 @@ yticks([0 0.1 0.2]);
 xticks([0 1 2]);
 colormap(brewermap(1000, 'greens'));
 c = colorbar;
-caxis([0 0.000004]);
-c.Ticks=[0, 2, 4]*0.000001;
+caxis([0 0.000002]);
+c.Ticks=[0, 1, 2]*0.000001;
 c.TickLabels = {[]};
 yline(0.25, 'LineWidth', 1, 'Alpha', 1);
 plot([1,1], [0.246, 0.25], 'LineWidth', 1, 'Color', [0 0 0 1]);
@@ -27,11 +27,11 @@ plot([2,2], [0.246, 0.25], 'LineWidth', 1, 'Color', [0 0 0 1]);
 xlabel('Saccade amplitude ( )');
 ylabel('Saccade peak velocity ( /ms)');
 set(gca, 'Box', 'on');
-set(gca, 'FontSize', [20.7]);
+set(gca, 'FontSize', [24.6]);
 set(gca, 'FontName', 'Aptos');
 set(gca, 'LineWidth', 1);
 axis('square');
 set(gcf(), 'Position', [500 500 800 600]);
 
-print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_mainsequence_E2", "-dsvg")
-print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_mainsequence_E2", "-dpng")
+print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_mainsequence_E1", "-dsvg")
+print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_mainsequence_E1", "-dpng")
