@@ -273,9 +273,9 @@ if plotGAs
     p15.LineWidth = 6;
     fontsize(23, 'points')
     xlim(xlimtoplot);
-    ylim([0 0.0001]);
-    yticks([0, 0.05, 0.1]*0.001);
-    yticklabels([0, 0.05, 0.1]);
+    ylim([0 0.00025]);
+    yticks([0, 0.1, 0.2]*0.001);
+    yticklabels([0, 0.1, 0.2]);
     plot([0,0], ylim, '--', 'LineWidth',6, 'Color', [0.6, 0.6, 0.6]);
     ylabel('Saccade bias (Hz)');
     xlabel('Time after cue onset (ms)');
