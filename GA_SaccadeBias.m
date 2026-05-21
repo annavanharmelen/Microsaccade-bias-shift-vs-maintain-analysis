@@ -264,6 +264,31 @@ if plotGAs
     % title('Effect, 90deg towards angle');
     hold off
 
+    % plot toward vs. away - 45 degrees
+    figure;
+    hold on
+    p14 = frevede_errorbarplot(saccade.time, squeeze(saccade_data(:,21,:)), bright_colours(1,:), 'se');
+    p15 = frevede_errorbarplot(saccade.time, squeeze(saccade_data(:,22,:)), bright_colours(2,:), 'se');
+    p14.LineWidth = 6;
+    p15.LineWidth = 6;
+    fontsize(23, 'points')
+    xlim(xlimtoplot);
+    ylim([0 0.0001]);
+    yticks([0, 0.05, 0.1]*0.001);
+    yticklabels([0, 0.05, 0.1]);
+    plot([0,0], ylim, '--', 'LineWidth',6, 'Color', [0.6, 0.6, 0.6]);
+    ylabel('Saccade bias (Hz)');
+    xlabel('Time after cue onset (ms)');
+    xticks([0, 400, 800, 1200])
+    set(gca, 'FontSize', 60)
+    set(gcf,'position',[0,0, 1800,1060])
+    set(gca, 'Box', 'on');
+    set(gca(), 'Linewidth', 2.6);
+    set(gca(), 'FontName', 'Aptos');
+    hold off
+    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_45deg_toward_vs_away_E2", "-dsvg")
+    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_45deg_toward_vs_away_E2", "-dpng")
+
     % plot the effect -  45 degrees
     figure;
     hold on
