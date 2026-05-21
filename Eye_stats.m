@@ -65,7 +65,7 @@ print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_towardness_E1", "-
 % set(gcf,'position',[0,0, 1800,900])
 % fontsize(ft_size*1.5,"points")
 
-%% Saccade bias towards data
+%% Saccade bias upward towards data
 statcfg.xax = saccade.time;
 statcfg.npermutations = 10000;
 statcfg.clusterStatEvalaluationAlpha = 0.05;
@@ -87,7 +87,7 @@ figure;
 hold on
 p1 = frevede_errorbarplot(saccade.time, squeeze(saccade_data(:,2,:)) - squeeze(saccade_data(:,4,:)), [0.6, 0.6, 0.6], 'se');
 p1.LineWidth = 6;
-sig = plot(saccade.time(timeframe), mask_xxx*-0.075, 'Color', 'k', 'LineWidth', 10); % verticaloffset for positioning of the "significance line"
+sig = plot(saccade.time(timeframe), mask_xxx*-0.01, 'Color', 'k', 'LineWidth', 10); % verticaloffset for positioning of the "significance line"
 
 xlim(xlimtoplot);
 ylim([-0.1 0.12]);
@@ -105,8 +105,9 @@ set(gca(), 'Linewidth', 2.6);
 set(gca(), 'FontName', 'Aptos');
 hold off
 
-print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_toward_towardness_E1", "-dsvg")
-print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_toward_towardness_E1", "-dpng")
+print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_upward_towardness_E2", "-dsvg")
+print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_upward_towardness_E2", "-dpng")
+
 
 %% Saccade bias data - plot both
 mask1_xxx = double(stat1.mask);
