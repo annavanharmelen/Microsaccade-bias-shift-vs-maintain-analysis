@@ -19,7 +19,7 @@ scatter(reaction_time_validity(:,1), saccade_rate_valid(:,2)/0.4, 60, 'k', 'fill
 line1 = lsline;
 line1.LineWidth = 2;
 line1.Color = [0,0,0];
-ylim([0, 1]);
+ylim([0, 2]);
 xlim([500, 1500]);
 xticks([500, 1000, 1500]);
 ylabel('Saccade rate (Hz)');
@@ -32,7 +32,7 @@ scatter(reaction_time_validity(:,1), saccade_rate_valid(:,3)/0.8, 60, 'k', 'fill
 line2 = lsline;
 line2.LineWidth = 2;
 line2.Color = [0,0,0];
-ylim([0, 1]);
+ylim([0, 2]);
 xlim([500, 1500]);
 xticks([500, 1000, 1500]);
 ylabel('Saccade rate (Hz)');
