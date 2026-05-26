@@ -7,6 +7,7 @@ velocities = []; amplitudes = [];
 all_toward = cell(25, 1);
 all_away   = cell(25, 1);
 all_nosacc = cell(25, 1);
+p = 0;
 
 %% parameter
 plotResults = 0;
@@ -18,7 +19,9 @@ remove_prematures = 1;
 only_over_1400 = 1;
 
 %% loop over participants
-for pp = [1:29];
+for pp = [1:2,5:9,11,13:24, 26:29];
+
+    p = p + 1;
 
     %% load epoched data of this participant data
     if nan_trial_overlap == 1
@@ -175,24 +178,24 @@ for pp = [1:29];
 
     %% get saccade rate per participant
     % always in order: all, shift, sustain
-    saccades(pp,1) = sum(abs(shiftsX) > 0, 'all');
-    saccades(pp,2) = sum(abs(shiftsX(:,651:1051)) > 0, 'all');
-    saccades(pp,3) = sum(abs(shiftsX(:,1051:1851)) > 0, 'all');
+    saccades(p,1) = sum(abs(shiftsX) > 0, 'all');
+    saccades(p,2) = sum(abs(shiftsX(:,651:1051)) > 0, 'all');
+    saccades(p,3) = sum(abs(shiftsX(:,1051:1851)) > 0, 'all');
 
-    saccades_valid(pp,1) = sum(abs(shiftsX(valid,:)) > 0, 'all');
-    saccades_valid(pp,2) = sum(abs(shiftsX(valid,651:1051)) > 0, 'all');
-    saccades_valid(pp,3) = sum(abs(shiftsX(valid,1051:1851)) > 0, 'all');
+    saccades_valid(p,1) = sum(abs(shiftsX(valid,:)) > 0, 'all');
+    saccades_valid(p,2) = sum(abs(shiftsX(valid,651:1051)) > 0, 'all');
+    saccades_valid(p,3) = sum(abs(shiftsX(valid,1051:1851)) > 0, 'all');
 
-    saccades_toward(pp,1) = sum(abs(shiftsSW(cueL,:)) > 0, 'all') + sum(abs(shiftsSE(cueR,:)) > 0, 'all');
-    saccades_toward(pp,2) = sum(abs(shiftsSW(cueL,651:1051)) > 0, 'all') + sum(abs(shiftsSE(cueR,651:1051)) > 0, 'all');
-    saccades_toward(pp,3) = sum(abs(shiftsSW(cueL,1051:1851)) > 0, 'all') + sum(abs(shiftsSE(cueR,1051:1851)) > 0, 'all');
+    saccades_toward(p,1) = sum(abs(shiftsSW(cueL,:)) > 0, 'all') + sum(abs(shiftsSE(cueR,:)) > 0, 'all');
+    saccades_toward(p,2) = sum(abs(shiftsSW(cueL,651:1051)) > 0, 'all') + sum(abs(shiftsSE(cueR,651:1051)) > 0, 'all');
+    saccades_toward(p,3) = sum(abs(shiftsSW(cueL,1051:1851)) > 0, 'all') + sum(abs(shiftsSE(cueR,1051:1851)) > 0, 'all');
 
-    saccades_away(pp,1) = sum(abs(shiftsSW(cueR,:)) > 0, 'all') + sum(abs(shiftsSE(cueL,:)) > 0, 'all');
-    saccades_away(pp,2) = sum(abs(shiftsSW(cueR,651:1051)) > 0, 'all') + sum(abs(shiftsSE(cueL,651:1051)) > 0, 'all');
-    saccades_away(pp,3) = sum(abs(shiftsSW(cueR,1051:1851)) > 0, 'all') + sum(abs(shiftsSE(cueL,1051:1851)) > 0, 'all');
+    saccades_away(p,1) = sum(abs(shiftsSW(cueR,:)) > 0, 'all') + sum(abs(shiftsSE(cueL,:)) > 0, 'all');
+    saccades_away(p,2) = sum(abs(shiftsSW(cueR,651:1051)) > 0, 'all') + sum(abs(shiftsSE(cueL,651:1051)) > 0, 'all');
+    saccades_away(p,3) = sum(abs(shiftsSW(cueR,1051:1851)) > 0, 'all') + sum(abs(shiftsSE(cueL,1051:1851)) > 0, 'all');
 
-    trials(pp,1) = size(shiftsX,1);
-    trials(pp,2) = sum(valid);
+    trials(p,1) = size(shiftsX,1);
+    trials(p,2) = sum(valid);
 
     %% save saccade data for behavioural comparison
     all_nosacc{pp} = ~any(abs(shiftsX(:,651:1051)) > 0, 2); % no microsaccades
