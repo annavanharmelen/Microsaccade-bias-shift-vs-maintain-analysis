@@ -1,39 +1,53 @@
-pp_to_plot = [2:25];
+%% Calculate correlation and create figure showing relationship between response times and microsaccade rates
+% Run both getBehaviour.m and get_SaccadeBias.m first,
+% with only the pp's % you want to include
 
-[r1, p1] = corr(overall_dt, saccade_rate(pp_to_plot,1), 'Type', 'Pearson')
-[r2, p2] = corr(overall_dt, saccade_rate(pp_to_plot,2), 'Type', 'Pearson')
-[r3, p3] = corr(overall_dt, saccade_rate(pp_to_plot,3), 'Type', 'Pearson')
-[r4, p4] = corr(reaction_time_validity(:,1), saccade_rate_valid(pp_to_plot,1), 'Type', 'Pearson')
-[r5, p5] = corr(reaction_time_validity(:,1), saccade_rate_valid(pp_to_plot,2), 'Type', 'Pearson')
-[r6, p6] = corr(reaction_time_validity(:,1), saccade_rate_valid(pp_to_plot,3), 'Type', 'Pearson')
+[r1, p1] = corr(overall_dt, saccade_rate(:,1), 'Type', 'Pearson')
+[r2, p2] = corr(overall_dt, saccade_rate(:,2), 'Type', 'Pearson')
+[r3, p3] = corr(overall_dt, saccade_rate(:,3), 'Type', 'Pearson')
+[r4, p4] = corr(reaction_time_validity(:,1), saccade_rate_valid(:,1), 'Type', 'Pearson')
+[r5, p5] = corr(reaction_time_validity(:,1), saccade_rate_valid(:,2), 'Type', 'Pearson')
+[r6, p6] = corr(reaction_time_validity(:,1), saccade_rate_valid(:,3), 'Type', 'Pearson')
+
+
+%% create figure
 
 figure;
-subplot(2,3,1)
-scatter(overall_dt, saccade_rate(pp_to_plot,1), 'filled')
-lsline;
-title(sprintf('overall RT x overall saccade rate r: %0.2f p: %0.2f', r1, p1));
+rt = subplot(2,1,1);
+hold on
+scatter(reaction_time_validity(:,1), saccade_rate_valid(:,2)/0.4, 60, 'k', 'filled');
+line1 = lsline;
+line1.LineWidth = 2;
+line1.Color = [0,0,0];
+ylim([0, 1]);
+xlim([500, 1500]);
+xticks([500, 1000, 1500]);
+ylabel('Saccade rate (Hz)');
+xlabel('Reaction time (ms)');
+axis('square');
 
-subplot(2,3,2)
-scatter(overall_dt, saccade_rate(pp_to_plot,2), 'filled')
-lsline;
-title(sprintf('overall RT x shift saccade rate r: %0.2f p: %0.2f', r2, p2));
+acc = subplot(2,1,2);
+hold on
+scatter(reaction_time_validity(:,1), saccade_rate_valid(:,3)/0.8, 60, 'k', 'filled');
+line2 = lsline;
+line2.LineWidth = 2;
+line2.Color = [0,0,0];
+ylim([0, 1]);
+xlim([500, 1500]);
+xticks([500, 1000, 1500]);
+ylabel('Saccade rate (Hz)');
+xlabel('Reaction time (ms)');
+axis('square');
 
-subplot(2,3,3)
-scatter(overall_dt, saccade_rate(pp_to_plot,3), 'filled')
-lsline;
-title(sprintf('overall RT x sustain saccade rate r: %0.2f p: %0.2f', r3, p3));
+set(gcf(), 'Position', [600 250 680 1060]);
 
-subplot(2,3,4)
-scatter(reaction_time_validity(:,1), saccade_rate_valid(pp_to_plot,1), 'filled')
-lsline;
-title(sprintf('valid RT x overall saccade rate r: %0.2f p: %0.2f', r4, p4));
+axes = {rt, acc};
+for i = 1:size(axes,2)
+    set(axes{i}, 'Box', 'on');
+    set(axes{i}, 'FontSize', [24.6]);
+    set(axes{i}, 'FontName', 'Aptos');
+    set(axes{i}, 'LineWidth', 1);
+end
 
-subplot(2,3,5)
-scatter(reaction_time_validity(:,1), saccade_rate_valid(pp_to_plot,2), 'filled')
-lsline;
-title(sprintf('valid RT x shift saccade rate r: %0.2f p: %0.2f', r5, p5));
-
-subplot(2,3,6)
-scatter(reaction_time_validity(:,1), saccade_rate_valid(pp_to_plot,3), 'filled')
-lsline;
-title(sprintf('valid RT x sustain saccade rate r: %0.2f p: %0.2f', r6, p6));
+print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_rt_x_rate_E1", "-dsvg")
+print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_rt_x_rate_E1", "-dpng")
