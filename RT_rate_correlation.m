@@ -2,10 +2,10 @@
 % Run both getBehaviour.m and get_SaccadeBias.m first,
 % with only the pp's % you want to include
 
-[r1, p1] = corr(overall_dt, saccade_rate(:,1), 'Type', 'Pearson')
-[r2, p2] = corr(overall_dt, saccade_rate(:,2), 'Type', 'Pearson')
-[r3, p3] = corr(overall_dt, saccade_rate(:,3), 'Type', 'Pearson')
-[r4, p4] = corr(reaction_time_validity(:,1), saccade_rate_valid(:,1), 'Type', 'Pearson')
+[r1, p1] = corr(overall_dt, saccade_rate(:,1), 'Type', 'Pearson');
+[r2, p2] = corr(overall_dt, saccade_rate(:,2), 'Type', 'Pearson');
+[r3, p3] = corr(overall_dt, saccade_rate(:,3), 'Type', 'Pearson');
+[r4, p4] = corr(reaction_time_validity(:,1), saccade_rate_valid(:,1), 'Type', 'Pearson');
 [r5, p5] = corr(reaction_time_validity(:,1), saccade_rate_valid(:,2), 'Type', 'Pearson')
 [r6, p6] = corr(reaction_time_validity(:,1), saccade_rate_valid(:,3), 'Type', 'Pearson')
 
@@ -39,7 +39,7 @@ ylabel('Saccade rate (Hz)');
 xlabel('Reaction time (ms)');
 axis('square');
 
-set(gcf(), 'Position', [600 250 680 1060]);
+set(gcf(), 'Position', [600 250 600 1060]);
 
 axes = {rt, acc};
 for i = 1:size(axes,2)
