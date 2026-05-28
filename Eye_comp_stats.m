@@ -2,7 +2,7 @@
 % So run those scripts first.
 % by Anna, 04-07-2023
 %% Saccade bias data - stats
-statcfg.xax = saccade.time;
+statcfg.xax = saccade.time(timeframe);
 statcfg.npermutations = 10000;
 statcfg.clusterStatEvalaluationAlpha = 0.05;
 statcfg.nsub1 = 24; %for between pp
@@ -10,10 +10,11 @@ statcfg.nsub2 = 24; %for between pp
 statcfg.statMethod = 'montecarlo';
 %statcfg.statMethod = 'analytic';
 
+timeframe = [451:1851]; %this is 0 to 1400 ms post-cue
 ft_size = 26;
 
-data_e1 = saccade_data(1:24,5,:);
-data_e2 = saccade_data(25:48,5,:);
+data_e1 = saccade_data(1:24,5,timeframe);
+data_e2 = saccade_data(25:48,5,timeframe);
 
 stat = frevede_ftclusterstat1D_indep(statcfg, data_e1, data_e2);
 
@@ -27,7 +28,7 @@ p1 = frevede_errorbarplot(saccade.time, squeeze(saccade_data(1:24,5,:)), bright_
 p2 = frevede_errorbarplot(saccade.time, squeeze(saccade_data(25:48,5,:)), bright_colours(3,:), 'se');
 p1.LineWidth = 2.5;
 p2.LineWidth = 2.5;
-sig2 = plot(saccade.time, mask_comp*-0.015, 'k', 'LineWidth', 5);
+sig2 = plot(saccade.time(timeframe), mask_comp*-0.015, 'k', 'LineWidth', 5);
 fontsize(23, 'points')
 xlim([-100, 1400]);
 plot(xlim, [0,0], '--', 'LineWidth',2, 'Color', [0.6, 0.6, 0.6]);
