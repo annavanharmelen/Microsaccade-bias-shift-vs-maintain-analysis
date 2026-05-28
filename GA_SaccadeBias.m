@@ -15,7 +15,7 @@ only_over_2300 = 1;
 
 pp2do = [2:25, 1:2,5:9,11,13:24,26:29];
 
-nsmooth         = 500;
+nsmooth         = 200;
 plotSinglePps   = 0;
 plotGAs         = 0;
 xlimtoplot      = [-500 3200];
