@@ -1,6 +1,6 @@
 %% Determine whether the first saccade in the shift period has an effect on RT
 % =========================================================================
-% SCRIPT: 01b_effect_saccade_direction_on_rt.m (Exploratory)
+% SCRIPT: 01_effect_saccade_direction_on_rt.m (Exploratory)
 % DESCRIPTION: Tests whether the direction of the first saccade made during the shift period affects response times (across subjects).
 
 % DEPENDENCIES: 
