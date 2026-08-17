@@ -1,5 +1,15 @@
 %% Calculate correlation and create figure showing relationship between behavioural benefits and microsaccade bias magnitude
-% Run both getBehaviour.m and GA_SaccadeBias.m first
+% =========================================================================
+% SCRIPT: 01_supp_figS5_behaviour_saccade_correlation.m
+% DESCRIPTION: Correlates behavioural effects with the magnitude of the microsaccade bias across subjects.
+
+% DEPENDENCIES: 
+%   1. behaviour/01_get_behaviour.m
+%   2. eyetracking/03_GA_saccade_bias.m
+
+% NOTE 1: run the two above dependent scripts with only those pp's you want to include in the analysis here.
+% NOTE 2: whichever of the two above scripts you run second, run them without the "clear; clc; close all;" statements.
+% =========================================================================
 
 rt_effect = reaction_time_validity(:,1) - reaction_time_validity(:,2);
 acc_effect = (error_validity(:,1) - error_validity(:,2))*100;

@@ -1,6 +1,15 @@
 %% Calculate correlation and create figure showing relationship between response times and microsaccade rates
-% Run both getBehaviour.m and get_SaccadeBias.m first,
-% with only the pp's % you want to include
+% =========================================================================
+% SCRIPT: 01_rt_saccade_rate_correlation.m (Exploratory)
+% DESCRIPTION: Correlates response times (RT) with saccade rates across subjects.
+
+% DEPENDENCIES: 
+%   1. behaviour/01_get_behaviour.m
+%   2. eyetracking/02_get_saccade_bias.m
+
+% NOTE 1: run the two above dependent scripts with only those pp's you want to include in the analysis here.
+% NOTE 2: whichever of the two above scripts you run second, run them without the "clear; clc; close all;" statements.
+% =========================================================================
 
 [r1, p1] = corr(overall_dt, saccade_rate(:,1), 'Type', 'Pearson');
 [r2, p2] = corr(overall_dt, saccade_rate(:,2), 'Type', 'Pearson');
