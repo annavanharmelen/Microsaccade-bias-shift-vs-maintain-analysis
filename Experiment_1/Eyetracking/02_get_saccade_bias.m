@@ -1,3 +1,4 @@
+% DESCRIPTION: Correlates RT with saccade rates across subjects.
 %% Step3-- gaze-shift calculation
 
 %% start clea

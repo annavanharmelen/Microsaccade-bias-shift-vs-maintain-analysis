@@ -1,4 +1,14 @@
 %% Determine whether the first saccade in the shift period has an effect on RT
+% =========================================================================
+% SCRIPT: 01b_effect_saccade_direction_on_rt.m (Exploratory)
+% DESCRIPTION: Tests whether the direction of the first saccade made during the shift period affects response times (across subjects).
+
+% DEPENDENCIES: 
+%   1. eyetracking/02_get_saccade_bias.m
+
+% NOTE 1: run the above dependent script with only those pp's you want to include in the analysis here.
+% =========================================================================
+
 pp2do = [2:25];
 p = 0;
 
