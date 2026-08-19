@@ -1,6 +1,6 @@
 %% Calculate correlation and create figure showing relationship between behavioural effects and microsaccade bias magnitude
 % =========================================================================
-% SCRIPT: 01_supp_figS5_behaviour_saccade_correlation.m
+% SCRIPT: s01_supp_figS5_behaviour_saccade_correlation.m
 % DESCRIPTION: Correlates behavioural effects with the magnitude of the microsaccade bias across subjects.
 
 % DEPENDENCIES: 
