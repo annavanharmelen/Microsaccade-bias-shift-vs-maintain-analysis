@@ -8,7 +8,7 @@ display_percentage_unbroken = 1;
 plot_individuals = 0;
 plot_averages = 0;
 
-pp2do = [2:25];
+pp2do = [1:2,5:9,11,13:24, 26:29];
 p = 0;
 
 
@@ -38,9 +38,21 @@ for pp = pp2do
     end
 
     %% check unbroken trials
-    % no fixational control yet, so no broken trials
-    oktrials = ones(size(behdata, 1), 1);
+    oktrials = ismember(behdata.broke_fixation, {'False'});
 
+    % select trials broken after target change
+    also_oktrials = ismember(behdata.exit_stage, {'orientation_change'});
+    
+    % save percentage
+    percentageok(p,1) = (sum(oktrials+also_oktrials) / max(behdata.trial_number))*100;
+    
+    % save oktrials
+    oktrials = logical(oktrials + also_oktrials);
+    
+    % display percentage unbroken trials
+    if display_percentage_unbroken
+        fprintf('%s has %.2f%% unbroken trials\n\n', param.subjName, percentageok(p,1))
+    end
     %% basic data checks, each pp in own subplot
     if plot_individuals
         figure(figure_nr);
@@ -246,13 +258,8 @@ if plot_averages
     set(gca(), 'Linewidth', 1.5);
     set(gca(), 'FontName', 'Aptos');
 
-<<<<<<<< HEAD:Experiment_1/Behaviour/s01_get_behaviour.m
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\beh_rt_E1", "-dsvg")
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\beh_rt_E1", "-dpng")
-========
     print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\beh_rt_E2", "-dsvg")
     print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\beh_rt_E2", "-dpng")
->>>>>>>> with-fixational-control:Experiment_2/Behaviour/s01_get_behaviour.m
     
 
     % MAIN accuracy 
@@ -291,8 +298,6 @@ if plot_averages
     
     % set(gcf,'position',[0,0, 700,1080])
     
-<<<<<<<< HEAD:Experiment_1/Behaviour/s01_get_behaviour.m
-========
     % add significant differences to line plot
     acc_p = [];
     for soa = 1:size(reaction_time_per_soa_valid, 2)
@@ -300,7 +305,6 @@ if plot_averages
         acc_p(soa) = p_val;
     end
 
->>>>>>>> with-fixational-control:Experiment_2/Behaviour/s01_get_behaviour.m
     % add grand average bar graphs of data as function of validity
     subplot(1,5,[4:5])
     hold on
@@ -336,13 +340,8 @@ if plot_averages
     set(gca(), 'Linewidth', 1.5);
     set(gca(), 'FontName', 'Aptos');
 
-<<<<<<<< HEAD:Experiment_1/Behaviour/s01_get_behaviour.m
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\beh_acc_E1", "-dsvg")
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\beh_acc_E1", "-dpng")
-========
     print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\beh_acc_E2", "-dsvg")
     print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\beh_acc_E2", "-dpng")
->>>>>>>> with-fixational-control:Experiment_2/Behaviour/s01_get_behaviour.m
         
     %% show diff of behavioural effect as function of SOA
     figure;
@@ -362,9 +361,9 @@ if plot_averages
             end
         end
         
-        ylim([0 300]);
+        ylim([0 400]);
         ylabel('Time (ms)');
-        % yticks([0 200 400]);
+        yticks([0 200 400]);
         xlim([min(trial_lengths) max(trial_lengths)]);
         xticks([500 1400 2300 3200]);
         xlabel('SOA (ms)');
@@ -393,9 +392,9 @@ if plot_averages
             end
         end
         
-        ylim([0 15]);
+        ylim([0 30]);
         ylabel('Correct (%)');
-        % yticks([0 15 30]);
+        yticks([0 15 30]);
         xlim([min(trial_lengths) max(trial_lengths)]);
         xticks([500 1400 2300 3200]);
         xlabel('SOA (ms)');

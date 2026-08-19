@@ -1,11 +1,6 @@
 %% Bar stats
-<<<<<<<< HEAD:Experiment_1/Behaviour/s02_behaviour_stats.m
-[h,p,i,stats] = ttest(reaction_time_validity(:,1), reaction_time_validity(:,2))
-[h,p,i,stats] = ttest(error_validity(:,1), error_validity(:,2))
-========
 [h,p,ci,stats] = ttest(reaction_time_validity(:,1), reaction_time_validity(:,2))
 [h,p,ci,stats] = ttest(error_validity(:,1), error_validity(:,2))
->>>>>>>> with-fixational-control:Experiment_2/Behaviour/s02_behaviour_stats.m
 
 % Cohens d's for paired samples
 rt_d = meanEffectSize(reaction_time_validity(:,1), reaction_time_validity(:,2), "Paired", true, "Effect", "cohen") 

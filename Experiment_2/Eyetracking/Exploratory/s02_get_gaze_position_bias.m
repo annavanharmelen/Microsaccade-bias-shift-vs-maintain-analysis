@@ -9,9 +9,6 @@ for pp = [1:29];
 nan_trial_overlap = 0;
 nan_post_target = 1;
 
-nan_trial_overlap = 0;
-nan_post_target = 1;
-
 baselineCorrect     = 0; 
 removeTrials        = 0; % remove trials where gaze deviation larger than value specified below. Only sensible after baseline correction!
 max_eye_pos         = 2; % remove trials with x_position bigger than 2 degrees visual angle
@@ -33,11 +30,7 @@ else
 end
 
 param = getSubjParam(pp);
-<<<<<<<< HEAD:Experiment_1/Eyetracking/Exploratory/s02_get_gaze_position_bias.m
-load([param.path, '\epoched_data\eyedata_AnnaMicro1', toadd1, toadd2, '__', param.subjName], 'eyedata');
-========
 load([param.path, '\epoched_data\eyedata_AnnaMicro2', toadd1, toadd2, '__', param.subjName], 'eyedata');
->>>>>>>> with-fixational-control:Experiment_2/Eyetracking/Exploratory/s02_get_gaze_position_bias.m
 
 %% only keep channels of interest
 cfg = [];

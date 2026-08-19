@@ -1,3 +1,4 @@
+
 %% Step3b--grand average plots of gaze-shift (saccade) results
 
 %% start clean
@@ -7,21 +8,12 @@ clear; clc; close all;
 nan_trial_overlap = 0;
 nan_post_target = 1;
 
-<<<<<<<< HEAD:Experiment_1/Eyetracking/s03_GA_saccade_bias.m
-remove_unfixated = 0;
-========
 remove_unfixated = 1;
->>>>>>>> with-fixational-control:Experiment_2/Eyetracking/s03_GA_saccade_bias.m
 remove_prematures = 1;
 only_over_1400 = 1;
 
-only_under_1dva = 0;
+pp2do           = [1:2,5:9,11,13:24, 26:29];
 
-<<<<<<<< HEAD:Experiment_1/Eyetracking/s03_GA_saccade_bias.m
-pp2do           = [2:25];
-
-========
->>>>>>>> with-fixational-control:Experiment_2/Eyetracking/s03_GA_saccade_bias.m
 nsmooth         = 200;
 plotSinglePps   = 0;
 plotGAs         = 0;
@@ -68,8 +60,6 @@ for pp = pp2do
     else
         toadd3 = '';
     end
-<<<<<<<< HEAD:Experiment_1/Eyetracking/s03_GA_saccade_bias.m
-========
     
     if remove_prematures == 1
         toadd4 = '_removePremature';
@@ -84,28 +74,7 @@ for pp = pp2do
     end
 
     load([param.path, '\saved_data\saccadeEffects_4D', toadd1, toadd2, toadd3, toadd4, toadd5, '__', param.subjName], 'saccade', 'saccadedirection','saccadesize', 'saccade_lengthsplit');
->>>>>>>> with-fixational-control:Experiment_2/Eyetracking/s03_GA_saccade_bias.m
     
-    if remove_prematures == 1
-        toadd4 = '_removePremature';
-    else
-        toadd4 = '';
-    end
-
-    if only_over_1400 == 1
-        toadd5 = '_onlyover1400';
-    else
-        toadd5 = '';
-    end
-    
-    if only_under_1dva == 1
-        toadd6 = '_onlyunder1dva';
-    else
-        toadd6 = '';
-    end
-
-    load([param.path, '\saved_data\saccadeEffects_4D', toadd1, toadd2, toadd3, toadd4, toadd5, toadd6, '__', param.subjName], 'saccade', 'saccadedirection','saccadesize', 'saccade_lengthsplit');
-
     % save averages (saccade effect (capture cue effect and probe cue reaction)
     avg_saccade_effect(s, 1) = mean(saccade.data(5,saccade.time>=200 & saccade.time<=600));
     avg_saccade_effect(s, 2) = mean(saccade.data(5,saccade.time>=600 & saccade.time<=1400));
@@ -136,7 +105,6 @@ for pp = pp2do
         saccadesizes.data(s,i,:,:) = saccadesize.data(i,:,:);
         saccade_lengths.data(s,i,:,:) = saccade_lengthsplit.data(i,:,:);
     end
-
 
     % take average of polar hist data
     avg_directions(s,1) = mean(saccadedirection.shiftsL((imag(saccadedirection.shiftsL) < 0) & saccadedirection.selectionL), "all", "omitnan");
@@ -318,13 +286,8 @@ if plotGAs
     set(gca(), 'Linewidth', 2.6);
     set(gca(), 'FontName', 'Aptos');
     hold off
-<<<<<<<< HEAD:Experiment_1/Eyetracking/s03_GA_saccade_bias.m
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_45deg_toward_vs_away_E1", "-dsvg")
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_45deg_toward_vs_away_E1", "-dpng")
-========
     print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_45deg_toward_vs_away_E2", "-dsvg")
     print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_45deg_toward_vs_away_E2", "-dpng")
->>>>>>>> with-fixational-control:Experiment_2/Eyetracking/s03_GA_saccade_bias.m
 
     % plot the effect -  45 degrees
     figure;
@@ -400,15 +363,9 @@ if plotGAs
     set(gca(), 'Linewidth', 2.6);
     set(gca(), 'FontName', 'Aptos');
     hold off
-<<<<<<<< HEAD:Experiment_1/Eyetracking/s03_GA_saccade_bias.m
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_toward_vs_away_E1", "-dsvg")
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_toward_vs_away_E1", "-dpng")
-    
-========
     print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_toward_vs_away_E2", "-dsvg")
     print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_toward_vs_away_E2", "-dpng")
 
->>>>>>>> with-fixational-control:Experiment_2/Eyetracking/s03_GA_saccade_bias.m
     % plot only saccades away from the stimulus or the distractor
     figure;
     hold on
@@ -432,13 +389,8 @@ if plotGAs
     set(gca(), 'Linewidth', 2.6);
     set(gca(), 'FontName', 'Aptos');
     hold off
-<<<<<<<< HEAD:Experiment_1/Eyetracking/s03_GA_saccade_bias.m
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_upward_toward_vs_away_E1", "-dsvg")
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_upward_toward_vs_away_E1", "-dpng")
-========
     print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_upward_toward_vs_away_E2", "-dsvg")
     print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_upward_toward_vs_away_E2", "-dpng")
->>>>>>>> with-fixational-control:Experiment_2/Eyetracking/s03_GA_saccade_bias.m
     
     % plot correct vs. incorrect
     figure;
@@ -526,13 +478,8 @@ if plotGAs
     set(gca(), 'Linewidth', 2.6);
     set(gca(), 'FontName', 'Aptos');
     hold off
-<<<<<<<< HEAD:Experiment_1/Eyetracking/s03_GA_saccade_bias.m
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_sizecourse_E1", "-dsvg")
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_sizecourse_E1", "-dpng")
-========
     print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_sizecourse_E2", "-dsvg")
     print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_sizecourse_E2", "-dpng")
->>>>>>>> with-fixational-control:Experiment_2/Eyetracking/s03_GA_saccade_bias.m
 
     %% just effect as function of SOA
     cfg = [];
@@ -707,13 +654,8 @@ if plotGAs
 
     %% plot bar chart of different timeframes
     xpos = [1, 2.2];
-<<<<<<<< HEAD:Experiment_1/Eyetracking/s03_GA_saccade_bias.m
-    y_lim = [-0.020 0.08];
-    y_lim_var = [-0.1, 0.20];
-========
     y_lim = [-0.005 0.02];
     y_lim_var = [-0.05, 0.1];
->>>>>>>> with-fixational-control:Experiment_2/Eyetracking/s03_GA_saccade_bias.m
 
     figure;
     subplot(2,1,1)
@@ -724,74 +666,6 @@ if plotGAs
     errorbar([xpos(1)], [mean(avg_saccade_effect(:,1))], [std(avg_saccade_effect(:,1)) ./ sqrt(size(pp2do, 2))], 'LineWidth', 3, 'Color', dark_colours(3,:));
     errorbar([xpos(2)], [mean(avg_saccade_effect(:,2))], [std(avg_saccade_effect(:,2)) ./ sqrt(size(pp2do, 2))], 'LineWidth', 3, 'Color', dark_colours(4,:));
     %plot([xpos(1), xpos(2)], [avg_saccade_effect(:,1:2)]', 'Color', [0, 0, 0, 0.25], 'LineWidth', 1);
-<<<<<<<< HEAD:Experiment_1/Eyetracking/s03_GA_saccade_bias.m
-    
-
-    ylim(y_lim);
-    yticks([0, 0.04]);
-    xlim([xpos(1) - 0.8, xpos(2) + 0.8]);
-    xticks([xpos(1), xpos(2)]);
-    xticklabels({'Shift', 'Maintain'});
-    % xticklabels([]);
-    fontsize(32, "points");
-    set(gca().XAxis, 'FontSize', 32);
-    set(gca().YAxis, 'Exponent', 0);
-    ylabel('Saccade bias (ΔHz)', 'FontSize', 32);
-    set(gca, 'position', [0.2167, 0.5938, 0.6883, 0.36])
-    set(gca, 'Box', 'on');
-    set(gca(), 'Linewidth', 1.5);
-    set(gca(), 'FontName', 'Aptos');
-    
-    % add individual effects
-    timecomp_1 = [avg_saccade_effect(:,1)];
-    [f_1, xi_1] = ksdensity(timecomp_1);
-
-    timecomp_2 = [avg_saccade_effect(:,2)];
-    [f_2, xi_2] = ksdensity(timecomp_2);
-
-    w = 0.035;
-
-    subplot(2,1,2)
-    hold on
-    plot([0 3], [0,0], '--', 'LineWidth',6, 'Color', [0.6, 0.6, 0.6]);
-    patch('XData', [f_1(:)*w + xpos(1), zeros(numel(xi_1(:)),1)],'yData', [xi_1(:),xi_1(:)],'FaceColor', colours(3,:), 'EdgeColor', 'none');
-    patch('XData', [f_2(:)*w + xpos(2), zeros(numel(xi_2(:)),1)],'yData', [xi_2(:),xi_2(:)],'FaceColor', colours(4,:), 'EdgeColor', 'none');
-    plot([xpos(1), xpos(1) + f_1(31)*w] , [mean(avg_saccade_effect(:,1)), mean(avg_saccade_effect(:,1))], 'Color', dark_colours(3,:), 'LineWidth', 2);
-    plot([xpos(2), xpos(2) + f_2(31)*w] , [mean(avg_saccade_effect(:,2)), mean(avg_saccade_effect(:,2))], 'Color', dark_colours(4,:), 'LineWidth', 2);
-    % plot([xpos(1)+0.1, xpos(2)-0.1], [avg_saccade_effect(:,1:2)]', 'Color', [0, 0, 0, 0.25], 'LineWidth', 1);
-    scatter(ones(size(pp2do, 2))*(xpos(1)-0.1), avg_saccade_effect(:,1), 'filled', 'MarkerFaceColor',  colours(3,:));
-    scatter(ones(size(pp2do, 2))*(xpos(2)-0.1), avg_saccade_effect(:,2), 'filled', 'MarkerFaceColor',  colours(4,:));
-
-    xlim([xpos(1) - 0.8, xpos(2) + 0.8]);
-    % subplot(1,3,3)
-    ylim(y_lim_var);
-    xticks([xpos(1), xpos(2)]);
-    % xticklabels({'Shift', 'Maintain'});
-    yticks([0, 0.10]);
-    xticklabels([]);
-    ylabel('Saccade bias (ΔHz)', 'FontSize', 32);
-    fontsize(32, "points");
-    set(gca(), 'XAxisLocation', 'top');
-    set(gca().XAxis, 'FontSize', 32);
-    set(gca, 'position', [0.2167, 0.0500, 0.6883, 0.40]);
-    set(gca, 'Box', 'on');
-    set(gca(), 'Linewidth', 1.5);
-    set(gca(), 'FontName', 'Aptos');
-
-
-    set(gcf,'position',[0,0, 700,1080])
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_timeframe_comp_E1", "-dsvg")
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_timeframe_comp_E1", "-dpng")
-
-    %% calculations for polar histogram of separate timeframes
-    r_lim = [0, 12];
-    r_ticks = [6, 12];
-
-    shift_edges = [200, 600];
-    maintain_edges = [600, 1400];
-    overall_edges = [-100, 1400];
-
-========
 
     % title('Saccade towards rate')
     % legend(labels, 'Location', 'southeast');
@@ -857,7 +731,6 @@ if plotGAs
     maintain_edges = [600, 1400];
     overall_edges = [-100, 1400];
 
->>>>>>>> with-fixational-control:Experiment_2/Eyetracking/s03_GA_saccade_bias.m
     % get indices of wanted time range
     shift_idx = find(abs(saccade.time - shift_edges(1)) < 0.01):find(abs(saccade.time - shift_edges(2)) < 0.01);
     maintain_idx = find(abs(saccade.time - maintain_edges(1)) < 0.01):find(abs(saccade.time - maintain_edges(2)) < 0.01);
@@ -944,74 +817,6 @@ if plotGAs
     ax.ThetaColor = [0.6, 0.6, 0.6];
     ax.GridColor = [0.6, 0.6, 0.6];
     ax.GridAlpha = 0.9;
-<<<<<<<< HEAD:Experiment_1/Eyetracking/s03_GA_saccade_bias.m
-
-    subplot(3,2,3);
-    polarhistogram('BinEdges', polar_bin_edges(11:21), 'BinCounts', L_shift_values(11:20), 'FaceColor', [0.6, 0.6, 0.6], 'FaceAlpha', 0.8, 'EdgeColor', [1,1,1]);
-    hold on
-    polarhistogram('BinEdges', polar_bin_edges(1:11), 'BinCounts', L_shift_values(1:10), 'FaceColor', bright_colours(3,:), 'FaceAlpha', 0.8, 'EdgeColor', [1,1,1]);
-    rlim(r_lim);
-    thetaticks([]);
-    rticks(r_ticks);
-    ax = gca;
-    ax.FontSize = 27;
-    ax.FontName = 'Aptos';
-    ax.LineWidth = 1;
-    ax.ThetaColor = [0.6, 0.6, 0.6];
-    ax.GridColor = [0.6, 0.6, 0.6];
-    ax.GridAlpha = 0.9;
-
-    subplot(3,2,4);
-    polarhistogram('BinEdges', polar_bin_edges(11:21), 'BinCounts', R_shift_values(11:20), 'FaceColor', [0.6, 0.6, 0.6], 'FaceAlpha', 0.8, 'EdgeColor', [1,1,1]);
-    hold on
-    polarhistogram('BinEdges', polar_bin_edges(1:11), 'BinCounts', R_shift_values(1:10), 'FaceColor', bright_colours(3,:), 'FaceAlpha', 0.8, 'EdgeColor', [1,1,1]);
-    rlim(r_lim);
-    thetaticks([]);
-    rticks(r_ticks);
-    ax = gca;
-    ax.FontSize = 27;
-    ax.FontName = 'Aptos';
-    ax.LineWidth = 1;
-    ax.ThetaColor = [0.6, 0.6, 0.6];
-    ax.GridColor = [0.6, 0.6, 0.6];
-    ax.GridAlpha = 0.9;
-
-    subplot(3,2,5);
-    polarhistogram('BinEdges', polar_bin_edges(11:21), 'BinCounts', L_maintain_values(11:20), 'FaceColor', [0.6, 0.6, 0.6], 'FaceAlpha', 0.8, 'EdgeColor', [1,1,1]);
-    hold on
-    polarhistogram('BinEdges', polar_bin_edges(1:11), 'BinCounts', L_maintain_values(1:10), 'FaceColor', bright_colours(4,:), 'FaceAlpha', 0.8, 'EdgeColor', [1,1,1]);
-    rlim(r_lim);
-    thetaticks([]);
-    rticks(r_ticks);
-    ax = gca;
-    ax.FontSize = 27;
-    ax.FontName = 'Aptos';
-    ax.LineWidth = 1;
-    ax.ThetaColor = [0.6, 0.6, 0.6];
-    ax.GridColor = [0.6, 0.6, 0.6];
-    ax.GridAlpha = 0.9;
-
-    subplot(3,2,6);
-    polarhistogram('BinEdges', polar_bin_edges(11:21), 'BinCounts', R_maintain_values(11:20), 'FaceColor', [0.6, 0.6, 0.6], 'FaceAlpha', 0.8, 'EdgeColor', [1,1,1]);
-    hold on
-    polarhistogram('BinEdges', polar_bin_edges(1:11), 'BinCounts', R_maintain_values(1:10), 'FaceColor', bright_colours(4,:), 'FaceAlpha', 0.8, 'EdgeColor', [1,1,1]);
-    rlim(r_lim);
-    thetaticks([]);
-    rticks(r_ticks);
-    ax = gca;
-    ax.FontSize = 27;
-    ax.FontName = 'Aptos';
-    ax.LineWidth = 1;
-    ax.ThetaColor = [0.6, 0.6, 0.6];
-    ax.GridColor = [0.6, 0.6, 0.6];
-    ax.GridAlpha = 0.9;
- 
-    set(gcf,'position',[0,0, 700, 1000])
-
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_polarplots_E1", "-dsvg")
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_polarplots_E1", "-dpng")
-
-========
 
     subplot(3,2,3);
     polarhistogram('BinEdges', polar_bin_edges(11:21), 'BinCounts', L_shift_values(11:20), 'FaceColor', [0.6, 0.6, 0.6], 'FaceAlpha', 0.8, 'EdgeColor', [1,1,1]);
@@ -1078,5 +883,4 @@ if plotGAs
     print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_polarplots_E2", "-dsvg")
     print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_polarplots_E2", "-dpng")
   
->>>>>>>> with-fixational-control:Experiment_2/Eyetracking/s03_GA_saccade_bias.m
 end

@@ -3,13 +3,9 @@ function param = getSubjParam(pp)
 %% participant-specific notes
 
 %% set path and pp-specific file locations
-unique_numbers = [99, 26, 32, 19, 62, 28, 55, 15, 89, 31, 22, 44, 59, 45, 27, 30, 10, 81, 88, 16, 49, 87, 58, 90, 37]; %needs to be in the right order
+unique_numbers = [65, 34, 56, 26, 97, 15, 78, 70, 44, 67, 61, 17, 86, 10, 28, 48, 12, 58, 45, 14, 11, 40, 96, 55, 85, 47, 71, 25, 13]; %needs to be in the right order
 
-<<<<<<<< HEAD:Experiment_1/getSubjParam.m
-param.path = '\\scistor.vu.nl\shares\FGB-ETP-CogPsy-ProactiveBrainLab\core_lab_members\Anna\Data\m1 - microsaccade bias shift vs. sustain\';
-========
 param.path = '\\scistor.vu.nl\shares\FGB-ETP-CogPsy-ProactiveBrainLab\core_lab_members\Anna\Data\m2 - microsaccade bias shift vs. sustain with fixational control\';
->>>>>>>> with-fixational-control:Experiment_2/get_subject_parameters.m
 
 if pp < 10
     param.subjName = sprintf('pp0%d', pp);
