@@ -16,7 +16,7 @@ for pp      = [1:29];
     poststim    = 3.2; % until 3 s after
     
     %% participant-specific information
-    param = get_subject_parameters(pp); 
+    param = get_subject_parameters_exp2(pp); 
     disp(['getting data from ', param.subjName]);
     
     %% read header of asc file that contains all messages etc.
