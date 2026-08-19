@@ -1,13 +1,29 @@
 %% Bar stats
-[h,p,i,stats] = ttest(error_validity(:,1), error_validity(:,2))
 [h,p,i,stats] = ttest(reaction_time_validity(:,1), reaction_time_validity(:,2))
+[h,p,i,stats] = ttest(error_validity(:,1), error_validity(:,2))
 
-%% SOA stats
+% Cohens d's for paired samples
+rt_d = meanEffectSize(reaction_time_validity(:,1), reaction_time_validity(:,2), "Paired", true, "Effect", "cohen") 
+acc_d = meanEffectSize(error_validity(:,1), error_validity(:,2), "Paired", true, "Effect", "cohen")
+
+%% SOA t-test stats
+for soa = 1:size(trial_lengths, 2)
+    disp(['soa: ', num2str(trial_lengths(soa))])
+    [h,p,i,stats] = ttest(reaction_time_per_soa_valid(:,soa), reaction_time_per_soa_invalid(:,soa));
+    disp(['rt: ', 'p=', num2str(p)])
+    disp(stats)
+    [h,p,i,stats] = ttest(accuracy_per_soa_valid(:,soa), accuracy_per_soa_invalid(:,soa));
+    disp(['acc: ', 'p=', num2str(p)])
+    disp(stats)
+    disp(' ');
+end
+
+%% SOA cluster stats
 statcfg.xax = trial_lengths;
 statcfg.npermutations = 1000;
 statcfg.clusterStatEvalaluationAlpha = 0.05;
-statcfg.nsub = p;
-statcfg.statMethod = 'montecarlo';
+statcfg.nsub = 24;
+statcfg.statMethod = 'analytic';
 
 data_cond1 = accuracy_per_soa_valid;
 data_cond2 = accuracy_per_soa_invalid;
@@ -33,7 +49,7 @@ frevede_allbyall_correlations_new(datamat, labels)
 %% Make correlation plot
 figure;
 hold on
-scatter(-rt_effect, avg_saccade_effect(:,3), 100, 'k', 'filled');
+scatter(-rt_effect, avg_saccade_effect(:,1), 100, 'k', 'filled');
 l1 = lsline;
 l1.LineWidth = 2.5;
 l1.Color = [0.6, 0.6, 0.6];
@@ -50,7 +66,7 @@ set(gcf,'position',[0,0, 850, 800]);
 
 figure;
 hold on
-scatter(acc_effect*100, avg_saccade_effect(:,3), 100, 'k', 'filled');
+scatter(acc_effect*100, avg_saccade_effect(:,1), 100, 'k', 'filled');
 l2 = lsline;
 l2.LineWidth = 2.5;
 l2.Color = [0.6, 0.6, 0.6];
@@ -66,10 +82,14 @@ fontsize(39, 'points');
 set(gcf,'position',[0,0, 850, 800]);
 
 %% Correlation stats
-[r, p] = corr(-rt_effect, avg_saccade_effect(:,3))
+[r, p] = corr(-rt_effect, avg_saccade_effect(:,3));
+disp(['Pearson, RT: ', sprintf('r=%f ', r), sprintf('p=%f', p)]);
 
-[r, p] = corr(acc_effect, avg_saccade_effect(:,3))
+[r, p] = corr(acc_effect, avg_saccade_effect(:,3));
+disp(['Pearson, ACC: ', sprintf('r=%f ', r), sprintf('p=%f', p)]);
 
-[r, p] = corr(rt_effect, avg_saccade_effect(:,3), 'Type', 'Spearman')
+[r, p] = corr(rt_effect, avg_saccade_effect(:,3), 'Type', 'Spearman');
+disp(['Spearman, RT: ', sprintf('r=%f ', r), sprintf('p=%f', p)]);
 
-[r, p] = corr(acc_effect, avg_saccade_effect(:,3), 'Type', 'Spearman')
+[r, p] = corr(acc_effect, avg_saccade_effect(:,3), 'Type', 'Spearman');
+disp(['Spearman, ACC: ', sprintf('r=%f ', r), sprintf('p=%f', p)]);
