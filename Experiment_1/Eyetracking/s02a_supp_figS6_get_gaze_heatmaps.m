@@ -14,6 +14,7 @@ nan_post_target = 1;
 baselineCorrect     = 1; 
 
 plotResults         = 0;
+saveFigures         = 0;
 
 s = 0;
 for pp = pp2do
@@ -340,7 +341,9 @@ if plotResults
     set(R, 'position', [0.6916 0.1100 0.1703 0.8150]);
 
     set(gcf, 'Renderer', 'Painters');
-
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_gazeheatmaps_E1", "-dsvg", "-vector")
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_gazeheatmaps_E1", "-dpng")
+    
+    if saveFigures
+        print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_gazeheatmaps_E1", "-dsvg", "-vector")
+        print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_gazeheatmaps_E1", "-dpng")
+    end
 end

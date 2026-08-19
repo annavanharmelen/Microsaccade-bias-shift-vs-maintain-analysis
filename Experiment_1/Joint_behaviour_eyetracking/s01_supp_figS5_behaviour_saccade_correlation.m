@@ -11,6 +11,10 @@
 % NOTE 2: whichever of the two above scripts you run second, run them without the "clear; clc; close all;" statements.
 % =========================================================================
 
+%% set parameters
+saveFigures         = 0;
+
+%% calculate correlations
 rt_effect = reaction_time_validity(:,1) - reaction_time_validity(:,2);
 acc_effect = (error_validity(:,1) - error_validity(:,2))*100;
 
@@ -19,6 +23,7 @@ acc_effect = (error_validity(:,1) - error_validity(:,2))*100;
 [acc_r_p,acc_p_p] = corr(acc_effect, avg_saccade_effect(:,1), 'Type', 'Pearson')
 [acc_r_s,acc_p_s] = corr(acc_effect, avg_saccade_effect(:,1), 'Type', 'Spearman')
 
+%% create figure
 figure;
 rt = subplot(2,1,1);
 hold on
@@ -60,5 +65,7 @@ for i = 1:size(axes,2)
     set(axes{i}, 'LineWidth', 1);
 end
 
-print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_behaviour_x_bias_E1", "-dsvg")
-print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_behaviour_x_bias_E1", "-dpng")
+if saveFigures
+    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_behaviour_x_bias_E1", "-dsvg")
+    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_behaviour_x_bias_E1", "-dpng")
+end

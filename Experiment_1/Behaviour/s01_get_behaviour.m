@@ -6,7 +6,8 @@ clc
 display_percentage_premature = 0;
 display_percentage_unbroken = 1;
 plot_individuals = 0;
-plot_averages = 0;
+plot_averages = 1;
+saveFigures = 0;
 
 pp2do = [2:25];
 p = 0;
@@ -245,10 +246,11 @@ if plot_averages
     set(gca, 'Box', 'on');
     set(gca(), 'Linewidth', 1.5);
     set(gca(), 'FontName', 'Aptos');
-
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\beh_rt_E1", "-dsvg")
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\beh_rt_E1", "-dpng")
     
+    if saveFigures
+        print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\beh_rt_E1", "-dsvg")
+        print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\beh_rt_E1", "-dpng")
+    end
 
     % MAIN accuracy 
     figure;
@@ -321,9 +323,11 @@ if plot_averages
     set(gca(), 'Linewidth', 1.5);
     set(gca(), 'FontName', 'Aptos');
 
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\beh_acc_E1", "-dsvg")
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\beh_acc_E1", "-dpng")
-        
+    if saveFigures
+        print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\beh_acc_E1", "-dsvg")
+        print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\beh_acc_E1", "-dpng")
+    end
+
     %% show diff of behavioural effect as function of SOA
     figure;
         subplot(1,2,1);

@@ -1,5 +1,9 @@
 %% Create main sequenceplot of saccades
 % first run get_SaccadeBias with only the pp's you want to include
+
+%% set parameters
+saveFigures         = 0;
+
 x_bins = [0:0.02:2.5];
 y_bins = [0:0.002:0.5];
 x_window = 0.04;
@@ -33,5 +37,7 @@ set(gca, 'LineWidth', 1);
 axis('square');
 set(gcf(), 'Position', [500 500 800 600]);
 
-print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_mainsequence_E1", "-dsvg")
-print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_mainsequence_E1", "-dpng")
+if saveFigures
+    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_mainsequence_E1", "-dsvg")
+    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_mainsequence_E1", "-dpng")
+end

@@ -16,7 +16,8 @@ pp2do           = [1:2,5:9,11,13:24, 26:29];
 
 nsmooth         = 200;
 plotSinglePps   = 0;
-plotGAs         = 0;
+plotGAs         = 1;
+saveFigures     = 0;
 xlimtoplot      = [-100 1400];
 
 %% predefine size of some matrices
@@ -286,8 +287,10 @@ if plotGAs
     set(gca(), 'Linewidth', 2.6);
     set(gca(), 'FontName', 'Aptos');
     hold off
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_45deg_toward_vs_away_E2", "-dsvg")
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_45deg_toward_vs_away_E2", "-dpng")
+    if saveFigures
+        print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_45deg_toward_vs_away_E2", "-dsvg")
+        print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_45deg_toward_vs_away_E2", "-dpng")
+    end
 
     % plot the effect -  45 degrees
     figure;
@@ -363,8 +366,10 @@ if plotGAs
     set(gca(), 'Linewidth', 2.6);
     set(gca(), 'FontName', 'Aptos');
     hold off
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_toward_vs_away_E2", "-dsvg")
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_toward_vs_away_E2", "-dpng")
+    if saveFigures
+        print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_toward_vs_away_E2", "-dsvg")
+        print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_toward_vs_away_E2", "-dpng")
+    end
 
     % plot only saccades away from the stimulus or the distractor
     figure;
@@ -389,9 +394,11 @@ if plotGAs
     set(gca(), 'Linewidth', 2.6);
     set(gca(), 'FontName', 'Aptos');
     hold off
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_upward_toward_vs_away_E2", "-dsvg")
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_upward_toward_vs_away_E2", "-dpng")
-    
+    if saveFigures
+        print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_upward_toward_vs_away_E2", "-dsvg")
+        print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_upward_toward_vs_away_E2", "-dpng")
+    end
+
     % plot correct vs. incorrect
     figure;
     hold on
@@ -478,8 +485,10 @@ if plotGAs
     set(gca(), 'Linewidth', 2.6);
     set(gca(), 'FontName', 'Aptos');
     hold off
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_sizecourse_E2", "-dsvg")
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_sizecourse_E2", "-dpng")
+    if saveFigures
+        print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_sizecourse_E2", "-dsvg")
+        print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_sizecourse_E2", "-dpng")
+    end
 
     %% just effect as function of SOA
     cfg = [];
@@ -720,8 +729,10 @@ if plotGAs
 
 
     set(gcf,'position',[0,0, 700,1080])
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_timeframe_comp_E2", "-dsvg")
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_timeframe_comp_E2", "-dpng")
+    if saveFigures
+        print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_timeframe_comp_E2", "-dsvg")
+        print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_timeframe_comp_E2", "-dpng")
+    end
 
     %% calculations for polar histogram of separate timeframes
     r_lim = [0, 12];
@@ -879,8 +890,8 @@ if plotGAs
     ax.GridAlpha = 0.9;
  
     set(gcf,'position',[0,0, 700, 1000])
-
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_polarplots_E2", "-dsvg")
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_polarplots_E2", "-dpng")
-  
+    if saveFigures
+        print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_polarplots_E2", "-dsvg")
+        print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_polarplots_E2", "-dpng")
+    end
 end

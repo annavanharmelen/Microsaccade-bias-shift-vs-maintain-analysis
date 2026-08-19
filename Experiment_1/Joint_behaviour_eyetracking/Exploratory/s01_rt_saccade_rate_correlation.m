@@ -11,6 +11,10 @@
 % NOTE 2: whichever of the two above scripts you run second, run them without the "clear; clc; close all;" statements.
 % =========================================================================
 
+%% set parameters
+saveFigures         = 0;
+
+%% calculate correlations
 [r1, p1] = corr(overall_dt, saccade_rate(:,1), 'Type', 'Pearson');
 [r2, p2] = corr(overall_dt, saccade_rate(:,2), 'Type', 'Pearson');
 [r3, p3] = corr(overall_dt, saccade_rate(:,3), 'Type', 'Pearson');
@@ -20,7 +24,6 @@
 
 
 %% create figure
-
 figure;
 rt = subplot(2,1,1);
 hold on
@@ -58,5 +61,7 @@ for i = 1:size(axes,2)
     set(axes{i}, 'LineWidth', 1);
 end
 
-print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_rt_x_rate_E1", "-dsvg")
-print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_rt_x_rate_E1", "-dpng")
+if saveFigures
+    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_rt_x_rate_E1", "-dsvg")
+    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_rt_x_rate_E1", "-dpng")
+end

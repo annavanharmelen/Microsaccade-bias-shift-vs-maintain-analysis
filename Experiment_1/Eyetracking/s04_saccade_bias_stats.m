@@ -1,6 +1,9 @@
-%% Script for doing stats on saccade and gaze bias data.
+%% Script for doing stats on saccade bias data.
 % So run those scripts first.
 % by Anna, 04-07-2023
+
+%% set parameters
+saveFigures         = 0;
 
 %% Avg saccade bias over time - stats
 %% Bar stats
@@ -59,8 +62,10 @@ set(gca(), 'Linewidth', 2.6);
 set(gca(), 'FontName', 'Aptos');
 hold off
 
-print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_towardness_E1", "-dsvg")
-print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_towardness_E1", "-dpng")
+if saveFigures
+    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_towardness_E1", "-dsvg")
+    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_towardness_E1", "-dpng")
+end
 
 % set(gcf,'position',[0,0, 1800,900])
 % fontsize(ft_size*1.5,"points")
@@ -108,8 +113,10 @@ set(gca(), 'Linewidth', 2.6);
 set(gca(), 'FontName', 'Aptos');
 hold off
 
-print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_45deg_towardness_E1", "-dsvg")
-print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_45deg_towardness_E1", "-dpng")
+if saveFigures
+    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_45deg_towardness_E1", "-dsvg")
+    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_45deg_towardness_E1", "-dpng")
+end
 
 %% Saccade bias upwards data
 statcfg.xax = saccade.time;
@@ -151,8 +158,10 @@ set(gca(), 'Linewidth', 2.6);
 set(gca(), 'FontName', 'Aptos');
 hold off
 
-print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_upward_towardness_E1", "-dsvg")
-print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_upward_towardness_E1", "-dpng")
+if saveFigures
+    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_upward_towardness_E1", "-dsvg")
+    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_upward_towardness_E1", "-dpng")
+end
 
 %% Saccade bias data - plot both
 mask1_xxx = double(stat1.mask);
