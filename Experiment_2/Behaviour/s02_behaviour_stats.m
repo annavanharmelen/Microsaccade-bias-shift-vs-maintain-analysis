@@ -44,7 +44,7 @@ z_beh = z_acc - z_rt;
 
 datamat = [avg_saccade_effect, rt_effect, acc_effect, z_beh];
 labels = {'shift saccades', 'sustain saccades', 'total saccade effect', 'dt effect', 'accuracy effect', 'behaviour effect'};
-frevede_allbyall_correlations_new(datamat, labels)
+frevede_allbyall_correlations(datamat, labels)
 
 %% Make correlation plot
 figure;
