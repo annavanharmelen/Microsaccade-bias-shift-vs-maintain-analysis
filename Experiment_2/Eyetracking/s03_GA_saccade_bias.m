@@ -5,23 +5,14 @@
 clear; clc; close all;
     
 %% parameters
-<<<<<<<< HEAD:Experiment_2/Eyetracking/s03_GA_saccade_bias.m
 nan_trial_overlap = 0;
 nan_post_target = 1;
-========
-nan_trial_overlap = 1;
-nan_post_target = 0;
-
-remove_unfixated = 1; %note: this only adds it to m2 pp's
-remove_prematures = 0;
-only_over_2300 = 1;
->>>>>>>> collated-data-from-m1-and-m2:Joint_experiment_1_and_2/Eyetracking/s01_GA_saccade_bias.m
 
 remove_unfixated = 1;
 remove_prematures = 1;
 only_over_1400 = 1;
 
-pp2do = [2:25, 1:2,5:9,11,13:24,26:29];
+pp2do           = [1:2,5:9,11,13:24, 26:29];
 
 nsmooth         = 200;
 plotSinglePps   = 0;
@@ -46,17 +37,11 @@ s = 0;
 for pp = pp2do
     s = s+1;
 
-    if s <=24
-        param = getSubjParam1(pp);
-        experiment = 'M1';
-    else
-        param = getSubjParam2(pp);
-        experiment = 'M2';
-    end
-
+    % get participant data
+    param = getSubjParam(pp);
 
     % load
-    disp(['getting data from ', param.subjName, ' - ', experiment]);
+    disp(['getting data from participant ', param.subjName]);
    
     if nan_trial_overlap == 1
         toadd1 = '_NaNtrialoverlap';
@@ -64,7 +49,7 @@ for pp = pp2do
         toadd1 = '';
     end    
 
-    if remove_unfixated == 1 & s>24
+    if remove_unfixated == 1
         toadd2 = '_removeUnfixated';
     else
         toadd2 = '';
@@ -75,24 +60,15 @@ for pp = pp2do
     else
         toadd3 = '';
     end
-<<<<<<<< HEAD:Experiment_2/Eyetracking/s03_GA_saccade_bias.m
     
-========
-
->>>>>>>> collated-data-from-m1-and-m2:Joint_experiment_1_and_2/Eyetracking/s01_GA_saccade_bias.m
     if remove_prematures == 1
         toadd4 = '_removePremature';
     else
         toadd4 = '';
     end
 
-<<<<<<<< HEAD:Experiment_2/Eyetracking/s03_GA_saccade_bias.m
     if only_over_1400 == 1
         toadd5 = '_onlyover1400';
-========
-    if only_over_2300 ==1
-        toadd5 = '_over2300';
->>>>>>>> collated-data-from-m1-and-m2:Joint_experiment_1_and_2/Eyetracking/s01_GA_saccade_bias.m
     else
         toadd5 = '';
     end
@@ -127,7 +103,7 @@ for pp = pp2do
 
     for i = 1:size(saccadesize.data, 1)
         saccadesizes.data(s,i,:,:) = saccadesize.data(i,:,:);
-        % saccade_lengths.data(s,i,:,:) = saccade_lengthsplit.data(i,:,:);
+        saccade_lengths.data(s,i,:,:) = saccade_lengthsplit.data(i,:,:);
     end
 
     % take average of polar hist data
@@ -154,33 +130,15 @@ saccadesizes.freq = saccadesize.freq;
 for i = 1:size(saccadesize.data, 1)
     saccadesizes.avg_data(i,:,:) = squeeze(mean(saccadesizes.data(:,i,:,:)));
 end
-% 
-% saccade_lengths.dimord = saccade_lengthsplit.dimord;
-% saccade_lengths.label = saccade_lengthsplit.label;
-% saccade_lengths.time = saccade_lengthsplit.time;
-% saccade_lengths.freq = saccade_lengthsplit.freq;
-% 
-% for i = 1:size(saccade_lengthsplit.data, 1)
-%     saccade_lengths.avg_data(i,:,:) = squeeze(mean(saccade_lengths.data(:,i,:,:)));
-% end
 
-%% comparison between main effect of E1 and E2
-figure;
-hold on
-p1 = frevede_errorbarplot(saccade.time, squeeze(saccade_data(1:24,5,:)), bright_colours(3,:), 'se');
-p2 = frevede_errorbarplot(saccade.time, squeeze(saccade_data(25:48,5,:)), bright_colours(3,:), 'se');
-p1.LineWidth = 2.5;
-p2.LineWidth = 2.5;
-fontsize(23, 'points')
-xlim([-100, 1400]);
-plot(xlim, [0,0], '--', 'LineWidth',2, 'Color', [0.6, 0.6, 0.6]);
-plot([0,0], ylim, '--', 'LineWidth',2, 'Color', [0.6, 0.6, 0.6]);
-% legend([p7], 'effect', 'EdgeColor', 'w', 'Fontsize', 28);
-ylabel('Rate (Hz)', 'Fontsize', 28);
-xlabel('Time (ms)', 'Fontsize', 28);
-set(gcf,'position',[0,0, 1800,900])
-xlabel('Time (ms)');
-hold off
+saccade_lengths.dimord = saccade_lengthsplit.dimord;
+saccade_lengths.label = saccade_lengthsplit.label;
+saccade_lengths.time = saccade_lengthsplit.time;
+saccade_lengths.freq = saccade_lengthsplit.freq;
+
+for i = 1:size(saccade_lengthsplit.data, 1)
+    saccade_lengths.avg_data(i,:,:) = squeeze(mean(saccade_lengths.data(:,i,:,:)));
+end
 
 %% all subs
 if plotSinglePps
@@ -456,16 +414,6 @@ if plotGAs
     xlabel('Time (ms)');
     hold off
     
-    %% relative saccade bias over time
-    a = mean(squeeze(saccade_data(:,1,:)));
-    b = mean(squeeze(saccade_data(:,3,:)));
-    figure;
-    hold on
-    p10 = plot(saccade.time, ((a-b)./b)*100);
-    ylabel('Rate (Hz)');
-    xlabel('Time (ms)');
-    hold off
-    
     %% as function of saccade size
     cfg = [];
     cfg.parameter = 'avg_data';
@@ -712,21 +660,12 @@ if plotGAs
     figure;
     subplot(2,1,1)
     hold on
-<<<<<<<< HEAD:Experiment_2/Eyetracking/s03_GA_saccade_bias.m
     plot([0 3], [0,0], 'LineWidth', 1.5, 'Color', [0,0,0]);
     b1 = bar([xpos(1)], [mean(avg_saccade_effect(:,1))], bar_size, FaceColor=colours(3,:), EdgeColor=colours(3,:));
     b2 = bar([xpos(2)], [mean(avg_saccade_effect(:,2))], bar_size, FaceColor=colours(4,:), EdgeColor=colours(4,:));
     errorbar([xpos(1)], [mean(avg_saccade_effect(:,1))], [std(avg_saccade_effect(:,1)) ./ sqrt(size(pp2do, 2))], 'LineWidth', 3, 'Color', dark_colours(3,:));
     errorbar([xpos(2)], [mean(avg_saccade_effect(:,2))], [std(avg_saccade_effect(:,2)) ./ sqrt(size(pp2do, 2))], 'LineWidth', 3, 'Color', dark_colours(4,:));
     %plot([xpos(1), xpos(2)], [avg_saccade_effect(:,1:2)]', 'Color', [0, 0, 0, 0.25], 'LineWidth', 1);
-========
-    b1 = bar([1], [mean(avg_saccade_effect(:,1))], bar_size, FaceColor=colours(3,:), EdgeColor=colours(3,:));
-    b2 = bar([2], [mean(avg_saccade_effect(:,2))], bar_size, FaceColor=colours(4,:), EdgeColor=colours(4,:));
-    errorbar([1], [mean(avg_saccade_effect(:,1))], [std(avg_saccade_effect(:,1)) ./ sqrt(size(pp2do, 2))], 'LineWidth', 3, 'Color', dark_colours(3,:));
-    errorbar([2], [mean(avg_saccade_effect(:,2))], [std(avg_saccade_effect(:,2)) ./ sqrt(size(pp2do, 2))], 'LineWidth', 3, 'Color', dark_colours(4,:));
-    plot([1,2], [avg_saccade_effect(1:24,1:2)]', 'Color', [1, 0, 0, 0.25], 'LineWidth', 1);
-    plot([1,2], [avg_saccade_effect(25:end,1:2)]', 'Color', [0, 0, 1, 0.25], 'LineWidth', 1);
->>>>>>>> collated-data-from-m1-and-m2:Joint_experiment_1_and_2/Eyetracking/s01_GA_saccade_bias.m
 
     % title('Saccade towards rate')
     % legend(labels, 'Location', 'southeast');
