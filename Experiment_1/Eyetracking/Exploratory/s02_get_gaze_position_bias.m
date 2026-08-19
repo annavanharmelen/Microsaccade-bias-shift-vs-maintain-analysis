@@ -4,10 +4,7 @@
 clear; clc; close all;
 
 %% parameters
-for pp = [1:29];
-
-nan_trial_overlap = 0;
-nan_post_target = 1;
+for pp = [1:25];
 
 nan_trial_overlap = 0;
 nan_post_target = 1;
@@ -33,11 +30,7 @@ else
 end
 
 param = getSubjParam(pp);
-<<<<<<<< HEAD:Experiment_1/Eyetracking/Exploratory/s02_get_gaze_position_bias.m
 load([param.path, '\epoched_data\eyedata_AnnaMicro1', toadd1, toadd2, '__', param.subjName], 'eyedata');
-========
-load([param.path, '\epoched_data\eyedata_AnnaMicro2', toadd1, toadd2, '__', param.subjName], 'eyedata');
->>>>>>>> with-fixational-control:Experiment_2/Eyetracking/Exploratory/s02_get_gaze_position_bias.m
 
 %% only keep channels of interest
 cfg = [];
@@ -206,3 +199,5 @@ drawnow;
 
 %% close loops
 end % end pp loop
+
+

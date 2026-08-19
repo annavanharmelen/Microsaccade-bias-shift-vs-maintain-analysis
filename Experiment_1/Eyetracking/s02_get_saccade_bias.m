@@ -1,7 +1,7 @@
 % DESCRIPTION: Correlates RT with saccade rates across subjects.
 %% Step3-- gaze-shift calculation
 
-%% start clean
+%% start clea
 clear; clc; close all;
 
 velocities = []; amplitudes = [];
@@ -15,7 +15,6 @@ plotResults = 0;
 nan_trial_overlap = 0;
 nan_post_target = 1;
 
-<<<<<<<< HEAD:Experiment_1/Eyetracking/s02_get_saccade_bias.m
 remove_unfixated = 0;
 remove_prematures = 1;
 only_over_1400 = 1;
@@ -24,15 +23,6 @@ only_under_1dva = 0;
 
 %% loop over participants
 for pp = [1:25];
-========
-remove_unfixated = 1;
-remove_prematures = 1;
-only_over_1400 = 1;
-
-%% loop over participants
-for pp = [1:2,5:9,11,13:24, 26:29];
-
->>>>>>>> with-fixational-control:Experiment_2/Eyetracking/s02_get_saccade_bias.m
     p = p + 1;
 
     %% load epoched data of this participant data
@@ -62,17 +52,11 @@ for pp = [1:2,5:9,11,13:24, 26:29];
     tl = ft_timelockanalysis(cfg, eyedata); % realign the data: from trial*time cells into trial*channel*time?
     tl.time = tl.time * 1000;
 
-<<<<<<<< HEAD:Experiment_1/Eyetracking/s02_get_saccade_bias.m
     %% remove trials with premature keyboard response
     if remove_prematures
-========
-    %% remove trials interrupted by eyetracker
-    if remove_unfixated
->>>>>>>> with-fixational-control:Experiment_2/Eyetracking/s02_get_saccade_bias.m
         % get behavioural data
         behdata = readtable(getSubjParam(pp).log);
         
-<<<<<<<< HEAD:Experiment_1/Eyetracking/s02_get_saccade_bias.m
         % select premature trials
         oktrials = ismember(behdata.premature_pressed, {'False'});
     
@@ -86,49 +70,6 @@ for pp = [1:2,5:9,11,13:24, 26:29];
     if only_over_1400
         % load data if necessary
         if remove_prematures == 0
-            behdata = readtable(getSubjParam(pp).log);
-        end
-        
-        % keep only trials of min 1400 ms long
-        to_keep = behdata.static_duration>=1400;
-        
-        behdata = behdata(logical(to_keep), :);
-        tl.trial = tl.trial(logical(to_keep),:,:);
-        tl.trialinfo = tl.trialinfo(logical(to_keep),:,:);
-========
-        % select unbroken trials
-        oktrials = ismember(behdata.broke_fixation, {'False'});
-
-        % select trials broken after target change
-        also_oktrials = ismember(behdata.exit_stage, {'orientation_change'});
-        
-        % remove non-oktrials from behavioural and eye-tracking data
-        behdata = behdata(logical(oktrials+also_oktrials), :);
-        tl.trial = tl.trial(logical(oktrials+also_oktrials),:,:);
-        tl.trialinfo = tl.trialinfo(logical(oktrials+also_oktrials),:,:);
->>>>>>>> with-fixational-control:Experiment_2/Eyetracking/s02_get_saccade_bias.m
-    end
-
-    %% remove trials with premature keyboard response
-    if remove_prematures
-        % get behavioural data
-        if remove_unfixated == 0
-            behdata = readtable(getSubjParam(pp).log);
-        end
-        
-        % select premature trials
-        oktrials = ismember(behdata.premature_pressed, {'False'});
-    
-        % remove non-oktrials from behavioural and eye-tracking data
-        behdata = behdata(logical(oktrials), :);
-        tl.trial = tl.trial(oktrials,:,:);
-        tl.trialinfo = tl.trialinfo(oktrials,:,:);
-    end
-    
-    %% select only trials of min 1400 ms long
-    if only_over_1400
-        % load data if necessary
-        if remove_unfixated == 0 & remove_prematures == 0
             behdata = readtable(getSubjParam(pp).log);
         end
         
@@ -180,7 +121,6 @@ for pp = [1:2,5:9,11,13:24, 26:29];
 
     [shiftsX,shiftsY, peakvelocity, times] = PBlab_gazepos2shift_2D(cfg, data_input(:,chX,:), data_input(:,chY,:), time_input);
     
-<<<<<<<< HEAD:Experiment_1/Eyetracking/s02_get_saccade_bias.m
     %% remove trials with saccades > 2 dva
     % (note: for m2 this option removes trials interrupted by eyetracker)
     if remove_unfixated
@@ -225,21 +165,6 @@ for pp = [1:2,5:9,11,13:24, 26:29];
             peakvelocity(trial, selection) = NaN;
         end
 
-========
-    %% turn post-change data to NaN
-    if nan_post_target
-
-        trial_lengths = behdata.static_duration;
-        
-        for trial = 1:length(trial_lengths)
-            selection = times > trial_lengths(trial);
-    
-            shiftsX(trial, selection) = NaN;
-            shiftsY(trial, selection) = NaN;
-            peakvelocity(trial, selection) = NaN;
-        end
-
->>>>>>>> with-fixational-control:Experiment_2/Eyetracking/s02_get_saccade_bias.m
     end
 
     %% select usable gaze shifts
@@ -330,78 +255,6 @@ for pp = [1:2,5:9,11,13:24, 26:29];
     velocities = [velocities; nonzeros(peakvelocity(:))];
     amplitudes = [amplitudes; nonzeros(saccadesizes(:))];
 
-    saccadeAngles = atan2d(shiftsY, shiftsX);
-
-    shiftsSE_45 = double(abs(saccadeAngles - (-45)) <= 22.5 & (saccadesizes>minDisplacement & saccadesizes<maxDisplacement));
-    shiftsSW_45 = double(abs(saccadeAngles - (-135)) <= 22.5 & (saccadesizes>minDisplacement & saccadesizes<maxDisplacement));
-
-    shiftsSE_18 = double(abs(saccadeAngles - (-45)) <= 9 & (saccadesizes>minDisplacement & saccadesizes<maxDisplacement));
-    shiftsSW_18 = double(abs(saccadeAngles - (-135)) <= 9 & (saccadesizes>minDisplacement & saccadesizes<maxDisplacement));
-
-    %% get saccade rate per participant
-    % always in order: all, shift, sustain
-    saccades(p,1) = sum(abs(shiftsX) > 0, 'all');
-    saccades(p,2) = sum(abs(shiftsX(:,651:1051)) > 0, 'all');
-    saccades(p,3) = sum(abs(shiftsX(:,1051:1851)) > 0, 'all');
-
-    saccades_valid(p,1) = sum(abs(shiftsX(valid,:)) > 0, 'all');
-    saccades_valid(p,2) = sum(abs(shiftsX(valid,651:1051)) > 0, 'all');
-    saccades_valid(p,3) = sum(abs(shiftsX(valid,1051:1851)) > 0, 'all');
-
-    saccades_toward(p,1) = sum(abs(shiftsSW(cueL,:)) > 0, 'all') + sum(abs(shiftsSE(cueR,:)) > 0, 'all');
-    saccades_toward(p,2) = sum(abs(shiftsSW(cueL,651:1051)) > 0, 'all') + sum(abs(shiftsSE(cueR,651:1051)) > 0, 'all');
-    saccades_toward(p,3) = sum(abs(shiftsSW(cueL,1051:1851)) > 0, 'all') + sum(abs(shiftsSE(cueR,1051:1851)) > 0, 'all');
-
-    saccades_away(p,1) = sum(abs(shiftsSW(cueR,:)) > 0, 'all') + sum(abs(shiftsSE(cueL,:)) > 0, 'all');
-    saccades_away(p,2) = sum(abs(shiftsSW(cueR,651:1051)) > 0, 'all') + sum(abs(shiftsSE(cueL,651:1051)) > 0, 'all');
-    saccades_away(p,3) = sum(abs(shiftsSW(cueR,1051:1851)) > 0, 'all') + sum(abs(shiftsSE(cueL,1051:1851)) > 0, 'all');
-
-    trials(p,1) = size(shiftsX,1);
-    trials(p,2) = sum(valid);
-
-    %% save saccade data for behavioural comparison
-    all_nosacc{pp} = ~any(abs(shiftsX(:,651:1051)) > 0, 2); % no microsaccades
-
-    toward_shift_trials = false(size(shiftsX, 1), 1);
-    away_shift_trials = false(size(shiftsX, 1), 1);
-
-    toward_shift_trials(cueL) = any(abs(shiftsSW(cueL,651:1051)) > 0, 2); % toward microsaccades
-    toward_shift_trials(cueR) = any(abs(shiftsSE(cueR,651:1051)) > 0, 2); % toward microsaccades
-    away_shift_trials(cueR) = any(abs(shiftsSW(cueR,651:1051)) > 0, 2); % away microsaccades
-    away_shift_trials(cueL) = any(abs(shiftsSE(cueL,651:1051)) > 0, 2); % away microsaccades
-
-    if sum(toward_shift_trials & away_shift_trials) > 0
-        multisaccade_trials = find(toward_shift_trials & away_shift_trials);
-        for trial = multisaccade_trials
-            % Determine which matrix is "Toward" and which is "Away" for this trial
-            if cueL(trial)
-                toward_matrix = shiftsSW;
-                away_matrix   = shiftsSE;
-            else % cueR
-                toward_matrix = shiftsSE;
-                away_matrix   = shiftsSW;
-            end
-            
-            % Find the index of the first toward AND away microsaccade
-            first_toward_idx = find(abs(toward_matrix(trial, 651:1051)) > 0, 1);
-            first_away_idx   = find(abs(away_matrix(trial, 651:1051)) > 0, 1);
-            
-            % Compare previously found indexes and update the arrays accordingly
-            if first_toward_idx < first_away_idx
-                away_shift_trials(trial) = false;
-            else
-                toward_shift_trials(trial) = false;
-            end
-        end
-    end
-
-    all_toward{pp} = toward_shift_trials;
-    all_away{pp} = away_shift_trials;
-
-    %% create data for main-sequence plot
-    velocities = [velocities; nonzeros(peakvelocity(:))];
-    amplitudes = [amplitudes; nonzeros(saccadesizes(:))];
-
     %% get relevant contrasts out
     saccade = [];
     saccade.time = times;
@@ -427,24 +280,12 @@ for pp = [1:2,5:9,11,13:24, 26:29];
     saccade.data(13,:) = (mean(shiftsSW(cueR&incorrect,:), "omitnan") + mean(shiftsSE(cueL&incorrect,:), "omitnan")) ./ 2;
     saccade.data(14,:) = (saccade.data(12,:) - saccade.data(13,:)) / 2;
 
-<<<<<<<< HEAD:Experiment_1/Eyetracking/s02_get_saccade_bias.m
-========
-    % add extra comparisons
-    saccade.data(9,:) = (mean(shiftsSW(cueL&correct,:), "omitnan") + mean(shiftsSE(cueR&correct,:), "omitnan")) ./ 2;
-    saccade.data(10,:) = (mean(shiftsSW(cueR&correct,:), "omitnan") + mean(shiftsSE(cueL&correct,:), "omitnan")) ./ 2;
-    saccade.data(11,:) = (saccade.data(9,:) - saccade.data(10,:)) / 2;
-    saccade.data(12,:) = (mean(shiftsSW(cueL&incorrect,:), "omitnan") + mean(shiftsSE(cueR&incorrect,:), "omitnan")) ./ 2;
-    saccade.data(13,:) = (mean(shiftsSW(cueR&incorrect,:), "omitnan") + mean(shiftsSE(cueL&incorrect,:), "omitnan")) ./ 2;
-    saccade.data(14,:) = (saccade.data(12,:) - saccade.data(13,:)) / 2;
-
->>>>>>>> with-fixational-control:Experiment_2/Eyetracking/s02_get_saccade_bias.m
     saccade.data(15,:) = (mean(shiftsSW(cueL&fast,:), "omitnan") + mean(shiftsSE(cueR&fast,:), "omitnan")) ./ 2;
     saccade.data(16,:) = (mean(shiftsSW(cueR&fast,:), "omitnan") + mean(shiftsSE(cueL&fast,:), "omitnan")) ./ 2;
     saccade.data(17,:) = (saccade.data(15,:) - saccade.data(16,:)) / 2;
     saccade.data(18,:) = (mean(shiftsSW(cueL&slow,:), "omitnan") + mean(shiftsSE(cueR&slow,:), "omitnan")) ./ 2;
     saccade.data(19,:) = (mean(shiftsSW(cueR&slow,:), "omitnan") + mean(shiftsSE(cueL&slow,:), "omitnan")) ./ 2;
     saccade.data(20,:) = (saccade.data(18,:) - saccade.data(19,:)) / 2;
-<<<<<<<< HEAD:Experiment_1/Eyetracking/s02_get_saccade_bias.m
 
     % add smaller slices
     saccade.data(21,:) = (mean(shiftsSW_45(cueL&sel,:), "omitnan") + mean(shiftsSE_45(cueR&sel,:), "omitnan")) ./ 2;
@@ -454,18 +295,7 @@ for pp = [1:2,5:9,11,13:24, 26:29];
     saccade.data(24,:) = (mean(shiftsSW_18(cueL&sel,:), "omitnan") + mean(shiftsSE_18(cueR&sel,:), "omitnan")) ./ 2;
     saccade.data(25,:) = (mean(shiftsSW_18(cueR&sel,:), "omitnan") + mean(shiftsSE_18(cueL&sel,:), "omitnan")) ./ 2;
     saccade.data(26,:) = (saccade.data(24,:) - saccade.data(25,:)) / 2;
-========
->>>>>>>> with-fixational-control:Experiment_2/Eyetracking/s02_get_saccade_bias.m
     
-    % add smaller slices
-    saccade.data(21,:) = (mean(shiftsSW_45(cueL&sel,:), "omitnan") + mean(shiftsSE_45(cueR&sel,:), "omitnan")) ./ 2;
-    saccade.data(22,:) = (mean(shiftsSW_45(cueR&sel,:), "omitnan") + mean(shiftsSE_45(cueL&sel,:), "omitnan")) ./ 2;
-    saccade.data(23,:) = (saccade.data(21,:) - saccade.data(22,:)) / 2;
-    
-    saccade.data(24,:) = (mean(shiftsSW_18(cueL&sel,:), "omitnan") + mean(shiftsSE_18(cueR&sel,:), "omitnan")) ./ 2;
-    saccade.data(25,:) = (mean(shiftsSW_18(cueR&sel,:), "omitnan") + mean(shiftsSE_18(cueL&sel,:), "omitnan")) ./ 2;
-    saccade.data(26,:) = (saccade.data(24,:) - saccade.data(25,:)) / 2;
-
     %% smooth and turn to Hz
     integrationwindow = 100; % window over which to integrate saccade counts
     
@@ -680,7 +510,6 @@ for pp = [1:2,5:9,11,13:24, 26:29];
         toadd5 = '';
     end
 
-<<<<<<<< HEAD:Experiment_1/Eyetracking/s02_get_saccade_bias.m
     if only_under_1dva == 1
         toadd6 = '_onlyunder1dva';
     else
@@ -692,12 +521,5 @@ for pp = [1:2,5:9,11,13:24, 26:29];
 
     %% close loops
 end % end pp loop
-========
-    save([param.path, '\saved_data\saccadeEffects_4D', toadd1, toadd2, toadd3, toadd4, toadd5, '__', param.subjName], 'saccade', 'saccadedirection','saccadesize', 'saccade_lengthsplit');
-
-    %% close loops
-end % end pp loop
-
->>>>>>>> with-fixational-control:Experiment_2/Eyetracking/s02_get_saccade_bias.m
 saccade_rate = saccades ./ trials(:,1);
 saccade_rate_valid = saccades_valid ./ trials(:,2);

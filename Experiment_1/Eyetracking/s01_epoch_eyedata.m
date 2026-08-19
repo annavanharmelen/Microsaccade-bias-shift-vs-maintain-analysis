@@ -75,7 +75,7 @@ for pp      = [1:25];
     end
     eyedata.trialinfo(:,1) = trigval';
 
-    %% NaN all data after orientation change
+    %% NaN all data after response trigger
     if nan_post_target
         trial_end_samples = [];
         trial_end_trigger = {};
@@ -97,7 +97,7 @@ for pp      = [1:25];
         end
     end
 
-    %% NaN all data after response trigger
+    %% NaN all data after orientation change
     if nan_trial_overlap
         trial_end_samples = [];
         trial_end_trigger = {};

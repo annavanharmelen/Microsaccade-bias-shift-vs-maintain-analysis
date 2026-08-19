@@ -1,4 +1,4 @@
-function stat = frevede_ftclusterstat1D_indep(statcfg, data_cond1, data_cond2);
+function stat = frevede_ftclusterstat1D(statcfg, data_cond1, data_cond2);
 % needs:
 % statcfg.xax = xxx.time;
 % statcfg.npermutations = 1000;
@@ -13,11 +13,9 @@ dummy = []; x = []; y = [];
 dummy.time = statcfg.xax;
 dummy.label = {'contrastofinterest'};
 dummy.dimord = 'chan_time';
-for s1 = 1:statcfg.nsub1
-    x{s1} = dummy; x{s1}.avg(1,:) = squeeze(data_cond1(s1,:)); % 1  structure per participant.
-end
-for s2 = 1:statcfg.nsub2
-    y{s2} = dummy; y{s2}.avg(1,:) = squeeze(data_cond2(s2,:)); % 1  structure per participant.
+for s = 1:statcfg.nsub
+    x{s} = dummy; x{s}.avg(1,:) = squeeze(data_cond1(s,:)); % 1  structure per participant.
+    y{s} = dummy; y{s}.avg(1,:) = squeeze(data_cond2(s,:));
 end
 % run cluster stat
 cfg = [];
@@ -27,9 +25,10 @@ if strcmp(cfg.method, 'montecarlo'); cfg.correctm='cluster'; else cfg.correctm =
 cfg.clusteralpha     = 0.05;
 cfg.alpha            = statcfg.clusterStatEvalaluationAlpha;
 cfg.tail             = 0;
-cfg.design           = [ones(1,s1), ones(1,s2)*2]; % specifies which dataset belongs to which participant and which condition (effect or zeros)
+cfg.design           = [[ones(1,s), ones(1,s)*2];[1:s, 1:s]]; % specifies which dataset belongs to which participant and which condition (effect or zeros)
 cfg.ivar             = 1;
-cfg.statistic        = 'indepsamplesT';
+cfg.uvar             = 2;
+cfg.statistic        = 'depsamplesT';
 cfg.neighbours       = [];
 stat = ft_timelockstatistics(cfg, x{:},y{:});
 end

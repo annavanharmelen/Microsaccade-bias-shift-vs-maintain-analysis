@@ -94,8 +94,8 @@ for pp = pp2do
         
     %% get reaction time as function of SOA
     for i = 1:size(trial_lengths, 2)
-        reaction_time_per_soa_valid(p,i) = nanmean(behdata.response_time_in_ms(valid_trials&oktrials&behdata.static_duration==trial_lengths(i)));
-        reaction_time_per_soa_invalid(p,i) = nanmean(behdata.response_time_in_ms(invalid_trials&oktrials&behdata.static_duration==trial_lengths(i)));
+        reaction_time_per_soa_valid(p,i) = nanmean(behdata.response_time_in_ms(valid_trials&behdata.static_duration==trial_lengths(i)));
+        reaction_time_per_soa_invalid(p,i) = nanmean(behdata.response_time_in_ms(invalid_trials&behdata.static_duration==trial_lengths(i)));
     end
     
     if plot_individuals
@@ -120,8 +120,8 @@ for pp = pp2do
     
     %% get accuracy as function of SOA
     for i = 1:size(trial_lengths, 2)
-        accuracy_per_soa_valid(p,i) = nanmean(correct_trials(valid_trials&oktrials&behdata.static_duration==trial_lengths(i)));
-        accuracy_per_soa_invalid(p,i) = nanmean(correct_trials(invalid_trials&oktrials&behdata.static_duration==trial_lengths(i)));
+        accuracy_per_soa_valid(p,i) = nanmean(correct_trials(valid_trials&behdata.static_duration==trial_lengths(i)));
+        accuracy_per_soa_invalid(p,i) = nanmean(correct_trials(invalid_trials&behdata.static_duration==trial_lengths(i)));
     end
     
     if plot_individuals
@@ -246,13 +246,8 @@ if plot_averages
     set(gca(), 'Linewidth', 1.5);
     set(gca(), 'FontName', 'Aptos');
 
-<<<<<<<< HEAD:Experiment_1/Behaviour/s01_get_behaviour.m
     print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\beh_rt_E1", "-dsvg")
     print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\beh_rt_E1", "-dpng")
-========
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\beh_rt_E2", "-dsvg")
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\beh_rt_E2", "-dpng")
->>>>>>>> with-fixational-control:Experiment_2/Behaviour/s01_get_behaviour.m
     
 
     % MAIN accuracy 
@@ -291,16 +286,6 @@ if plot_averages
     
     % set(gcf,'position',[0,0, 700,1080])
     
-<<<<<<<< HEAD:Experiment_1/Behaviour/s01_get_behaviour.m
-========
-    % add significant differences to line plot
-    acc_p = [];
-    for soa = 1:size(reaction_time_per_soa_valid, 2)
-        [h, p_val, ci, stats] = ttest(accuracy_per_soa_valid(:, soa), accuracy_per_soa_invalid(:, soa));
-        acc_p(soa) = p_val;
-    end
-
->>>>>>>> with-fixational-control:Experiment_2/Behaviour/s01_get_behaviour.m
     % add grand average bar graphs of data as function of validity
     subplot(1,5,[4:5])
     hold on
@@ -336,13 +321,8 @@ if plot_averages
     set(gca(), 'Linewidth', 1.5);
     set(gca(), 'FontName', 'Aptos');
 
-<<<<<<<< HEAD:Experiment_1/Behaviour/s01_get_behaviour.m
     print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\beh_acc_E1", "-dsvg")
     print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\beh_acc_E1", "-dpng")
-========
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\beh_acc_E2", "-dsvg")
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\beh_acc_E2", "-dpng")
->>>>>>>> with-fixational-control:Experiment_2/Behaviour/s01_get_behaviour.m
         
     %% show diff of behavioural effect as function of SOA
     figure;
