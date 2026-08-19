@@ -63,8 +63,8 @@ set(gca(), 'FontName', 'Aptos');
 hold off
 
 if saveFigures
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_towardness_E1", "-dsvg")
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\sac_towardness_E1", "-dpng")
+    print(fullfile(figure_path, "sac_towardness_E1"), "-dsvg")
+    print(fullfile(figure_path, "sac_towardness_E1"), "-dpng")
 end
 
 % set(gcf,'position',[0,0, 1800,900])
@@ -114,8 +114,8 @@ set(gca(), 'FontName', 'Aptos');
 hold off
 
 if saveFigures
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_45deg_towardness_E1", "-dsvg")
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_45deg_towardness_E1", "-dpng")
+    print(fullfile(figure_path, "supl_45deg_towardness_E1"), "-dsvg")
+    print(fullfile(figure_path, "supl_45deg_towardness_E1"), "-dpng")
 end
 
 %% Saccade bias upwards data
@@ -159,8 +159,8 @@ set(gca(), 'FontName', 'Aptos');
 hold off
 
 if saveFigures
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_upward_towardness_E1", "-dsvg")
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_upward_towardness_E1", "-dpng")
+    print(fullfile(figure_path, "supl_upward_towardness_E1"), "-dsvg")
+    print(fullfile(figure_path, "supl_upward_towardness_E1"), "-dpng")
 end
 
 %% Saccade bias data - plot both

@@ -3,6 +3,8 @@
 %% start clean
 clear; clc; close all;
 
+[data_path, figure_path] = setup(2);
+
 %% settings
 nan_trial_overlap = 0;
 nan_post_target = 1;
@@ -16,7 +18,7 @@ for pp      = [1:29];
     poststim    = 3.2; % until 3 s after
     
     %% participant-specific information
-    param = get_subject_parameters_exp2(pp); 
+    param = get_subject_parameters_exp2(pp, data_path);
     disp(['getting data from ', param.subjName]);
     
     %% read header of asc file that contains all messages etc.
@@ -144,14 +146,14 @@ for pp      = [1:29];
         toadd2 = '';
     end    
 
-    save([param.path, '\epoched_data\eyedata_AnnaMicro2', toadd1, toadd2, '__', param.subjName], 'eyedata');
+    save([param.path, '\epoched_data\eyedata_exp2', toadd1, toadd2, '__', param.subjName], 'eyedata');
     
     %% test plot
-    % figure; 
-    % subplot(2,2,1); plot(eyedata.time{1}, eyedata.trial{1}); legend(eyedata.label);
-    % subplot(2,2,2); plot(eyedata.time{10}, eyedata.trial{10}); legend(eyedata.label);
-    % subplot(2,2,3); plot(eyedata.time{100}, eyedata.trial{100}); legend(eyedata.label);
-    % subplot(2,2,4); plot(eyedata.time{200}, eyedata.trial{200}); legend(eyedata.label); 
-    % 
+    figure; 
+    subplot(2,2,1); plot(eyedata.time{1}, eyedata.trial{1}); legend(eyedata.label);
+    subplot(2,2,2); plot(eyedata.time{10}, eyedata.trial{10}); legend(eyedata.label);
+    subplot(2,2,3); plot(eyedata.time{100}, eyedata.trial{100}); legend(eyedata.label);
+    subplot(2,2,4); plot(eyedata.time{200}, eyedata.trial{200}); legend(eyedata.label); 
+
 %% end loops
 end % end of pp loop

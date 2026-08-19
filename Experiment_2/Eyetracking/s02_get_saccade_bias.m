@@ -3,6 +3,8 @@
 %% start clean
 clear; clc; close all;
 
+[data_path, figure_path] = setup(2);
+
 velocities = []; amplitudes = [];
 all_toward = cell(25, 1);
 all_away   = cell(25, 1);
@@ -36,8 +38,8 @@ for pp = [1:2,5:9,11,13:24, 26:29];
         toadd2 = '';
     end
 
-    param = get_subject_parameters_exp2(pp);
-    load([param.path, '\epoched_data\eyedata_AnnaMicro2', toadd1, toadd2, '__', param.subjName], 'eyedata');
+    param = get_subject_parameters_exp2(pp, data_path);
+    load([param.path, '\epoched_data\eyedata_exp2', toadd1, toadd2, '__', param.subjName], 'eyedata');
 
     %% only keep channels of interest
     cfg = [];
@@ -53,7 +55,7 @@ for pp = [1:2,5:9,11,13:24, 26:29];
     %% remove trials interrupted by eyetracker
     if remove_unfixated
         % get behavioural data
-        behdata = readtable(get_subject_parameters_exp2(pp).log);
+        behdata = readtable(get_subject_parameters_exp2(pp, data_path).log);
 
         % remove trials already not in eyedata from behavioural data
         to_remove = ismember(behdata.exit_stage, {'stimuli_onset'});
@@ -75,7 +77,7 @@ for pp = [1:2,5:9,11,13:24, 26:29];
     if remove_prematures
         % get behavioural data
         if remove_unfixated == 0
-            behdata = readtable(get_subject_parameters_exp2(pp).log);
+            behdata = readtable(get_subject_parameters_exp2(pp, data_path).log);
         end
         
         % select premature trials
@@ -91,7 +93,7 @@ for pp = [1:2,5:9,11,13:24, 26:29];
     if only_over_1400
         % load data if necessary
         if remove_unfixated == 0 & remove_prematures == 0
-            behdata = readtable(get_subject_parameters_exp2(pp).log);
+            behdata = readtable(get_subject_parameters_exp2(pp, data_path).log);
         end
         
         % keep only trials of min 1400 ms long

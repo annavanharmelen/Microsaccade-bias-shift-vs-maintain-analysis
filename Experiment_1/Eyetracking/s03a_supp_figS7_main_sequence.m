@@ -38,6 +38,6 @@ axis('square');
 set(gcf(), 'Position', [500 500 800 600]);
 
 if saveFigures
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_mainsequence_E1", "-dsvg")
-    print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_mainsequence_E1", "-dpng")
+    print(fullfile(figure_path, "supl_mainsequence_E1"), "-dsvg")
+    print(fullfile(figure_path, "supl_mainsequence_E1"), "-dpng")
 end

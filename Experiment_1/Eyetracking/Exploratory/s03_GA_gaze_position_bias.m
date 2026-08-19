@@ -4,6 +4,8 @@
 %% start clean
 clear; clc; close all;
 
+[data_path, figure_path] = setup(1);
+
 %% parameters
 pp2do = [1:25];
 
@@ -30,7 +32,7 @@ for pp = pp2do;
     s = s+1;
 
     % get participant data
-    param = get_subject_parameters_exp1(pp);
+    param = get_subject_parameters_exp1(pp, data_path);
 
     % load
     disp(['getting data from participant ', param.subjName]);

@@ -2,6 +2,8 @@ clear all
 close all
 clc
 
+[data_path, figure_path] = setup("joint");
+
 %% set parameters and loops
 display_percentage_premature = 0;
 display_percentage_unbroken = 1;
@@ -30,10 +32,10 @@ for pp = pp2do
     figure_nr =  figure_nr+5;
     
     if p <=24
-        param = get_subject_parameters_exp1(pp);
+        param = get_subject_parameters_exp1(pp, char(data_path(1)));
         experiment = 'M1';
     else
-        param = get_subject_parameters_exp2(pp);
+        param = get_subject_parameters_exp2(pp, char(data_path(2)));
         experiment = 'M2';
     end
 

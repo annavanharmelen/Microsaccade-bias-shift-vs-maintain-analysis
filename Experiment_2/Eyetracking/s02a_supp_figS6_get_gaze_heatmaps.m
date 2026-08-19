@@ -3,6 +3,8 @@
 %% start clean
 clear; clc; close all;
 
+[data_path, figure_path] = setup(2);
+
 x_data = []; y_data = []; L_x_data = []; R_x_data = []; L_y_data = []; R_y_data = []; 
 
 %% parameters
@@ -33,8 +35,8 @@ for pp = pp2do
         toadd2 = '';
     end
     
-    param = get_subject_parameters_exp2(pp);
-    load([param.path, '\epoched_data\eyedata_AnnaMicro2', toadd1, toadd2, '__', param.subjName], 'eyedata');
+    param = get_subject_parameters_exp2(pp, data_path);
+    load([param.path, '\epoched_data\eyedata_exp2', toadd1, toadd2, '__', param.subjName], 'eyedata');
 
     %% only keep channels of interest
     cfg = [];
@@ -343,7 +345,7 @@ if plotResults
     set(gcf, 'Renderer', 'Painters');
 
     if saveFigures
-        print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_gazeheatmaps_E2", "-dsvg", "-vector")
-        print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\supl_gazeheatmaps_E2", "-dpng")
+        print(fullfile(figure_path, "supl_gazeheatmaps_E2"), "-dsvg", "-vector")
+        print(fullfile(figure_path, "supl_gazeheatmaps_E2"), "-dpng")
     end
 end

@@ -1,8 +1,10 @@
 % DESCRIPTION: Correlates RT with saccade rates across subjects.
 %% Step3-- gaze-shift calculation
 
-%% start clea
+%% start clean
 clear; clc; close all;
+
+[data_path, figure_path] = setup(1);
 
 velocities = []; amplitudes = [];
 all_toward = cell(25, 1);
@@ -38,8 +40,8 @@ for pp = [1:25];
         toadd2 = '';
     end
 
-    param = get_subject_parameters_exp1(pp);
-    load([param.path, '\epoched_data\eyedata_AnnaMicro1', toadd1, toadd2, '__', param.subjName], 'eyedata');
+    param = get_subject_parameters_exp1(pp, data_path);
+    load([param.path, '\epoched_data\eyedata_exp1', toadd1, toadd2, '__', param.subjName], 'eyedata');
 
     %% only keep channels of interest
     cfg = [];
@@ -55,7 +57,7 @@ for pp = [1:25];
     %% remove trials with premature keyboard response
     if remove_prematures
         % get behavioural data
-        behdata = readtable(get_subject_parameters_exp1(pp).log);
+        behdata = readtable(get_subject_parameters_exp1(pp, data_path).log);
         
         % select premature trials
         oktrials = ismember(behdata.premature_pressed, {'False'});
@@ -70,7 +72,7 @@ for pp = [1:25];
     if only_over_1400
         % load data if necessary
         if remove_prematures == 0
-            behdata = readtable(get_subject_parameters_exp1(pp).log);
+            behdata = readtable(get_subject_parameters_exp1(pp, data_path).log);
         end
         
         % keep only trials of min 1400 ms long

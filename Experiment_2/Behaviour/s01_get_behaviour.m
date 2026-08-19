@@ -2,6 +2,8 @@ clear all
 close all
 clc
 
+[data_path, figure_path] = setup(2);
+
 %% set parameters and loops
 display_percentage_premature = 0;
 display_percentage_unbroken = 1;
@@ -27,7 +29,7 @@ for pp = pp2do
     figure_nr = 1;
     figure_nr =  figure_nr+5;
     
-    param = get_subject_parameters_exp2(pp);
+    param = get_subject_parameters_exp2(pp, data_path);
     disp(['getting data from ', param.subjName]);
     
     %% load actual behavioural data
@@ -260,8 +262,8 @@ if plot_averages
     set(gca(), 'FontName', 'Aptos');
 
     if saveFigures
-        print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\beh_rt_E2", "-dsvg")
-        print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\beh_rt_E2", "-dpng")
+        print(fullfile(figure_path, "beh_rt_E2"), "-dsvg")
+        print(fullfile(figure_path, "beh_rt_E2"), "-dpng")
     end
 
     % MAIN accuracy 
@@ -343,8 +345,8 @@ if plot_averages
     set(gca(), 'FontName', 'Aptos');
     
     if saveFigures
-        print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\beh_acc_E2", "-dsvg")
-        print("..\..\..\..\Manuscripts\Shift-vs.-maintain\Figures\beh_acc_E2", "-dpng")
+        print(fullfile(figure_path, "beh_acc_E2"), "-dsvg")
+        print(fullfile(figure_path, "beh_acc_E2"), "-dpng")
     end
         
     %% show diff of behavioural effect as function of SOA

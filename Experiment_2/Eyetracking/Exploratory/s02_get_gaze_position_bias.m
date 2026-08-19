@@ -3,6 +3,8 @@
 %% start clean
 clear; clc; close all;
 
+[data_path, figure_path] = setup(2);
+
 %% parameters
 for pp = [1:29];
 
@@ -29,8 +31,8 @@ else
     toadd2 = '';
 end
 
-param = get_subject_parameters_exp2(pp);
-load([param.path, '\epoched_data\eyedata_AnnaMicro2', toadd1, toadd2, '__', param.subjName], 'eyedata');
+param = get_subject_parameters_exp2(pp, data_path);
+load([param.path, '\epoched_data\eyedata_exp2', toadd1, toadd2, '__', param.subjName], 'eyedata');
 
 %% only keep channels of interest
 cfg = [];
