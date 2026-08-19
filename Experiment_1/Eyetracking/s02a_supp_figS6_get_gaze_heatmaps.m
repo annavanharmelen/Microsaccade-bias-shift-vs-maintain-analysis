@@ -33,7 +33,7 @@ for pp = pp2do
         toadd2 = '';
     end
     
-    param = get_subject_parameters(pp);
+    param = get_subject_parameters_exp1(pp);
     load([param.path, '\epoched_data\eyedata_AnnaMicro1', toadd1, toadd2, '__', param.subjName], 'eyedata');
 
     %% only keep channels of interest

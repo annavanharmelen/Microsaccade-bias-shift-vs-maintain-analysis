@@ -29,7 +29,7 @@ else
     toadd2 = '';
 end
 
-param = get_subject_parameters(pp);
+param = get_subject_parameters_exp2(pp);
 load([param.path, '\epoched_data\eyedata_AnnaMicro2', toadd1, toadd2, '__', param.subjName], 'eyedata');
 
 %% only keep channels of interest
