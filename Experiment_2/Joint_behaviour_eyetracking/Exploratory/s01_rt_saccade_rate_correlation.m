@@ -1,6 +1,6 @@
 %% Calculate correlation and create figure showing relationship between response times and microsaccade rates
 % =========================================================================
-% SCRIPT: 01_rt_saccade_rate_correlation.m (Exploratory)
+% SCRIPT: s01_rt_saccade_rate_correlation.m (Exploratory)
 % DESCRIPTION: Correlates response times (RT) with saccade rates across subjects.
 
 % DEPENDENCIES: 
