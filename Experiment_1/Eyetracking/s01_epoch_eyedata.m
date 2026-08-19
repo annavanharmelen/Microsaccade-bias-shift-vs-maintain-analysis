@@ -75,14 +75,12 @@ for pp      = [1:25];
     end
     eyedata.trialinfo(:,1) = trigval';
 
-    %% NaN all data after response trigger
+    %% NaN all data after orientation change
     if nan_post_target
         trial_end_samples = [];
         trial_end_trigger = {};
 
         % Get final triggers + corresponding samples from each trial
-        % NOTE: THIS DOESN'T REMOVE TRIALS THAT END IN A 10.. TRIGGER
-        % (indicating trial interruption by fixational control)
         for trig_idx = 1:length(event.label(trloi))
             trial_end_samples(trig_idx) = event.sample(trloi(trig_idx) + 1);
             trial_end_trigger(trig_idx) = event.label(trloi(trig_idx) + 1);
@@ -97,7 +95,7 @@ for pp      = [1:25];
         end
     end
 
-    %% NaN all data after orientation change
+    %% NaN all data after response trigger
     if nan_trial_overlap
         trial_end_samples = [];
         trial_end_trigger = {};
