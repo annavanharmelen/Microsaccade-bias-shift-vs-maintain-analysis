@@ -30,7 +30,7 @@ for pp = [2:25];
         toadd2 = '';
     end
 
-    param = getSubjParam(pp);
+    param = get_subject_parameters(pp);
     load([param.path, '\epoched_data\eyedata_AnnaMicro1', toadd1, toadd2, '__', param.subjName], 'eyedata');
 
     %% only keep channels of interest
@@ -47,7 +47,7 @@ for pp = [2:25];
     %% remove trials with premature keyboard response
     if remove_prematures
         % get behavioural data
-        behdata = readtable(getSubjParam(pp).log);
+        behdata = readtable(get_subject_parameters(pp).log);
         
         % select premature trials
         oktrials = ismember(behdata.premature_pressed, {'False'});
@@ -62,7 +62,7 @@ for pp = [2:25];
     if only_over_1400
         % load data if necessary
         if remove_prematures == 0
-            behdata = readtable(getSubjParam(pp).log);
+            behdata = readtable(get_subject_parameters(pp).log);
         end
         
         % keep only trials of min 1400 ms long

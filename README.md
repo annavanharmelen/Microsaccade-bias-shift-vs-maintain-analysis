@@ -9,7 +9,7 @@ Made by Anna van Harmelen in 2023, with scripts from Dr. Freek van Ede.
 Some of these analysis scripts are dependent on the [Fieldtrip toolbox](https://www.fieldtriptoolbox.org), and were originally built using the 2020.10.23 version of Fieldtrip.
 
 ## Configuration
-To make sure the scripts run correctly, open the getSubjParam.m file to either...:
+To make sure the scripts run correctly, open the get_subject_parameters.m file to either...:
 - Enter the randomised participant numbers (in order of session number), if your filing system is the same as mine.
 - Change the code, so this function can find the data corresponding to each participant.
 

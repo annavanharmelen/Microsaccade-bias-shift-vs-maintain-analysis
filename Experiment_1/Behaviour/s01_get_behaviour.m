@@ -26,7 +26,7 @@ for pp = pp2do
     figure_nr = 1;
     figure_nr =  figure_nr+5;
     
-    param = getSubjParam(pp);
+    param = get_subject_parameters(pp);
     disp(['getting data from ', param.subjName]);
     
     %% load actual behavioural data

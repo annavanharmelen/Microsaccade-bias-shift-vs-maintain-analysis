@@ -39,10 +39,10 @@ for pp = pp2do
     s = s+1;
 
     if s <=24
-        param = getSubjParam1(pp);
+        param = get_subject_parameters1(pp);
         experiment = 'M1';
     else
-        param = getSubjParam2(pp);
+        param = get_subject_parameters2(pp);
         experiment = 'M2';
     end
 
