@@ -1,5 +1,13 @@
 %% Create main sequenceplot of saccades
-% first run get_SaccadeBias with only the pp's you want to include
+% =========================================================================
+% SCRIPT: s03a_supp_figS7_main_sequence.m
+% DESCRIPTION: Creates supplementary figure S7 from the paper, showing the main sequence between saccade amplitude and velocity.
+
+% DEPENDENCIES: 
+%   1. eyetracking/s02_get_saccade_bias.m
+
+% NOTE 1: run the above dependent script with only those pp's you want to include in the analysis here.
+% =========================================================================
 
 %% set parameters
 saveFigures         = 0;

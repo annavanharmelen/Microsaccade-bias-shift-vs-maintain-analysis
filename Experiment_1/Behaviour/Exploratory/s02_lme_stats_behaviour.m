@@ -1,3 +1,14 @@
+%% Script for fitting linear mixed-effects models on behavioural data.
+% =========================================================================
+% SCRIPT: s02_lme_stats_behaviour.m (Exploratory)
+% DESCRIPTION: Fits linear mixed-effects models on the behavioural data.
+
+% DEPENDENCIES: 
+%   1. behaviour/s01_get_behaviour.m
+
+% NOTE 1: run the above dependent script with only those pp's you want to include in the analysis here.
+% =========================================================================
+
 %% Reaction time
 % Create table out of data arrays
 Participant = repmat([1:24],1,20);

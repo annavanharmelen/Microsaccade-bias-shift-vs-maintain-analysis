@@ -1,6 +1,14 @@
-%% Script for doing stats on saccade and gaze bias data.
-% So run those scripts first.
-% by Anna, 04-07-2023
+%% Script for doing stats on saccade bias data.
+% =========================================================================
+% SCRIPT: s02_saccade_bias_stats.m
+% DESCRIPTION: Performs all statistical tests on the eyetracking data.
+
+% DEPENDENCIES: 
+%   1. eyetracking/s01_GA_saccade_bias.m
+
+% NOTE 1: run the above dependent script with only those pp's you want to include in the analysis here.
+% =========================================================================
+
 %% Saccade bias data - stats
 statcfg.xax = saccade.time(timeframe);
 statcfg.npermutations = 10000;
