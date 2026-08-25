@@ -46,6 +46,6 @@ axis('square');
 set(gcf(), 'Position', [500 500 800 600]);
 
 if saveFigures
-    print(fullfile(figure_path, "supl_mainsequence_E2"), "-dsvg")
-    print(fullfile(figure_path, "supl_mainsequence_E2"), "-dpng")
+    print(fullfile(figure_path, "figS7_supl_mainsequence_E2"), "-dsvg")
+    print(fullfile(figure_path, "figS7_supl_mainsequence_E2"), "-dpng")
 end

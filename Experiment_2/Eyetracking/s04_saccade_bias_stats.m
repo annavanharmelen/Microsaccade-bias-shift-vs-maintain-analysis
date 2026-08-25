@@ -70,8 +70,8 @@ set(gca(), 'FontName', 'Aptos');
 hold off
 
 if saveFigures
-    print(fullfile(figure_path, "sac_towardness_E2"), "-dsvg")
-    print(fullfile(figure_path, "sac_towardness_E2"), "-dpng")
+    print(fullfile(figure_path, "fig2B_sac_towardness_E2"), "-dsvg")
+    print(fullfile(figure_path, "fig2B_sac_towardness_E2"), "-dpng")
 end
 
 % set(gcf,'position',[0,0, 1800,900])
@@ -121,8 +121,8 @@ set(gca(), 'FontName', 'Aptos');
 hold off
 
 if saveFigures
-    print(fullfile(figure_path, "supl_45deg_towardness_E2"), "-dsvg")
-    print(fullfile(figure_path, "supl_45deg_towardness_E2"), "-dpng")
+    print(fullfile(figure_path, "figS8_supl_45deg_towardness_E2"), "-dsvg")
+    print(fullfile(figure_path, "figS8_supl_45deg_towardness_E2"), "-dpng")
 end
 
 %% Saccade bias upward towards data
@@ -166,8 +166,8 @@ set(gca(), 'FontName', 'Aptos');
 hold off
 
 if saveFigures
-    print(fullfile(figure_path, "supl_upward_towardness_E2"), "-dsvg")
-    print(fullfile(figure_path, "supl_upward_towardness_E2"), "-dpng")
+    print(fullfile(figure_path, "figS4_supl_upward_towardness_E2"), "-dsvg")
+    print(fullfile(figure_path, "figS4_supl_upward_towardness_E2"), "-dpng")
 end
 
 %% Saccade bias data - plot both

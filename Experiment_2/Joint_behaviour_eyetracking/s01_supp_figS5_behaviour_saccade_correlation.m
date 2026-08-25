@@ -66,6 +66,6 @@ for i = 1:size(axes,2)
 end
 
 if saveFigures
-    print(fullfile(figure_path, "supl_behaviour_x_bias_E2"), "-dsvg")
-    print(fullfile(figure_path, "supl_behaviour_x_bias_E2"), "-dpng")
+    print(fullfile(figure_path, "figS5_supl_behaviour_x_bias_E2"), "-dsvg")
+    print(fullfile(figure_path, "figS5_supl_behaviour_x_bias_E2"), "-dpng")
 end

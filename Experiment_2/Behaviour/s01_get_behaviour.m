@@ -262,8 +262,8 @@ if plot_averages
     set(gca(), 'FontName', 'Aptos');
 
     if saveFigures
-        print(fullfile(figure_path, "beh_rt_E2"), "-dsvg")
-        print(fullfile(figure_path, "beh_rt_E2"), "-dpng")
+        print(fullfile(figure_path, "fig1_beh_rt_E2"), "-dsvg")
+        print(fullfile(figure_path, "fig1_beh_rt_E2"), "-dpng")
     end
 
     % MAIN accuracy 
@@ -345,8 +345,8 @@ if plot_averages
     set(gca(), 'FontName', 'Aptos');
     
     if saveFigures
-        print(fullfile(figure_path, "beh_acc_E2"), "-dsvg")
-        print(fullfile(figure_path, "beh_acc_E2"), "-dpng")
+        print(fullfile(figure_path, "fig1_beh_acc_E2"), "-dsvg")
+        print(fullfile(figure_path, "fig1_beh_acc_E2"), "-dpng")
     end
         
     %% show diff of behavioural effect as function of SOA

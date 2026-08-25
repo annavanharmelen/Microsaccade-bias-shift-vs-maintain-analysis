@@ -345,7 +345,7 @@ if plotResults
     set(gcf, 'Renderer', 'Painters');
     
     if saveFigures
-        print(fullfile(figure_path, "supl_gazeheatmaps_E1"), "-dsvg", "-vector")
-        print(fullfile(figure_path, "supl_gazeheatmaps_E1"), "-dpng")
+        print(fullfile(figure_path, "figS6_supl_gazeheatmaps_E1"), "-dsvg", "-vector")
+        print(fullfile(figure_path, "figS6_supl_gazeheatmaps_E1"), "-dpng")
     end
 end

@@ -298,8 +298,8 @@ if plotGAs
     set(gca(), 'FontName', 'Aptos');
     hold off
     if saveFigures
-        print(fullfile(figure_path, "supl_45deg_toward_vs_away_E1"), "-dsvg")
-        print(fullfile(figure_path, "supl_45deg_toward_vs_away_E1"), "-dpng")
+        print(fullfile(figure_path, "figS8_supl_45deg_toward_vs_away_E1"), "-dsvg")
+        print(fullfile(figure_path, "figS8_supl_45deg_toward_vs_away_E1"), "-dpng")
     end
 
     % plot the effect -  45 degrees
@@ -377,8 +377,8 @@ if plotGAs
     set(gca(), 'FontName', 'Aptos');
     hold off
     if saveFigures
-        print(fullfile(figure_path, "sac_toward_vs_away_E1"), "-dsvg")
-        print(fullfile(figure_path, "sac_toward_vs_away_E1"), "-dpng")
+        print(fullfile(figure_path, "fig2A_sac_toward_vs_away_E1"), "-dsvg")
+        print(fullfile(figure_path, "fig2A_sac_toward_vs_away_E1"), "-dpng")
     end
 
     % plot only saccades away from the stimulus or the distractor
@@ -405,8 +405,8 @@ if plotGAs
     set(gca(), 'FontName', 'Aptos');
     hold off
     if saveFigures
-        print(fullfile(figure_path, "supl_upward_toward_vs_away_E1"), "-dsvg")
-        print(fullfile(figure_path, "supl_upward_toward_vs_away_E1"), "-dpng")
+        print(fullfile(figure_path, "figS4_supl_upward_toward_vs_away_E1"), "-dsvg")
+        print(fullfile(figure_path, "figS4_supl_upward_toward_vs_away_E1"), "-dpng")
     end
 
     % plot correct vs. incorrect
@@ -496,8 +496,8 @@ if plotGAs
     set(gca(), 'FontName', 'Aptos');
     hold off
     if saveFigures
-        print(fullfile(figure_path, "sac_sizecourse_E1"), "-dsvg")
-        print(fullfile(figure_path, "sac_sizecourse_E1"), "-dpng")
+        print(fullfile(figure_path, "fig2C_sac_sizecourse_E1"), "-dsvg")
+        print(fullfile(figure_path, "fig2C_sac_sizecourse_E1"), "-dpng")
     end
 
     %% just effect as function of SOA
@@ -741,8 +741,8 @@ if plotGAs
 
     set(gcf,'position',[0,0, 700,1080])
     if saveFigures
-        print(fullfile(figure_path, "sac_timeframe_comp_E1"), "-dsvg")
-        print(fullfile(figure_path, "sac_timeframe_comp_E1"), "-dpng")
+        print(fullfile(figure_path, "fig3_sac_timeframe_comp_E1"), "-dsvg")
+        print(fullfile(figure_path, "fig3_sac_timeframe_comp_E1"), "-dpng")
     end
 
     %% calculations for polar histogram of separate timeframes
@@ -902,8 +902,8 @@ if plotGAs
  
     set(gcf,'position',[0,0, 700, 1000])
     if saveFigures
-        print(fullfile(figure_path, "supl_polarplots_E1"), "-dsvg")
-        print(fullfile(figure_path, "supl_polarplots_E1"), "-dpng")
+        print(fullfile(figure_path, "figS3_supl_polarplots_E1"), "-dsvg")
+        print(fullfile(figure_path, "figS3_supl_polarplots_E1"), "-dpng")
     end
 
 end
