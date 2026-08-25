@@ -22,7 +22,7 @@ To make sure the scripts run correctly, open the get_subject_parameters.m file t
 ## Running
 ### Naming and structure
 - The analysis runs in multiple parts.
-- The main analyses are performed by following the main number sequence.
+- The main analyses are performed by following the main number sequence: s01 &rarr; s02 &rarr; s03 &rarr; s04.
     - Files are named in the order that the analysis should be run, where "s01" is step 1, "s02" step 2, etc.
     - Additional analyses can be done and are denoted as an alternative next step, e.g. "s02a".
 - Some analysis scripts depend on running another script first.
