@@ -10,6 +10,8 @@
 % =========================================================================
 
 %% Saccade bias data - stats
+timeframe = [451:1851]; %this is 0 to 1400 ms post-cue
+
 statcfg.xax = saccade.time(timeframe);
 statcfg.npermutations = 10000;
 statcfg.clusterStatEvalaluationAlpha = 0.05;
@@ -18,7 +20,6 @@ statcfg.nsub2 = 24; %for between pp
 statcfg.statMethod = 'montecarlo';
 %statcfg.statMethod = 'analytic';
 
-timeframe = [451:1851]; %this is 0 to 1400 ms post-cue
 ft_size = 26;
 
 data_e1 = saccade_data(1:24,5,timeframe);
