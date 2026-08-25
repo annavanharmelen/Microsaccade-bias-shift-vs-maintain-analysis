@@ -7,12 +7,12 @@ clear; clc; close all;
 [data_path, figure_path] = setup("joint");
 
 %% parameters
-nan_trial_overlap = 1;
-nan_post_target = 0;
+nan_trial_overlap = 0;
+nan_post_target = 1;
 
-remove_unfixated = 1; %note: this only adds it to m2 pp's
-remove_prematures = 0;
-only_over_2300 = 1;
+remove_unfixated = 1; %note: this only adds it to e2 pp's
+remove_prematures = 1;
+only_over_1400 = 1;
 
 
 pp2do = [2:25, 1:2,5:9,11,13:24,26:29];
@@ -20,7 +20,7 @@ pp2do = [2:25, 1:2,5:9,11,13:24,26:29];
 nsmooth         = 200;
 plotSinglePps   = 0;
 plotGAs         = 0;
-xlimtoplot      = [-500 3200];
+xlimtoplot      = [-100 1400];
 
 %% predefine size of some matrices
 shiftsL = NaN(size(pp2do, 2), 400, 3550);
@@ -42,10 +42,10 @@ for pp = pp2do
 
     if s <=24
         param = get_subject_parameters(1, pp, char(data_path(1)));
-        experiment = 'M1';
+        experiment = 'E1';
     else
         param = get_subject_parameters(2, pp, char(data_path(2)));
-        experiment = 'M2';
+        experiment = 'E2';
     end
 
 
@@ -76,8 +76,8 @@ for pp = pp2do
         toadd4 = '';
     end
 
-    if only_over_2300 ==1
-        toadd5 = '_over2300';
+    if only_over_1400 ==1
+        toadd5 = '_onlyover1400';
     else
         toadd5 = '';
     end
