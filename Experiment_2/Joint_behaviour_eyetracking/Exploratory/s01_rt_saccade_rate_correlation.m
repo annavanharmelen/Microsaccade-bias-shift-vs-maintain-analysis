@@ -4,8 +4,8 @@
 % DESCRIPTION: Correlates response times (RT) with saccade rates across subjects.
 
 % DEPENDENCIES: 
-%   1. behaviour/01_get_behaviour.m
-%   2. eyetracking/02_get_saccade_bias.m
+%   1. behaviour/s01_get_behaviour.m
+%   2. eyetracking/s02_get_saccade_bias.m
 
 % NOTE 1: run the two above dependent scripts with only those pp's you want to include in the analysis here.
 % NOTE 2: whichever of the two above scripts you run second, run them without the "clear; clc; close all;" statements.

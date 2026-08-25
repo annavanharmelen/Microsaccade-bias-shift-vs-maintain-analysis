@@ -4,7 +4,7 @@
 % DESCRIPTION: Tests whether the direction of the first saccade made during the shift period affects response times (across subjects).
 
 % DEPENDENCIES: 
-%   1. eyetracking/02_get_saccade_bias.m
+%   1. eyetracking/s02_get_saccade_bias.m
 
 % NOTE 1: run the above dependent script with only those pp's you want to include in the analysis here.
 % =========================================================================
