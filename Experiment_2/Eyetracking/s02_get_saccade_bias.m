@@ -1,4 +1,4 @@
-%% Step3-- gaze-shift calculation
+%% Step2-- gaze-shift calculation
 
 %% start clean
 clear; clc; close all;
