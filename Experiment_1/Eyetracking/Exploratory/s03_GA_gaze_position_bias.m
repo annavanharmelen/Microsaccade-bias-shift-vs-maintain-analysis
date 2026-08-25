@@ -32,7 +32,7 @@ for pp = pp2do;
     s = s+1;
 
     % get participant data
-    param = get_subject_parameters_exp1(pp, data_path);
+    param = get_subject_parameters(1, pp, data_path);
 
     % load
     disp(['getting data from participant ', param.subjName]);

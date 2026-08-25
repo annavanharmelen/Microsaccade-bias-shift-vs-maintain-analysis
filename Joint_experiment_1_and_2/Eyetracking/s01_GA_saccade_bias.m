@@ -41,10 +41,10 @@ for pp = pp2do
     s = s+1;
 
     if s <=24
-        param = get_subject_parameters_exp1(pp, char(data_path(1)));
+        param = get_subject_parameters(1, pp, char(data_path(1)));
         experiment = 'M1';
     else
-        param = get_subject_parameters_exp2(pp, char(data_path(2)));
+        param = get_subject_parameters(2, pp, char(data_path(2)));
         experiment = 'M2';
     end
 

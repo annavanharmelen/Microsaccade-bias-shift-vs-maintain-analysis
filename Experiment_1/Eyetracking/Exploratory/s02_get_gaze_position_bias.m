@@ -31,7 +31,7 @@ else
     toadd2 = '';
 end
 
-param = get_subject_parameters_exp1(pp, data_path);
+param = get_subject_parameters(1, pp, data_path);
 load([param.path, '\epoched_data\eyedata_exp1', toadd1, toadd2, '__', param.subjName], 'eyedata');
 
 %% only keep channels of interest
