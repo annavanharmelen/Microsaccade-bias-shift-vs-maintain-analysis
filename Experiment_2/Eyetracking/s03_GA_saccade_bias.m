@@ -1,5 +1,5 @@
 
-%% Step3b--grand average plots of gaze-shift (saccade) results
+%% Step3--grand average plots of gaze-shift (saccade) results
 
 %% start clean
 clear; clc; close all;
