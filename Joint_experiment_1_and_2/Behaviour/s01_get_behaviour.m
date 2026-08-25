@@ -33,10 +33,10 @@ for pp = pp2do
     
     if p <=24
         param = get_subject_parameters(1, pp, char(data_path(1)));
-        experiment = 'M1';
+        experiment = 'E1';
     else
         param = get_subject_parameters(2, pp, char(data_path(2)));
-        experiment = 'M2';
+        experiment = 'E2';
     end
 
     disp(['getting data from ', param.subjName, ' - ', experiment]);
