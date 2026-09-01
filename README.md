@@ -1,13 +1,13 @@
 # Microsaccade bias shift vs. maintain analysis
+Analysis scripts (in MATLAB) for the data acquired from the microsaccade bias shift vs. maintain experiment (in Python).
+
 > ### Paper
 > This code relates to the published paper: [Microsaccades track shifting but not necessarily maintaining covert visual-spatial attention](https://elifesciences.org/reviewed-preprints/108798).  
 > ### Data
-> The data are [freely available here](...).  
-
-Analysis scripts (in MATLAB) for the data acquired from the microsaccade bias shift vs. maintain experiment (in Python).
-
-The experiment code for both experiments can be found in: [Microsaccade-bias-shift-vs-maintain](https://github.com/annavanharmelen/Microsaccade-bias-shift-vs-maintain-experiment).
-This analysis code analyses the data from both [Experiment 1](https://github.com/annavanharmelen/Microsaccade-bias-shift-vs-maintain-experiment/tree/main) and [Experiment 2](https://github.com/annavanharmelen/Microsaccade-bias-shift-vs-maintain-experiment/tree/live-gaze-checking).
+> The data are [freely available here](...).
+> ### Experiment
+> The experiment code for both experiments can be found in: [Microsaccade-bias-shift-vs-maintain-experiment](https://github.com/annavanharmelen/Microsaccade-bias-shift-vs-maintain-experiment).
+> This analysis code analyses the data from both [Experiment 1](https://github.com/annavanharmelen/Microsaccade-bias-shift-vs-maintain-experiment/tree/main) and [Experiment 2](https://github.com/annavanharmelen/Microsaccade-bias-shift-vs-maintain-experiment/tree/live-gaze-checking).
 
 ## Author
 Made by Anna van Harmelen in 2023 (last updated in September 2026), with scripts from Dr. Freek van Ede.
