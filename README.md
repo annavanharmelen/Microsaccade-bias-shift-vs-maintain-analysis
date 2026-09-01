@@ -1,6 +1,8 @@
 # Microsaccade bias shift vs. maintain analysis
-> - This code relates to the published paper: [Microsaccades track shifting but not necessarily maintaining covert visual-spatial attention](https://elifesciences.org/reviewed-preprints/108798).  
-> - The data are [freely available here](...).  
+> ### Paper
+> This code relates to the published paper: [Microsaccades track shifting but not necessarily maintaining covert visual-spatial attention](https://elifesciences.org/reviewed-preprints/108798).  
+> ### Data
+> The data are [freely available here](...).  
 
 Analysis scripts (in MATLAB) for the data acquired from the microsaccade bias shift vs. maintain experiment (in Python).
 
