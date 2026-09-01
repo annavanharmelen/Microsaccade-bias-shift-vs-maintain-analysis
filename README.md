@@ -8,7 +8,7 @@ The experiment code for both experiments can be found in: [Microsaccade-bias-shi
 This analysis code analyses the data from both [Experiment 1](https://github.com/annavanharmelen/Microsaccade-bias-shift-vs-maintain-experiment/tree/main) and [Experiment 2](https://github.com/annavanharmelen/Microsaccade-bias-shift-vs-maintain-experiment/tree/live-gaze-checking).
 
 ## Author
-Made by Anna van Harmelen in 2023 (last updated in August 2026), with scripts from Dr. Freek van Ede.
+Made by Anna van Harmelen in 2023 (last updated in September 2026), with scripts from Dr. Freek van Ede.
 
 ## Installation
 Some of these analysis scripts are dependent on the [Fieldtrip toolbox](https://www.fieldtriptoolbox.org), and were originally built using the [2020.10.23 version of Fieldtrip](https://download.fieldtriptoolbox.org/historical/).
