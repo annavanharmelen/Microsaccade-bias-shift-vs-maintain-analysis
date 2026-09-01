@@ -5,7 +5,7 @@ Analysis scripts (in MATLAB) for the data acquired from the microsaccade bias sh
 > This code relates to the published paper: [Microsaccades track shifting but not necessarily maintaining covert visual-spatial attention](https://elifesciences.org/reviewed-preprints/108798).  
 > ### Data
 > The data are [freely available here](...).
-> ### Experiment
+> ### Experiment code
 > The experiment code for both experiments can be found in: [Microsaccade-bias-shift-vs-maintain-experiment](https://github.com/annavanharmelen/Microsaccade-bias-shift-vs-maintain-experiment).  
 > This analysis code analyses the data from both [Experiment 1](https://github.com/annavanharmelen/Microsaccade-bias-shift-vs-maintain-experiment/tree/main) and [Experiment 2](https://github.com/annavanharmelen/Microsaccade-bias-shift-vs-maintain-experiment/tree/live-gaze-checking).
 
