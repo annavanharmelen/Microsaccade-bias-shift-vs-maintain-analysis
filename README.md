@@ -31,11 +31,12 @@ To make sure the scripts run correctly, open the get_subject_parameters.m file t
 - `setup.m` handles a few important things, like paths, without it scripts generally won't work.
 
 ### Running
-1. Simply open the code repository in MATLAB (either download it, or clone it)
-2. Open the script you want to run and try to run it.
-3. MATLAB will prompt you to say that the script is not in the current path. Select 'Add to path'.  
+1. Download or clone the repository.
+2. Open the code repository in MATLAB.
+3. Open the script you want to run and try to run it.
+4. MATLAB will prompt you to say that the script is not in the current path. Select 'Add to path'.  
     (All other functions and folders that need to be added or removed from the path are handled by `setup.m`.)
-4. That's it! 🎉
+5. That's it! 🎉
 
 ### Recreating figures from the paper
 All figures show the data from Experiment 1 and Experiment 2 side-by-side, so the following scripts must be run once for Experiment 1 and once for Experiment 2:
