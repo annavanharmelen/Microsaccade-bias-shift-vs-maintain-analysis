@@ -63,12 +63,12 @@ All figures show the data from Experiment 1 and Experiment 2 side-by-side, so th
 The scripts contain quite a few options that you can change under "parameters", depending on how you want the script to run.
 This repository *should* contain the settings as they were used for the original publication, but just in case, this is an overview of the settings that were used: 
 
-| setting           | Experiment 1                          | Experiment 2                              |
-| ----------------- |                :----:                 |                  :----:                   |
-| nan_trial_overlap | OFF, nan_post_target cuts off more    | OFF, nan_post_target cuts off more        |
-| nan_post_target   | ON                                    | ON                                        |
-| remove_unfixated  | OFF                                   | ON                                        |
-| remove_prematures | ON                                    | ON                                        |
-| only_over_1400    | ON                                    | ON                                        |
-| only_under_1dva   | OFF                                   | N.A., gaze control built into experiment  |
-| nsmooth           | set to 200                            | set to 200                                | 
+| setting             | Experiment 1                            | Experiment 2                                |
+| ------------------- |                :----:                   |                  :----:                     |
+| `nan_trial_overlap` | OFF, `nan_post_target` cuts off more    | OFF, `nan_post_target` cuts off more        |
+| `nan_post_target`   | ON                                      | ON                                          |
+| `remove_unfixated`  | OFF                                     | ON                                          |
+| `remove_prematures` | ON                                      | ON                                          |
+| `only_over_1400`    | ON                                      | ON                                          |
+| `only_under_1dva`   | OFF                                     | N.A., gaze control built into experiment    |
+| `nsmooth`           | set to 200                              | set to 200                                  | 
