@@ -19,9 +19,8 @@ if ~license('test', 'statistics_toolbox')
 end
 
 %% 2. Add path to the data folder here:
-main_data_path = '\\scistor.vu.nl\shares\FGB-ETP-CogPsy-ProactiveBrainLab\core_lab_members\Anna\Data';
-experiment_paths = ["m1 - microsaccade bias shift vs. sustain", "m2 - microsaccade bias shift vs. sustain with fixational control"];
-% experiment_paths = ["Experiment 1", "Experiment 2"];
+main_data_path = '...';
+experiment_paths = ["Experiment 1", "Experiment 2"];
 
 if strcmp(experiment, "joint")
     data_path = [fullfile(main_data_path, experiment_paths(1)), fullfile(main_data_path, experiment_paths(2))];
@@ -31,7 +30,7 @@ end
 
 
 %% 3. Add path to the figure folder here:
-figure_path = 'C:\Users\annav\OneDrive - Vrije Universiteit Amsterdam\Experiments\Microsaccade bias experiments\Figure tests';
+figure_path = '...';
 
 %% 4. Creates the output folders that are required (if they don't exist)
 subfolders_needed = ["epoched_data", "saved_data"];
